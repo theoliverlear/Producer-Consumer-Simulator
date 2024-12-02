@@ -26,28 +26,28 @@ Example: python pc-simulator.py -b 100 -p 2 -c 3 -ps 1:5 -cs 2:4 -v
    cd producer-consumer-simulator 
 
 ## 📋 Usage
-# Running the Simulator 
+### Running the Simulator 
 1. Configure the simulation via command line. For example:
    python pc-simulator.py -b 100 -p 2 -c 3 -ps 1:5 -cs 2:4 -v
 2. View real-rime logging, effiency metrics, and suggestions directly in terminal.
 
 ## 🔍 Features in Detail
-# Efficiency Calculator 
+### Efficiency Calculator 
 - Provides throughput metrics: Throughput = Total Items/Total Time Taken
 - Ranks your configuration's performance using percentiles.
 
-# Execution Tracing 
+### Execution Tracing 
 - Tracks thread activity: idle states, buffer utilization, and bottlenecks.
 - Provides insights into thread scheduling and queue saturation.
 
-# Configuration Suggestions
+### Configuration Suggestions
 - Suggests improvements based on the buffer size, thread count, and speed mismatches.
 
-# Unit Testing 
+### Unit Testing 
 - Guarantees program reliability through comprehensive test cases.
 
 ## 🧰 Development
-# Dependencies 
+### Dependencies 
 - Python
 - Logging for detailed execution tracing
 - Unit testing framework (ex: unittest)
