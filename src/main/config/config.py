@@ -16,3 +16,6 @@ class Config:
         self.producer_speed_range = producer_speed_range
         self.verbose = verbose
         self.suggestions = suggestions
+
+    def __str__(self):
+        return f"Config(buffer_size={self.buffer_size}, num_items_to_process={self.num_items_to_process}, num_producers={self.num_producers}, num_consumers={self.num_consumers}, consumer_speed_range={self.consumer_speed_range}, producer_speed_range={self.producer_speed_range}, verbose={self.verbose}, suggestions={self.suggestions})"
