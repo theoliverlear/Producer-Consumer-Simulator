@@ -19,20 +19,20 @@ class Simulator:
     def __init__(self, config: Config):
         self.config = config
 
-    def simulate(self):
+    def simulate(self) -> None:
         self.start()
         # TODO: Add business logic
         self.stop()
 
-    def start(self):
+    def start(self) -> None:
         pass
 
-    def stop(self):
+    def stop(self) -> None:
         pass
 
-    def show_suggestions(self):
+    def show_suggestions(self) -> None:
         pass
 
-    def show_efficiency(self):
+    def show_efficiency(self) -> None:
         pass
 
