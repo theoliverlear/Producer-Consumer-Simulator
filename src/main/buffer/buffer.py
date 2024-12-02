@@ -1,9 +1,8 @@
 from abc import ABC, abstractmethod
 
 class Buffer(ABC):
-    def __init__(self, buffer_size: int, num_items_to_process: int):
+    def __init__(self, buffer_size: int):
         self.buffer_size: int = buffer_size
-        self.num_items_to_process: int = num_items_to_process
         self.is_empty: bool = True
         self.is_full: bool = False
 
