@@ -1,12 +1,14 @@
 import random
+import threading
 import time
 from abc import ABC, abstractmethod
 
 from src.main.buffer.buffer import Buffer
 
 
-class Processor(ABC):
+class Processor(ABC, threading.Thread):
     def __init__(self, speed_floor: int, speed_ceiling: int, buffer: Buffer):
+        super().__init__()
         self.speed_floor = speed_floor
         self.speed_ceiling = speed_ceiling
         self.buffer = buffer
