@@ -1,5 +1,7 @@
 class CommandFlag:
-    def __init__(self, flag: str, full_flag: str, value: str):
-        self.flag: str = flag
-        self.full_flag: str = full_flag
-        self.value: str = value
+    def __init__(self, flag: str, full_flag: str, type, default_value, help_text: str):
+        self.flag = flag
+        self.full_flag = full_flag
+        self.type = type
+        self.default_value = default_value
+        self.help_text = help_text
