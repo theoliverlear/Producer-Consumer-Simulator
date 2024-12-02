@@ -1,4 +1,3 @@
-
 import random
 
 
@@ -17,13 +16,14 @@ class Producer(Processor):
 
 
     def run(self) -> None:
-        while self.running:
+        while self.running and self.buffer.num_items_to_process > 0:
             random_number: int = self.get_random_number()
             try:
                 self.buffer.enqueue(random_number)
             except FullBufferException:
                 pass
             super().simulate_processing()
+        self.stop()
 
     def stop(self):
         self.running = False
