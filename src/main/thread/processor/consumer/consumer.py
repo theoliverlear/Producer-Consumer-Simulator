@@ -10,12 +10,13 @@ class Consumer(Processor, ABC):
         super().__init__(speed_floor, speed_ceiling, buffer)
 
     def run(self) -> None:
-        while self.running:
+        while self.running and self.buffer.num_items_to_process > 0:
             try:
                 self.buffer.dequeue()
             except EmptyBufferException:
                 pass
             super().simulate_processing()
+        self.stop()
 
 
     def stop(self):
