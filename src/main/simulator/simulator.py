@@ -1,27 +1,35 @@
+import logging
+
 from src.main.buffer.buffer_queue import BufferQueue
 from src.main.config.config import Config
-from src.main.logging.setup_logging import setup_logging
+from src.main.thread.processor.lock.mutex_lock import MutexLock
 from src.main.thread.thread_manager import ThreadManager
 
 
 class Simulator:
     def __init__(self, config: Config):
         self.config = config
-        setup_logging(config.verbose)
-        self.buffer = BufferQueue(config.buffer_size, config.num_items_to_process)
+        logging.info("Starting simulator")
+        lock = MutexLock()
+        self.buffer = BufferQueue(config.buffer_size, lock)
         self.thread_manager = ThreadManager(
             num_producers=config.num_producers,
             num_consumers=config.num_consumers,
             consumer_speed_range=config.consumer_speed_range,
             producer_speed_range=config.producer_speed_range,
-            buffer=self.buffer
+            buffer=self.buffer,
+            num_items_to_process=config.num_items_to_process
         )
         self.is_running = False
 
     def simulate(self) -> None:
         self.start()
-        # TODO: Add business logic
-        self.stop()
+        try:
+            self.thread_manager.stop_all()
+        except KeyboardInterrupt:
+            self.stop()
+        finally:
+            self.stop()
 
     def start(self) -> None:
         self.is_running = True
