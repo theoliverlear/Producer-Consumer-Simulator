@@ -29,7 +29,7 @@ Example: python pc-simulator.py -b 100 -p 2 -c 3 -ps 1:5 -cs 2:4 -v
 ### Running the Simulator 
 1. Configure the simulation via command line. For example:
    python pc-simulator.py -b 100 -p 2 -c 3 -ps 1:5 -cs 2:4 -v
-2. View real-rime logging, effiency metrics, and suggestions directly in terminal.
+2. View real-rime logging, efficiency metrics, and suggestions directly in terminal.
 
 ## 🔍 Features in Detail
 ### Efficiency Calculator 
