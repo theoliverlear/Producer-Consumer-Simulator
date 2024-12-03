@@ -21,14 +21,18 @@ Example: python pc-simulator.py -b 100 -p 2 -c 3 -ps 1:5 -cs 2:4 -v
   
 ## ⚙️ Installation
 1. Clone Repository:
+```bash
    git clone https://github.com/theoliverlear/Producer-Consumer-Simulator.git
+   ```
 2. Change Directory:
    cd producer-consumer-simulator 
 
 ## 📋 Usage
 ### Running the Simulator 
 1. Configure the simulation via command line. For example:
-   python pc-simulator.py -b 100 -p 2 -c 3 -ps 1:5 -cs 2:4 -v
+   ``` bash
+   python pc_simulator.py -b 100 -n 100 -p 2 -c 3 -ps 1:5 -cs 2:4 -v
+    ```
 2. View real-rime logging, efficiency metrics, and suggestions directly in terminal.
 
 ## 🔍 Features in Detail
