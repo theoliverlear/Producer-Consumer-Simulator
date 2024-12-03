@@ -12,7 +12,10 @@ The Producer Consumer Simulator is an educational tool crafted to provide hands-
 
 ## 🛠️ Key Features
 - Command-Line Configuration: Easily set up your simulation with arguments like buffer size, number of producers/consumers, and processing speeds.
-Example: python pc-simulator.py -b 100 -p 2 -c 3 -ps 1:5 -cs 2:4 -v
+Example: 
+```bash
+  python pc_simulator.py -b 100 -n 100 -p 2 -c 3 -ps 1:5 -cs 2:4 -v
+```
 - Efficiency Calculator: Measure and rank your configuration's throughput to identify bottlenecks and optimize performance.
 - Execution Tracing: Trace producer and consumer activities with detailed logs showing idle times, buffer utilization, and bottlenecks.
 - Verbose Mode: Enable detailed output for an in-depth look at your simulation's behavior.
