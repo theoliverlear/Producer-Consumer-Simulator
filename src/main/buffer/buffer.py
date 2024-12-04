@@ -5,6 +5,7 @@ class Buffer(ABC):
         self.buffer_size: int = buffer_size
         self.is_empty: bool = True
         self.is_full: bool = False
+        logging.info(f"Buffer initialized with size {buffer_size}")
 
     @abstractmethod
     def enqueue(self, number_to_enqueue: int) -> None:
