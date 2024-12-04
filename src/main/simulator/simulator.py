@@ -42,12 +42,8 @@ class Simulator:
 
     def stop(self) -> None:
         self.is_running = False
-        self.thread_manager.stop_all()
+        self.thread_manager.join_all()
 
 
     def show_suggestions(self) -> None:
         pass
-
-    def show_efficiency(self) -> None:
-        pass
-
