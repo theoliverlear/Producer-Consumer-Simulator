@@ -77,8 +77,10 @@ def track_exceptions(function):
             return result
         except FullBufferException:
             self.statistic_tracker.increment_full_buffer()
+            raise
         except EmptyBufferException:
             self.statistic_tracker.increment_empty_buffer()
+            raise
     return wrapper
 
 def milliseconds_to_nanoseconds(milliseconds: float | int) -> int:
