@@ -1,3 +1,5 @@
+import itertools
+import random
 from typing import List
 
 from src.main.buffer.buffer import Buffer
@@ -72,26 +74,8 @@ class ThreadManager:
         return consumers
 
 
-    def start_producers(self):
-        for producer in self.producers:
-            producer.start()
-
-    def start_consumers(self):
-        for consumer in self.consumers:
-            consumer.start()
-
     def start_all(self):
-        self.start_producers()
-        self.start_consumers()
-
-    def stop_producers(self):
-        for producer in self.producers:
-            producer.join()
-
-    def stop_consumers(self):
-        for consumer in self.consumers:
-            consumer.join()
-
-    def stop_all(self):
-        self.stop_producers()
-        self.stop_consumers()
+        threads = list(itertools.chain(*zip(self.producers, self.consumers)))
+        random.shuffle(threads)
+        for thread in threads:
+            thread.start()
