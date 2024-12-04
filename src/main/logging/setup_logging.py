@@ -11,13 +11,15 @@ def setup_logging(use_verbose: bool = False) -> None:
 def setup_default_logging() -> None:
     logging.basicConfig(
         level=logging.INFO,
-        format="%(asctime)s - %(threadName)s - %(levelname)s - %(message)s"
+        format="%(asctime)s - %(threadName)s - %(levelname)s - %(message)s",
+        datefmt='%H:%M:%S'
     )
 
 def setup_verbose_logging():
     logging.basicConfig(
         level=logging.DEBUG,
-        format="%(asctime)s - %(threadName)s - %(levelname)s - %(message)s"
+        format="%(asctime)s - %(threadName)s - %(levelname)s - %(message)s",
+        datefmt='%H:%M:%S'
     )
 
 def execution_trace(function):
