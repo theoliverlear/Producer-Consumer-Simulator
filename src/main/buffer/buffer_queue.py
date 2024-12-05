@@ -31,7 +31,7 @@ class BufferQueue(Buffer):
     @critical_section
     @track_exceptions
     def enqueue(self, number_to_enqueue: int) -> None:
-        if not self.is_full:
+        if not self.is_full():
             self.buffer.appendleft(number_to_enqueue)
         else:
             logging.info("Buffer is full")
