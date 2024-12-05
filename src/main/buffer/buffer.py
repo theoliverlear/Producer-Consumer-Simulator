@@ -10,9 +10,7 @@ class Buffer(ABC):
                  statistic_tracker: StatisticTracker):
         self.buffer_size: int = buffer_size
         self.statistic_tracker: StatisticTracker = statistic_tracker
-        self.is_empty: bool = True
-        self.is_full: bool = False
-        logging.info(f"Buffer initialized with size {buffer_size}")
+        logging.debug(f"Buffer initialized with size {buffer_size}.")
 
     @abstractmethod
     def enqueue(self, number_to_enqueue: int) -> None:
