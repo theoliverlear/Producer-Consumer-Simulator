@@ -37,10 +37,16 @@ class Consumer(Processor, ABC):
             dequeued_number: int = self.buffer.dequeue()
             logging.info(f"Dequeued number: {dequeued_number}")
             self.num_items_to_process -= 1
+            logging.debug(f"Items remaining: {self.num_items_to_process}")
+            self.simulate_processing()
         except EmptyBufferException:
-            time.sleep(0.01)
+            num_remaining_string: str = f"{self.statistic_tracker.num_items_to_process - self.statistic_tracker.items_produced}"
+            logging.debug(f"Buffer is empty. {num_remaining_string} items remaining.")
+            if self.statistic_tracker.items_produced == self.statistic_tracker.num_items_to_process:
+                self.stop()
+            else:
+                time.sleep(0.01)
             return
-        self.simulate_processing()
 
     def stop(self):
         self.running = False
