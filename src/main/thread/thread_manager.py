@@ -1,4 +1,4 @@
-import itertools
+import logging
 import random
 from typing import List
 
@@ -23,6 +23,7 @@ class ThreadManager:
         self.producer_speed_range = producer_speed_range
         self.consumer_speed_range = consumer_speed_range
         self.statistic_tracker = statistic_tracker
+        self.threads_started = False
         self.producers = self.initialize_producers()
         self.consumers = self.initialize_consumers()
 
@@ -56,8 +57,10 @@ class ThreadManager:
             producers.append(Producer(i + 1,
                                       self.producer_speed_range[0],
                                       self.producer_speed_range[1],
-                                      self.buffer, items_to_produce,
+                                      self.buffer,
+                                      items_to_produce,
                                       self.statistic_tracker))
+            logging.debug(f"Producer {i + 1} will produce {items_to_produce} items.")
         return producers
 
 
@@ -69,13 +72,17 @@ class ThreadManager:
             consumers.append(Consumer(i + 1,
                                       self.consumer_speed_range[0],
                                       self.consumer_speed_range[1],
-                                      self.buffer, items_to_consume,
+                                      self.buffer,
+                                      items_to_consume,
                                       self.statistic_tracker))
+            logging.debug(f"Consumer {i + 1} will consume {items_to_consume} items.")
         return consumers
 
 
     def start_all(self):
-        threads = list(itertools.chain(*zip(self.producers, self.consumers)))
+        threads = self.producers + self.consumers
         random.shuffle(threads)
+        logging.debug("Number of threads: " + str(len(threads)) + ".")
         for thread in threads:
             thread.start()
+        self.threads_started = True
