@@ -1,4 +1,5 @@
 import logging
+import time
 
 from src.main.buffer.buffer_queue import BufferQueue
 from src.main.config.config import Config
@@ -28,12 +29,15 @@ class Simulator:
     def simulate(self) -> None:
         self.start()
         self.statistic_tracker.start()
+        time.sleep(1)
         try:
-            self.thread_manager.join_all()
+            if self.thread_manager.threads_started:
+                self.thread_manager.join_all()
         except KeyboardInterrupt:
             self.stop()
         finally:
-            self.stop()
+            if self.is_running:
+                self.stop()
             self.statistic_tracker.stop()
 
     def start(self) -> None:
