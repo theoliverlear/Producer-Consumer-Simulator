@@ -1,3 +1,4 @@
+import logging
 from abc import ABC, abstractmethod
 
 from src.main.statistics.statistic_tracker import StatisticTracker
@@ -11,6 +12,7 @@ class Buffer(ABC):
         self.statistic_tracker: StatisticTracker = statistic_tracker
         self.is_empty: bool = True
         self.is_full: bool = False
+        logging.info(f"Buffer initialized with size {buffer_size}")
 
     @abstractmethod
     def enqueue(self, number_to_enqueue: int) -> None:
