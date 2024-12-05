@@ -1,5 +1,6 @@
 import logging
 import random
+import threading
 from typing import List
 
 from src.main.buffer.buffer import Buffer
@@ -80,9 +81,9 @@ class ThreadManager:
 
 
     def start_all(self):
-        threads = self.producers + self.consumers
+        threads: List[threading.Thread] = self.producers + self.consumers
         random.shuffle(threads)
-        logging.debug("Number of threads: " + str(len(threads)) + ".")
+        logging.debug(f"Number of threads: {len(threads)}.")
         for thread in threads:
             thread.start()
         self.threads_started = True
