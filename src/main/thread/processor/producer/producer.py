@@ -43,10 +43,13 @@ class Producer(Processor):
             logging.info(f"Enqueued number: {random_number}")
             self.buffer.enqueue(random_number)
             self.num_items_to_process -= 1
+            logging.debug(f"Items remaining: {self.num_items_to_process}")
         except FullBufferException:
             time.sleep(0.01)
             return
         self.simulate_processing()
 
     def stop(self):
+        num_remaining_string: str = f"{self.statistic_tracker.num_items_to_process - self.statistic_tracker.items_produced}"
+        logging.debug(f"Producer {self.id} stopped. {num_remaining_string} items remaining.")
         self.running = False
