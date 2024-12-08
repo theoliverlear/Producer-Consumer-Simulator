@@ -4,6 +4,7 @@ import time
 from src.main.buffer.buffer_queue import BufferQueue
 from src.main.config.config import Config
 from src.main.statistics.statistic_tracker import StatisticTracker
+from src.main.suggestion.suggester import Suggester
 from src.main.thread.processor.lock.mutex_lock import MutexLock
 from src.main.thread.thread_manager import ThreadManager
 
@@ -24,6 +25,8 @@ class Simulator:
             num_items_to_process=config.num_items_to_process,
             statistic_tracker=self.statistic_tracker
         )
+        if config.suggestions:
+            self.suggester = Suggester(config, self.statistic_tracker)
         self.is_running = False
 
     def simulate(self) -> None:
@@ -39,6 +42,8 @@ class Simulator:
             if self.is_running:
                 self.stop()
             self.statistic_tracker.stop()
+            if self.config.suggestions:
+                self.suggester.show_suggestions()
 
     def start(self) -> None:
         self.is_running = True
@@ -50,4 +55,4 @@ class Simulator:
 
 
     def show_suggestions(self) -> None:
-        pass
+        self.suggester.show_suggestions()
