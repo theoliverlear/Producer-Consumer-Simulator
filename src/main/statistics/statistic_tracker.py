@@ -2,7 +2,8 @@ import logging
 import time
 from typing import List
 
-from src.main.logging.logging_utilities import log_in_bold
+from src.main.logging.logging_utilities import log_in_bold, \
+    print_logging_seperator
 from src.main.statistics.track_performance import nanoseconds_to_milliseconds, \
     format_execution_time_number
 
@@ -55,23 +56,18 @@ class StatisticTracker:
         self.increment_consumed_items()
         self.consumer_throughput_list.append(throughput)
 
-    def print_logging_seperator(self):
-        logging_seperator: str = "\n" + "-" * 60
-        logging.info(logging_seperator)
 
     def show_statistics(self):
-        self.print_logging_seperator()
+        print_logging_seperator()
         log_in_bold(self.get_buffer_statistics())
-        self.print_logging_seperator()
+        print_logging_seperator()
         log_in_bold(self.get_performance_info())
-        self.print_logging_seperator()
+        print_logging_seperator()
 
     def get_buffer_statistics(self):
-        empty_to_item_ratio = self.num_empty_buffer / self.num_items_to_process
-        full_to_item_ratio = self.num_full_buffer / self.num_items_to_process
         buffer_statistics = f"""
-        Number of times buffer was empty: {self.num_empty_buffer} - {empty_to_item_ratio}:1 item
-        Number of times buffer was full: {self.num_full_buffer} - {full_to_item_ratio}:1 item"""
+        Number of times buffer was empty: {self.num_empty_buffer}
+        Number of times buffer was full: {self.num_full_buffer}"""
         return buffer_statistics
 
     def get_performance_info(self):
