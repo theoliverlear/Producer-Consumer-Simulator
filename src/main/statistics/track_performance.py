@@ -29,7 +29,7 @@ def format_execution_time_number(execution_time: float | int) -> str:
     if isinstance(execution_time, int):
         return f"{execution_time:,}"
     else:
-        return f"{execution_time:,.4f}"
+        return f"{execution_time:,.4g}"
 
 def track_producer_performance(function):
     @functools.wraps(function)
