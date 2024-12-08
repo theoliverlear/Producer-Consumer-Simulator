@@ -3,6 +3,7 @@ import time
 
 from src.main.buffer.buffer_queue import BufferQueue
 from src.main.config.config import Config
+from src.main.logging.logging_utilities import log_in_bold
 from src.main.statistics.statistic_tracker import StatisticTracker
 from src.main.suggestion.suggester import Suggester
 from src.main.thread.processor.lock.mutex_lock import MutexLock
@@ -44,6 +45,7 @@ class Simulator:
             self.statistic_tracker.stop()
             if self.config.suggestions:
                 self.suggester.show_suggestions()
+            self.show_ending_message()
 
     def start(self) -> None:
         self.is_running = True
@@ -52,6 +54,16 @@ class Simulator:
     def stop(self) -> None:
         self.is_running = False
         self.thread_manager.join_all()
+
+    def show_ending_message(self) -> None:
+        newline_with_tabs: str = "\n\t\t"
+        ending_message: str = (f"{newline_with_tabs}The simulation has ended."
+                               f" Thank you for using the Producer-Consumer"
+                               f" Simulator!")
+        if not self.config.suggestions:
+            ending_message += (f"{newline_with_tabs}Run the simulator with "
+                               f"the '-s' flag to see suggestions.")
+        log_in_bold(ending_message)
 
 
     def show_suggestions(self) -> None:
