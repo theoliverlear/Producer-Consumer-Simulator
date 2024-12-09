@@ -4,10 +4,10 @@ from enum import Enum
 from src.main.config.config import Config
 from src.main.logging.logging_utilities import log_in_bold, \
     get_underline_string
-from src.main.statistics.buffer_suggester import BufferSuggestions
 from src.main.statistics.statistic_tracker import StatisticTracker
 from src.main.statistics.track_performance import nanoseconds_to_milliseconds, \
     format_execution_time_number
+from src.main.suggestion.buffer_suggester import BufferSuggestions
 
 
 class SpeedSuggester:
