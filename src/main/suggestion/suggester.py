@@ -1,9 +1,7 @@
 from src.main.config.config import Config
-from src.main.statistics.buffer_suggester import BufferSuggester
-
-from src.main.statistics.speed_suggester import SpeedSuggester
 from src.main.statistics.statistic_tracker import StatisticTracker
-
+from src.main.suggestion.buffer_suggester import BufferSuggester
+from src.main.suggestion.speed_suggester import SpeedSuggester
 
 
 class Suggester:
