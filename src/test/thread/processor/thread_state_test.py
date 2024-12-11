@@ -18,5 +18,10 @@ class MyTestCase(unittest.TestCase):
         current_state = ThreadState.INACTIVE
         self.assertEqual(current_state.value, ('inactive',))
 
+    def test_function_io(self):
+        self.assertEqual(ThreadState.ACTIVE.value, ('active',))
+        self.assertEqual(ThreadState.INACTIVE.value, ('inactive',))
+
+
 if __name__ == '__main__':
     unittest.main()

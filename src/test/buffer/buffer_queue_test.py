@@ -19,7 +19,7 @@ class BufferQueueTest(unittest.TestCase):
                                                 statistic_tracker)
         self.assertIsNotNone(buffer_queue)
 
-    def test_buffer_value_changes(self):
+    def test_value_change(self):
         buffer_size = 10
         num_items_to_process = 1000
         mutex_lock = MutexLock()
@@ -33,7 +33,7 @@ class BufferQueueTest(unittest.TestCase):
         buffer_queue.dequeue()
         self.assertEqual(len(buffer_queue.buffer), 0)
 
-    def test_buffer_function_io(self):
+    def test_function_io(self):
         buffer_size = 10
         num_items_to_process = 1000
         mutex_lock = MutexLock()
@@ -46,7 +46,7 @@ class BufferQueueTest(unittest.TestCase):
         output = buffer_queue.dequeue()
         self.assertEqual(output, 1)
 
-    def test_execution_order(self):
+    def test_execution(self):
         buffer_size = 10
         num_items_to_process = 1000
         mutex_lock = MutexLock()
@@ -102,6 +102,7 @@ class BufferQueueTest(unittest.TestCase):
             with self.assertRaises(EmptyBufferException):
                 buffer_queue.dequeue()
         self.assertIn("Buffer is empty", log.output[0])
+
 
 if __name__ == '__main__':
     unittest.main()

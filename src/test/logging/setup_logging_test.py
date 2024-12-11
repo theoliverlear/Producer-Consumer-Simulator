@@ -29,12 +29,27 @@ class SetupLoggingTest(unittest.TestCase):
 
         setup_logging(True)
         mock_basic_config.assert_called_with(
-            level=10,  # DEBUG level
+            level=10,
             format="%(asctime)s - %(threadName)s - %(levelname)s - %(message)s",
             datefmt='%H:%M:%S',
         )
 
+    def test_function_io(self):
+        with patch('src.main.logging.setup_logging.logging.basicConfig') as mock_logging:
+            setup_default_logging()
+            mock_logging.assert_called_once_with(
+                level=20,
+                format="%(asctime)s - %(threadName)s - %(levelname)s - %(message)s",
+                datefmt='%H:%M:%S'
+            )
 
+            mock_logging.reset_mock()
+            setup_verbose_logging()
+            mock_logging.assert_called_once_with(
+                level=10,  # logging.DEBUG
+                format="%(asctime)s - %(threadName)s - %(levelname)s - %(message)s",
+                datefmt='%H:%M:%S'
+            )
 
 
 if __name__ == '__main__':

@@ -1,9 +1,9 @@
 import argparse
 import unittest
-from unittest.mock import Mock
+from unittest.mock import Mock, patch
 
 from src.main.config.command_flag import CommandFlag
-from src.main.config.command_parser import set_parser_args
+from src.main.config.command_parser import set_parser_args, get_config_from_arguments
 
 
 class CommandParserTest(unittest.TestCase):
@@ -20,7 +20,6 @@ class CommandParserTest(unittest.TestCase):
         self.assertFalse(parser.parse_args([]).verbose)
 
     def test_value_change(self):
-        # Create a parser and a mock CommandFlag
         parser = argparse.ArgumentParser()
         mock_flag = Mock(
             flag='-b',
@@ -30,17 +29,33 @@ class CommandParserTest(unittest.TestCase):
             help_text='Buffer size'
         )
 
-        # Set the initial argument
         parser = set_parser_args(parser, mock_flag)
         args = parser.parse_args(['-b', '200'])
         self.assertEqual(args.buffer_size, 200)
 
-        # Modify the mock flag's default value and test again
         mock_flag.default_value = 300
         parser = argparse.ArgumentParser()  # Reset the parser
         parser = set_parser_args(parser, mock_flag)
         args = parser.parse_args([])
         self.assertEqual(args.buffer_size, 300)
+
+    def test_function_io(self):
+        args = ['-b', '128', '-n', '500', '-p', '2', '-c', '3', '-v']
+        mock_config = Mock()
+        mock_config.buffer_size = 128
+        mock_config.num_items = 500
+        mock_config.num_producers = 2
+        mock_config.num_consumers = 3
+        mock_config.verbose = True
+
+        with patch('src.main.config.command_parser.Config', return_value=mock_config):
+            config = get_config_from_arguments(args)
+
+        self.assertEqual(config.buffer_size, 128)
+        self.assertEqual(config.num_items, 500)
+        self.assertEqual(config.num_producers, 2)
+        self.assertEqual(config.num_consumers, 3)
+        self.assertTrue(config.verbose)
 
 
 if __name__ == '__main__':

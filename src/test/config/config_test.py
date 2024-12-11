@@ -5,7 +5,7 @@ from src.main.config.config import Config
 from src.main.logging.logging_utilities import log_in_bold
 
 
-class MyTestCase(unittest.TestCase):
+class ConfigTest(unittest.TestCase):
     def test_instantiation(self):
         config = Config(100, 1000, 2, 3, (2, 6), (1, 5), True, False)
 
@@ -34,6 +34,27 @@ class MyTestCase(unittest.TestCase):
 
         config.verbose = True
         self.assertTrue(config.verbose)
+
+    def test_function_io(self):
+        config = Config(
+            buffer_size=128,
+            num_items_to_process=500,
+            num_producers=2,
+            num_consumers=3,
+            consumer_speed_range=(1, 3),
+            producer_speed_range=(2, 4),
+            verbose=True,
+            suggestions=False
+        )
+
+        self.assertEqual(config.buffer_size, 128)
+        self.assertEqual(config.num_items_to_process, 500)
+        self.assertEqual(config.num_producers, 2)
+        self.assertEqual(config.num_consumers, 3)
+        self.assertEqual(config.consumer_speed_range, (1, 3))
+        self.assertEqual(config.producer_speed_range, (2, 4))
+        self.assertTrue(config.verbose)
+        self.assertFalse(config.suggestions)
 
 
 if __name__ == '__main__':

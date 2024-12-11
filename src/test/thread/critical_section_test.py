@@ -41,6 +41,19 @@ class CriticalSectionTest(unittest.TestCase):
         test_obj.mutex_lock.__exit__.assert_called_once()
         self.assertEqual(result, "inside critical section")
 
+    def test_function_io(self):
+        mock_function = Mock()
+        mock_function.__name__ = "mock_function"  # Set __name__ for logging
+        mock_self = Mock()
+        mock_self.mutex_lock = MagicMock()  # Use MagicMock for context manager support
+
+        wrapped_function = critical_section(mock_function)
+        wrapped_function(mock_self)
+
+        mock_self.mutex_lock.__enter__.assert_called_once()
+        mock_function.assert_called_once_with(mock_self)
+        mock_self.mutex_lock.__exit__.assert_called_once()
+
 
 if __name__ == '__main__':
     unittest.main()

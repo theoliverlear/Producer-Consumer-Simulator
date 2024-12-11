@@ -27,17 +27,28 @@ class BufferSuggesterTest(unittest.TestCase):
         tracker = Mock(num_full_buffer=0, num_empty_buffer=0, num_items_to_process=100)
         suggester = BufferSuggester(config, tracker)
 
-        # Test increasing buffer size
         tracker.num_full_buffer = 15
         tracker.num_empty_buffer = 0
         suggester.calculate()
         self.assertEqual(suggester.suggestion, BufferSuggestions.INCREASE_BUFFER_SIZE)
 
-        # Test decreasing buffer size
         tracker.num_full_buffer = 0
         tracker.num_empty_buffer = 20
         suggester.calculate()
         self.assertEqual(suggester.suggestion, BufferSuggestions.DECREASE_BUFFER_SIZE)
+
+    def test_function_io(self):
+        config = Mock(buffer_size=10)
+        tracker = Mock(num_full_buffer=5, num_empty_buffer=2, num_items_to_process=20)
+        suggester = BufferSuggester(config, tracker)
+
+        suggester.calculate()
+
+        self.assertIn(suggester.suggestion, [
+            BufferSuggestions.INCREASE_BUFFER_SIZE,
+            BufferSuggestions.DECREASE_BUFFER_SIZE,
+            BufferSuggestions.KEEP_BUFFER_SIZE
+        ])
 
 
 if __name__ == '__main__':

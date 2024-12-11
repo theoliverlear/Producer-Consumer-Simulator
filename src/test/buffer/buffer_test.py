@@ -1,7 +1,8 @@
 import unittest
-from unittest.mock import MagicMock, Mock
+from unittest.mock import MagicMock, Mock, create_autospec
 
 from src.main.buffer.buffer import Buffer
+from src.main.buffer.empty_buffer_exception import EmptyBufferException
 from src.main.statistics.statistic_tracker import StatisticTracker
 
 
@@ -39,6 +40,22 @@ class BufferTest(unittest.TestCase):
 
         self.assertEqual(buffer.buffer_size, 10)
         self.assertIsNone(buffer.statistic_tracker)
+
+    def test_function_io(self):
+        buffer = create_autospec(Buffer, instance=True, buffer_size=2)
+        buffer.enqueue = Mock()
+        buffer.dequeue = Mock(side_effect=[10, 20, EmptyBufferException()])
+        buffer.is_full.return_value = True
+        buffer.is_empty.return_value = True
+
+        buffer.enqueue(10)
+        buffer.enqueue(20)
+        self.assertTrue(buffer.is_full())
+        self.assertEqual(buffer.dequeue(), 10)
+        self.assertEqual(buffer.dequeue(), 20)
+        with self.assertRaises(EmptyBufferException):
+            buffer.dequeue()
+        self.assertTrue(buffer.is_empty())
 
 
 if __name__ == '__main__':

@@ -23,7 +23,6 @@ class SuggesterTest(unittest.TestCase):
         self.assertEqual(suggester.speed_suggester.config, config)
 
     def test_value_change(self):
-        # Mock configuration and statistic tracker
         config = Mock(
             buffer_size=10,
             num_producers=1,
@@ -49,6 +48,24 @@ class SuggesterTest(unittest.TestCase):
         buffer_suggester.show_suggestions.assert_called_once()
 
         suggester.show_speed_suggestions()
+        speed_suggester.calculate.assert_called_once()
+        speed_suggester.show_statistics.assert_called_once()
+        speed_suggester.show_suggestions.assert_called_once()
+
+    def test_function_io(self):
+        config = Mock()
+        tracker = Mock()
+        buffer_suggester = Mock()
+        speed_suggester = Mock()
+
+        with unittest.mock.patch('src.main.suggestion.suggester.BufferSuggester', return_value=buffer_suggester), \
+                unittest.mock.patch('src.main.suggestion.suggester.SpeedSuggester', return_value=speed_suggester):
+            suggester = Suggester(config, tracker)
+            suggester.show_suggestions()
+
+        buffer_suggester.calculate.assert_called_once()
+        buffer_suggester.show_statistics.assert_called_once()
+        buffer_suggester.show_suggestions.assert_called_once()
         speed_suggester.calculate.assert_called_once()
         speed_suggester.show_statistics.assert_called_once()
         speed_suggester.show_suggestions.assert_called_once()

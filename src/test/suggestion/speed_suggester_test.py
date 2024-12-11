@@ -1,6 +1,7 @@
 import unittest
 from unittest.mock import Mock
 
+from src.main.config import config
 from src.main.config.config import Config
 from src.main.suggestion.speed_suggester import SpeedSuggester, SpeedSuggestions
 
@@ -46,6 +47,22 @@ class SpeedSuggesterTest(unittest.TestCase):
 
         config.num_producers = 1
         config.num_consumers = 3
+        suggester.calculate()
+
+    def test_function_io(self):
+        config = Mock(
+            producer_speed_range=(2, 4),
+            consumer_speed_range=(1, 3),
+            num_producer=2,
+            num_consumer=2
+        )
+        tracker = Mock(
+            producer_throughput_list=[5000, 6000],
+            consumer_throughput_list=[2000, 3000]
+        )
+        buffer_suggester = Mock()
+        suggester = SpeedSuggester(config, tracker, buffer_suggester)
+
         suggester.calculate()
 
 

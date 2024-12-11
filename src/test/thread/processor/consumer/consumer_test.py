@@ -33,6 +33,17 @@ class ConsumerTest(unittest.TestCase):
         consumer.stop()
         self.assertFalse(consumer.running)
 
+    def test_function_io(self):
+        buffer = Mock()
+        tracker = Mock(num_items_to_process=5)
+        consumer = Consumer(1, 1, 3, buffer, 5, tracker)
+
+        consumer.process_item()
+        buffer.dequeue.assert_called_once()
+
+        consumer.stop()
+        self.assertFalse(consumer.running)
+
 
 if __name__ == '__main__':
     unittest.main()

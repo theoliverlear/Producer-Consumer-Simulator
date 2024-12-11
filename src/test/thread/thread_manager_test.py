@@ -7,8 +7,7 @@ from src.main.thread.thread_manager import ThreadManager
 class ThreadManagerTest(unittest.TestCase):
     def test_instantiation(self):
         thread_manager = ThreadManager(
-            2, 3, (1, 3), (2, 4),
-            Mock(), 100, Mock()
+            2, 3, (1, 3), (2, 4), Mock(), 100, Mock()
         )
 
         self.assertEqual(thread_manager.num_producers, 2)
@@ -29,23 +28,40 @@ class ThreadManagerTest(unittest.TestCase):
             statistic_tracker=tracker,
         )
 
-        # Validate producers and consumers
         self.assertEqual(len(thread_manager.producers), 2)
         self.assertEqual(len(thread_manager.consumers), 3)
 
-        # Test joining threads
         for thread in thread_manager.producers + thread_manager.consumers:
             thread.join = Mock()
         thread_manager.join_all()
         for thread in thread_manager.producers + thread_manager.consumers:
             thread.join.assert_called_once()
 
-        # Test starting threads
         for thread in thread_manager.producers + thread_manager.consumers:
             thread.start = Mock()
         thread_manager.start_all()
         for thread in thread_manager.producers + thread_manager.consumers:
             thread.start.assert_called_once()
+
+    def test_function_io(self):
+        buffer = Mock()
+        tracker = Mock()
+        manager = ThreadManager(2, 2, (1, 3), (1, 3), buffer, 10, tracker)
+
+        manager.producers = [Mock()]
+        manager.consumers = [Mock()]
+
+        manager.start_all()
+        for producer in manager.producers:
+            producer.start.assert_called_once()
+        for consumer in manager.consumers:
+            consumer.start.assert_called_once()
+
+        manager.join_all()
+        for producer in manager.producers:
+            producer.join.assert_called_once()
+        for consumer in manager.consumers:
+            consumer.join.assert_called_once()
 
 
 if __name__ == '__main__':

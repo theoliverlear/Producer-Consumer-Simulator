@@ -1,20 +1,14 @@
 import unittest
-from unittest.mock import Mock
+from unittest.mock import Mock, patch
 
+from src.main.config import config
 from src.main.config.config import Config
 from src.main.simulator.simulator import Simulator
 
 
 class SimulatorTest(unittest.TestCase):
     def test_instantiation(self):
-        config = Config(10,
-                        100,
-                        2,
-                        2,
-                        (1, 3),
-                        (2, 4),
-                        False,
-                        True)
+        config = Config(10, 100, 2, 2, (1, 3), (2, 4), False, True)
         simulator = Simulator(config)
 
         self.assertEqual(simulator.config, config)
@@ -44,6 +38,28 @@ class SimulatorTest(unittest.TestCase):
 
         self.assertTrue(simulator.is_running)
         self.assertEqual(simulator.config.buffer_size, 20)
+
+    def test_function_io(self):
+        config = Mock(
+            num_items_to_process=100,
+            buffer_size=10,
+            num_producers=2,
+            num_consumers=3,
+            consumer_speed_range=(1, 3),
+            producer_speed_range=(2, 4),
+            verbose=True,
+            suggestions=False
+        )
+
+        with patch('src.main.simulator.simulator.ThreadManager') as MockThreadManager, \
+                patch('src.main.simulator.simulator.StatisticTracker') as MockTracker:
+            simulator = Simulator(config)
+
+            simulator.start()
+            MockThreadManager.return_value.start_all.assert_called_once()
+
+            simulator.stop()
+            MockThreadManager.return_value.join_all.assert_called_once()
 
 
 if __name__ == '__main__':

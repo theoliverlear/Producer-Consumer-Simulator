@@ -1,5 +1,5 @@
 import unittest
-from unittest.mock import Mock, create_autospec
+from unittest.mock import Mock, create_autospec, patch
 
 from src.main.thread.processor.processor import Processor
 from src.main.thread.processor.producer.producer import Producer
@@ -37,6 +37,23 @@ class ProccessorTest(unittest.TestCase):
         processor.stop = Mock()
         processor.stop()
         processor.stop.assert_called_once()
+
+    @patch.multiple(Processor, __abstractmethods__=set())
+    def test_function_io(self):
+        buffer = Mock()
+        tracker = Mock()
+        processor = Processor(1, 1, 3, buffer, 5, tracker)
+
+        processor.run = Mock()
+        processor.stop = Mock()
+        processor.process_item = Mock()
+
+        processor.simulate_processing()
+        tracker.increment_produced_items.assert_not_called()
+
+        processor.stop()
+        processor.stop.assert_called_once()
+        self.assertFalse(processor.running)
 
 
 if __name__ == '__main__':

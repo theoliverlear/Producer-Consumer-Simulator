@@ -21,19 +21,32 @@ class ProducerTest(unittest.TestCase):
         tracker = Mock(num_items_to_process=10, items_produced=5)  # Set valid integers
         producer = Producer(1, 1, 3, buffer, 10, tracker)
 
-        # Test producing an item
         buffer.enqueue.return_value = None
         producer.process_item()
         self.assertEqual(producer.num_items_to_process, 9)
 
-        # Test full buffer exception
         buffer.enqueue.side_effect = FullBufferException
         producer.process_item()
         self.assertEqual(producer.num_items_to_process, 9)
 
-        # Test stop
         tracker.num_items_to_process = 10
         tracker.items_produced = 10
+        producer.stop()
+        self.assertFalse(producer.running)
+
+    def test_function_io(self):
+        buffer = Mock()
+        tracker = Mock()
+        tracker.num_items_to_process = 5
+        tracker.items_produced = 1
+
+        producer = Producer(1, 1, 3, buffer, 5, tracker)
+
+        buffer.enqueue.return_value = None
+        producer.process_item()
+        buffer.enqueue.assert_called_once()
+        self.assertEqual(producer.num_items_to_process, 4)
+
         producer.stop()
         self.assertFalse(producer.running)
 

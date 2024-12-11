@@ -7,7 +7,6 @@ from src.main.statistics.track_performance import track_performance, track_produ
 
 class TrackPerformanceTest(unittest.TestCase):
     def test_instantiation(self):
-        # Ensure all decorators are callable
         self.assertTrue(callable(track_performance))
         self.assertTrue(callable(track_producer_performance))
         self.assertTrue(callable(track_consumer_performance))
@@ -28,7 +27,6 @@ class TrackPerformanceTest(unittest.TestCase):
     @patch("time.perf_counter", side_effect=[1.0, 1.5])
     @patch("logging.info")
     def test_value_change(self, mock_logging_info, mock_perf_counter):
-        # Mock a class with a method to decorate
         class TestClass:
             @track_performance
             def test_method(self):
@@ -43,6 +41,18 @@ class TrackPerformanceTest(unittest.TestCase):
         mock_logging_info.assert_called_with(
             "Execution time for test_method on thread MainThread: 500 milliseconds."
         )
+
+    @patch('src.main.statistics.track_performance.logging.info')
+    def test_function_io(self, mock_logging):
+        mock_function = Mock(return_value="Result")
+        mock_function.__name__ = "mock_function"
+
+        wrapped_function = track_performance(mock_function)
+
+        result = wrapped_function()
+
+        self.assertEqual(result, "Result")
+        mock_logging.assert_called_once()
 
 
 if __name__ == '__main__':

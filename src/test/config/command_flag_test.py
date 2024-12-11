@@ -26,6 +26,22 @@ class CommandFlagTest(unittest.TestCase):
         flag.full_flag = '--num-items'
         self.assertEqual(flag.full_flag, '--num-items')
 
+    def test_function_io(self):
+        flag = CommandFlag('-b', '--buffer-size', int, 100, 'Buffer size in bytes')
+
+        # Test input/output attributes
+        self.assertEqual(flag.flag, '-b')
+        self.assertEqual(flag.full_flag, '--buffer-size')
+        self.assertEqual(flag.type, int)
+        self.assertEqual(flag.default_value, 100)
+        self.assertEqual(flag.help_text, 'Buffer size in bytes')
+
+        # Test string representation
+        self.assertEqual(
+            str(flag),
+            "CommandFlag(-b, --buffer-size, <class 'int'>, 100, Buffer size in bytes)"
+        )
+
 
 if __name__ == '__main__':
     unittest.main()
