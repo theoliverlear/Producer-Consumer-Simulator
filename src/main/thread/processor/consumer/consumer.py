@@ -35,7 +35,7 @@ class Consumer(Processor, ABC):
     def process_item(self) -> None:
         try:
             dequeued_number: int = self.buffer.dequeue()
-            logging.info(f"Dequeued number: {dequeued_number}")
+            logging.debug(f"Dequeued number: {dequeued_number}")
             self.num_items_to_process -= 1
             logging.debug(f"Items remaining: {self.num_items_to_process}")
             self.simulate_processing()
