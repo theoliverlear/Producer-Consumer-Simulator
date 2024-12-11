@@ -40,7 +40,7 @@ class Producer(Processor):
     def process_item(self) -> None:
         try:
             random_number: int = self.get_random_number()
-            logging.info(f"Enqueued number: {random_number}")
+            logging.debug(f"Enqueued number: {random_number}")
             self.buffer.enqueue(random_number)
             self.num_items_to_process -= 1
             logging.debug(f"Items remaining: {self.num_items_to_process}")
