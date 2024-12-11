@@ -1,6 +1,7 @@
 import unittest
-from unittest.mock import Mock
+from unittest.mock import Mock, create_autospec
 
+from src.main.thread.processor.processor import Processor
 from src.main.thread.processor.producer.producer import Producer
 
 
@@ -14,6 +15,28 @@ class ProccessorTest(unittest.TestCase):
         self.assertEqual(producer.num_items_to_process, 100)
         self.assertEqual(producer.name, "Producer-1")
         self.assertFalse(producer.running)
+
+    def test_value_change(self):
+        buffer = Mock()
+        tracker = Mock(num_items_to_process=10)
+        processor = create_autospec(Processor, instance=True)
+        processor.id = 1
+        processor.speed_floor = 1
+        processor.speed_ceiling = 3
+        processor.num_items_to_process = 10
+        processor.running = True
+
+        self.assertEqual(processor.num_items_to_process, 10)
+        self.assertEqual(processor.speed_floor, 1)
+        self.assertEqual(processor.speed_ceiling, 3)
+
+        processor.num_items_to_process -= 1
+        self.assertEqual(processor.num_items_to_process, 9)
+
+        processor.running = True
+        processor.stop = Mock()
+        processor.stop()
+        processor.stop.assert_called_once()
 
 
 if __name__ == '__main__':

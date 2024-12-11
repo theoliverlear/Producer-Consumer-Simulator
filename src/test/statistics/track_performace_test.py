@@ -1,5 +1,5 @@
 import unittest
-from unittest.mock import Mock
+from unittest.mock import Mock, patch
 
 from src.main.statistics.track_performance import track_performance, track_producer_performance, \
     track_consumer_performance, track_exceptions
@@ -24,6 +24,26 @@ class TrackPerformanceTest(unittest.TestCase):
 
         self.assertEqual(sample_function(), "Test")
         self.assertEqual(producer_function(Mock(statistic_tracker=Mock())), "Producer")
+
+    @patch("time.perf_counter", side_effect=[1.0, 1.5])
+    @patch("logging.info")
+    def test_value_change(self, mock_logging_info, mock_perf_counter):
+        # Mock a class with a method to decorate
+        class TestClass:
+            @track_performance
+            def test_method(self):
+                return "Completed"
+
+        obj = TestClass()
+
+        result = obj.test_method()
+
+        self.assertEqual(result, "Completed")
+
+        mock_logging_info.assert_called_with(
+            "Execution time for test_method on thread MainThread: 500 milliseconds."
+        )
+
 
 if __name__ == '__main__':
     unittest.main()

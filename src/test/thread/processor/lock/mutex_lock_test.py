@@ -1,5 +1,6 @@
 import threading
 import unittest
+from unittest.mock import MagicMock
 
 from src.main.thread.processor.lock.lock_state import LockState
 from src.main.thread.processor.lock.mutex_lock import MutexLock
@@ -12,6 +13,30 @@ class MutexLockTest(unittest.TestCase):
         self.assertEqual(mutex_lock.lock_state, LockState.AVAILABLE)
         self.assertIsNotNone(mutex_lock.condition)
         self.assertIsInstance(mutex_lock.condition, threading.Condition)
+
+    def test_value_change(self):
+        mutex_lock = MutexLock()
+
+        # Test initial state and transitions
+        self.assertEqual(mutex_lock.lock_state, LockState.AVAILABLE)
+        mutex_lock.lock()
+        self.assertEqual(mutex_lock.lock_state, LockState.UNAVAILABLE)
+        mutex_lock.unlock()
+        self.assertEqual(mutex_lock.lock_state, LockState.AVAILABLE)
+
+        # Test is_locked and is_available
+        mutex_lock.lock()
+        self.assertTrue(mutex_lock.is_locked())
+        mutex_lock.unlock()
+        self.assertTrue(mutex_lock.is_available())
+
+        # Mock threading condition interactions
+        mock_condition = MagicMock()
+        mutex_lock.condition = mock_condition
+        mutex_lock.acquire()
+        mock_condition.__enter__.assert_called_once()
+        mutex_lock.release()
+        mock_condition.notify_all.assert_called_once()
 
 
 if __name__ == '__main__':
