@@ -65,7 +65,7 @@ def track_consumer_performance(function):
             time_interval = 'nanoseconds'
         self.statistic_tracker.add_consumer_throughput(nano_execution_time)
         execution_time_str: str = format_execution_time_number(execution_time)
-        logging.info(f"Execution time for {function.__name__} on thread {thread_name}: {execution_time_str} {time_interval}.")
+        logging.debug(f"Execution time for {function.__name__} on thread {thread_name}: {execution_time_str} {time_interval}.")
         return result
     return wrapper
 
