@@ -1,8 +1,6 @@
 import unittest
-from unittest.mock import patch
 
 from src.main.config.config import Config
-from src.main.logging.logging_utilities import log_in_bold
 
 
 class ConfigTest(unittest.TestCase):

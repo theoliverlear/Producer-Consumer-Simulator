@@ -1,7 +1,6 @@
 import unittest
 from unittest.mock import Mock, patch
 
-from src.main.config import config
 from src.main.config.config import Config
 from src.main.simulator.simulator import Simulator
 

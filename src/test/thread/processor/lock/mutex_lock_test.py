@@ -1,6 +1,6 @@
 import threading
 import unittest
-from unittest.mock import MagicMock, Mock
+from unittest.mock import MagicMock
 
 from src.main.thread.processor.lock.lock_state import LockState
 from src.main.thread.processor.lock.mutex_lock import MutexLock

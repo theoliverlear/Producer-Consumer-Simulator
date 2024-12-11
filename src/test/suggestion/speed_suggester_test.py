@@ -1,7 +1,6 @@
 import unittest
 from unittest.mock import Mock
 
-from src.main.config import config
 from src.main.config.config import Config
 from src.main.suggestion.speed_suggester import SpeedSuggester, SpeedSuggestions
 
