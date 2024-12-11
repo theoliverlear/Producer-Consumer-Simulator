@@ -34,7 +34,7 @@ class BufferQueue(Buffer):
         if not self.is_full():
             self.buffer.appendleft(number_to_enqueue)
         else:
-            logging.info("Buffer is full")
+            logging.debug("Buffer is full")
             raise FullBufferException()
 
     @track_performance
@@ -44,5 +44,5 @@ class BufferQueue(Buffer):
         if not self.is_empty():
             return self.buffer.pop()
         else:
-            logging.info("Buffer is empty")
+            logging.debug("Buffer is empty")
             raise EmptyBufferException()
