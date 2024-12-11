@@ -20,7 +20,7 @@ def track_performance(function):
             execution_time = milliseconds_to_nanoseconds(execution_time)
             time_interval = 'nanoseconds'
         execution_time_str: str = format_execution_time_number(execution_time)
-        logging.info(f"Execution time for {function.__name__} on thread {thread_name}: {execution_time_str} {time_interval}.")
+        logging.debug(f"Execution time for {function.__name__} on thread {thread_name}: {execution_time_str} {time_interval}.")
         return result
 
     return wrapper
