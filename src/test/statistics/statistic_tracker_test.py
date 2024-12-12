@@ -49,6 +49,24 @@ class StatisticTrackerTest(unittest.TestCase):
         self.assertEqual(tracker.num_empty_buffer, 1)
         self.assertEqual(tracker.num_full_buffer, 1)
 
+    def test_execution(self):
+        tracker = StatisticTracker(num_items_to_process=100)
+
+        tracker.start_tracking()
+        tracker.increment_produced_items()
+        tracker.increment_consumed_items()
+        tracker.increment_empty_buffer()
+        tracker.increment_full_buffer()
+        tracker.stop_tracking()
+
+        self.assertEqual(tracker.items_produced, 1)
+        self.assertEqual(tracker.items_consumed, 1)
+        self.assertEqual(tracker.num_empty_buffer, 1)
+        self.assertEqual(tracker.num_full_buffer, 1)
+        self.assertIsNotNone(tracker.start_time)
+        self.assertIsNotNone(tracker.end_time)
+
+
 
 if __name__ == '__main__':
     unittest.main()

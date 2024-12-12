@@ -1,5 +1,5 @@
 import unittest
-from unittest.mock import Mock, patch
+from unittest.mock import Mock, patch, MagicMock
 
 from src.main.config.config import Config
 from src.main.simulator.simulator import Simulator
@@ -50,15 +50,30 @@ class SimulatorTest(unittest.TestCase):
             suggestions=False
         )
 
-        with patch('src.main.simulator.simulator.ThreadManager') as MockThreadManager, \
-                patch('src.main.simulator.simulator.StatisticTracker') as MockTracker:
+        with patch('src.main.simulator.simulator.ThreadManager') as self.MockThreadManager:
             simulator = Simulator(config)
 
             simulator.start()
-            MockThreadManager.return_value.start_all.assert_called_once()
+            self.MockThreadManager.return_value.start_all.assert_called_once()
 
             simulator.stop()
-            MockThreadManager.return_value.join_all.assert_called_once()
+            self.MockThreadManager.return_value.join_all.assert_called_once()
+
+    @patch('src.main.simulator.simulator.Simulator.simulate')
+    def test_execution_order(self, mock_simulate):
+        mock_simulate.return_value = None
+        mock_config = MagicMock()
+        mock_config.buffer_size = 10
+        mock_config.num_items_to_process = 100
+        mock_config.num_producers = 2
+        mock_config.num_consumers = 2
+        mock_config.consumer_speed_range = (1, 2)
+        mock_config.producer_speed_range = (1, 2)
+        mock_config.suggestions = False
+
+        simulator = Simulator(config=mock_config)
+        simulator.simulate()
+        mock_simulate.assert_called_once()
 
 
 if __name__ == '__main__':

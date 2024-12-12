@@ -57,6 +57,24 @@ class CommandParserTest(unittest.TestCase):
         self.assertEqual(config.num_consumers, 3)
         self.assertTrue(config.verbose)
 
+    @patch("src.main.config.command_parser.CommandFlag")
+    def test_execution(self, MockCommandFlag):
+        mock_flag = MockCommandFlag.return_value
+        mock_flag.flag = "-f"
+        mock_flag.full_flag = "--full-flag"
+        mock_flag.type = str
+        mock_flag.default_value = "default"
+        mock_flag.help_text = "help text"
+
+        # Mock the parser
+        parser = Mock()
+        set_parser_args(parser, mock_flag)
+
+        # Simulate parser calls
+        parser.add_argument.assert_called_once_with(
+            "-f", "--full-flag", type=str, default="default", help="help text"
+        )
+
 
 if __name__ == '__main__':
     unittest.main()

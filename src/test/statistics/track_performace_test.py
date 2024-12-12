@@ -1,8 +1,9 @@
 import unittest
+import time
 from unittest.mock import Mock, patch
 
 from src.main.statistics.track_performance import track_performance, track_producer_performance, \
-    track_consumer_performance, track_exceptions
+    track_consumer_performance, track_exceptions, milliseconds_to_nanoseconds, nanoseconds_to_milliseconds
 
 
 class TrackPerformanceTest(unittest.TestCase):
@@ -54,6 +55,19 @@ class TrackPerformanceTest(unittest.TestCase):
         self.assertEqual(result, "Result")
         mock_logging.assert_called_once()
 
+    def test_execution(self):
+        @track_performance
+        def dummy_function():
+            time.sleep(0.001)  # Simulate a small delay
+            return "Executed"
+
+        result = dummy_function()
+
+        self.assertEqual(result, "Executed")
+
+    def test_conversion_methods(self):
+        self.assertEqual(milliseconds_to_nanoseconds(1), 1000000)
+        self.assertAlmostEqual(nanoseconds_to_milliseconds(1000000), 1.0)
 
 if __name__ == '__main__':
     unittest.main()

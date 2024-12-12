@@ -53,6 +53,21 @@ class MutexLockTest(unittest.TestCase):
         lock.release()
         condition_mock.notify_all.assert_called_once()
 
+    def test_execution(self):
+        mutex = MutexLock()
+
+        self.assertTrue(mutex.is_available())
+        self.assertFalse(mutex.is_locked())
+
+        mutex.acquire()
+        self.assertTrue(mutex.is_locked())
+        self.assertFalse(mutex.is_available())
+
+        mutex.release()
+        self.assertTrue(mutex.is_available())
+        self.assertFalse(mutex.is_locked())
+
+
 
 if __name__ == '__main__':
     unittest.main()

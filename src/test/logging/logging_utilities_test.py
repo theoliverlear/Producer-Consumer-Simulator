@@ -1,5 +1,5 @@
 import unittest
-from unittest.mock import patch
+from unittest.mock import patch, call
 
 from src.main.logging.logging_utilities import (log_in_bold,
                                                 log_with_modifier,
@@ -29,12 +29,23 @@ class LoggingUtilitiesTest(unittest.TestCase):
         mock_logging_info.assert_called_with("\033[3mTest Modifier Message\033[0m")
 
     def test_function_io(self):
-        with patch('src.main.logging.logging_utilities.logging.info') as mock_log:
+        with patch('src.main.logging.logging_utilities.logging.info') as self.mock_log:
             log_in_bold("Test Message")
-            mock_log.assert_called_with("\033[1mTest Message\033[0m")
+            self.mock_log.assert_called_with("\033[1mTest Message\033[0m")
 
             print_logging_seperator()
-            mock_log.assert_called_with("\n" + "-" * 60)
+            self.mock_log.assert_called_with("\n" + "-" * 60)
+
+    def test_execution(self):
+        with patch('src.main.logging.logging_utilities.logging.info') as mock_log:
+            log_in_bold("Execution Order Test")
+            print_logging_seperator()
+
+            calls = mock_log.call_args_list
+            self.assertEqual(len(calls), 2)  # Ensure two calls were made
+
+            self.assertEqual(calls[0], call("\033[1mExecution Order Test\033[0m"))
+            self.assertEqual(calls[1], call("\n" + "-" * 60))
 
 
 if __name__ == '__main__':

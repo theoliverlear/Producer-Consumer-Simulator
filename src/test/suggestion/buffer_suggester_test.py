@@ -1,5 +1,5 @@
 import unittest
-from unittest.mock import Mock
+from unittest.mock import Mock, MagicMock
 
 from src.main.config.config import Config
 from src.main.suggestion.buffer_suggester import BufferSuggester, BufferSuggestions
@@ -49,6 +49,20 @@ class BufferSuggesterTest(unittest.TestCase):
             BufferSuggestions.DECREASE_BUFFER_SIZE,
             BufferSuggestions.KEEP_BUFFER_SIZE
         ])
+
+    def test_execution(self):
+        mock_config = MagicMock()
+        mock_config.buffer_size = 10
+
+        mock_stat_tracker = MagicMock()
+        mock_stat_tracker.num_full_buffer = 5
+        mock_stat_tracker.num_empty_buffer = 3
+        mock_stat_tracker.num_items_to_process = 50
+
+        suggester = BufferSuggester(config=mock_config, statistic_tracker=mock_stat_tracker)
+        suggester.calculate()
+
+        self.assertEqual(suggester.suggestion, BufferSuggestions.KEEP_BUFFER_SIZE)
 
 
 if __name__ == '__main__':

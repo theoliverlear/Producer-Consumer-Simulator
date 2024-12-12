@@ -1,5 +1,5 @@
 import unittest
-from unittest.mock import Mock
+from unittest.mock import Mock, MagicMock
 
 from src.main.thread.thread_manager import ThreadManager
 
@@ -62,6 +62,26 @@ class ThreadManagerTest(unittest.TestCase):
             producer.join.assert_called_once()
         for consumer in manager.consumers:
             consumer.join.assert_called_once()
+
+    def test_execution(self):
+        mock_buffer = MagicMock()
+        mock_stat_tracker = MagicMock()
+
+        manager = ThreadManager(
+            num_producers=2,
+            num_consumers=2,
+            consumer_speed_range=(1, 2),
+            producer_speed_range=(1, 2),
+            buffer=mock_buffer,
+            num_items_to_process=10,
+            statistic_tracker=mock_stat_tracker
+        )
+
+        self.assertEqual(len(manager.producers), 2)
+        self.assertEqual(len(manager.consumers), 2)
+
+        manager.start_all()
+        self.assertTrue(manager.threads_started)
 
 
 if __name__ == '__main__':

@@ -1,5 +1,5 @@
 import unittest
-from unittest.mock import Mock
+from unittest.mock import Mock, MagicMock
 
 from src.main.buffer.full_buffer_exception import FullBufferException
 from src.main.thread.processor.producer.producer import Producer
@@ -49,6 +49,25 @@ class ProducerTest(unittest.TestCase):
 
         producer.stop()
         self.assertFalse(producer.running)
+
+    def test_execution(self):
+        mock_buffer = MagicMock()
+        mock_stat_tracker = MagicMock()
+        mock_stat_tracker.num_items_to_process = 10
+        mock_stat_tracker.items_produced = 5
+
+        producer = Producer(
+            id=1,
+            speed_floor=1,
+            speed_ceiling=2,
+            buffer=mock_buffer,
+            num_items_to_process=5,
+            statistic_tracker=mock_stat_tracker
+        )
+
+        producer.process_item()
+        self.assertEqual(producer.num_items_to_process, 4)
+        mock_buffer.enqueue.assert_called_once()
 
 
 if __name__ == '__main__':

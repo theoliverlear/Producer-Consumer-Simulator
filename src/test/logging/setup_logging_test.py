@@ -35,21 +35,33 @@ class SetupLoggingTest(unittest.TestCase):
         )
 
     def test_function_io(self):
-        with patch('src.main.logging.setup_logging.logging.basicConfig') as mock_logging:
+        with patch('src.main.logging.setup_logging.logging.basicConfig') as self.mock_logging:
             setup_default_logging()
-            mock_logging.assert_called_once_with(
+            self.mock_logging.assert_called_once_with(
                 level=20,
                 format="%(asctime)s - %(threadName)s - %(levelname)s - %(message)s",
                 datefmt='%H:%M:%S'
             )
 
-            mock_logging.reset_mock()
+            self.mock_logging.reset_mock()
             setup_verbose_logging()
-            mock_logging.assert_called_once_with(
-                level=10,  # logging.DEBUG
+            self.mock_logging.assert_called_once_with(
+                level=10,
                 format="%(asctime)s - %(threadName)s - %(levelname)s - %(message)s",
                 datefmt='%H:%M:%S'
             )
+
+    def test_execution(self):
+        with patch('src.main.logging.setup_logging.setup_verbose_logging') as self.mock_verbose, \
+                patch('src.main.logging.setup_logging.setup_default_logging') as self.mock_default:
+
+            setup_logging(use_verbose=True)
+            self.mock_verbose.assert_called_once()
+            self.mock_default.assert_not_called()
+
+            setup_logging(use_verbose=False)
+            self.mock_default.assert_called_once()
+            self.mock_verbose.assert_called_once()  # Ensures only one verbose call
 
 
 if __name__ == '__main__':

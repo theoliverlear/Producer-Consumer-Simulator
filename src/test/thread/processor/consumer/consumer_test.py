@@ -1,5 +1,5 @@
 import unittest
-from unittest.mock import Mock
+from unittest.mock import Mock, MagicMock
 
 from src.main.buffer.empty_buffer_exception import EmptyBufferException
 from src.main.thread.processor.consumer.consumer import Consumer
@@ -43,6 +43,26 @@ class ConsumerTest(unittest.TestCase):
 
         consumer.stop()
         self.assertFalse(consumer.running)
+
+    def test_execution(self):
+        mock_buffer = MagicMock()
+        mock_buffer.dequeue.return_value = 42
+
+        mock_stat_tracker = MagicMock()
+        mock_stat_tracker.num_items_to_process = 10
+        mock_stat_tracker.items_produced = 10
+
+        consumer = Consumer(
+            id=1,
+            speed_floor=1,
+            speed_ceiling=2,
+            buffer=mock_buffer,
+            num_items_to_process=5,
+            statistic_tracker=mock_stat_tracker
+        )
+
+        consumer.process_item()
+        self.assertEqual(consumer.num_items_to_process, 4)
 
 
 if __name__ == '__main__':

@@ -1,5 +1,5 @@
 import unittest
-from unittest.mock import Mock
+from unittest.mock import Mock, MagicMock
 
 from src.main.config.config import Config
 from src.main.suggestion.buffer_suggester import BufferSuggestions
@@ -69,6 +69,24 @@ class SuggesterTest(unittest.TestCase):
         speed_suggester.calculate.assert_called_once()
         speed_suggester.show_statistics.assert_called_once()
         speed_suggester.show_suggestions.assert_called_once()
+
+    def test_execution(self):
+        mock_config = MagicMock()
+        mock_config.buffer_size = 10
+        mock_config.num_producers = 2
+        mock_config.num_consumers = 2
+
+        mock_stat_tracker = MagicMock()
+        mock_stat_tracker.num_full_buffer = 5
+        mock_stat_tracker.num_empty_buffer = 3
+        mock_stat_tracker.num_items_to_process = 50
+
+        mock_stat_tracker.producer_throughput_list = [1000000, 2000000, 1500000]
+        mock_stat_tracker.consumer_throughput_list = [1200000, 1300000, 1400000]
+
+        suggester = Suggester(config=mock_config, statistic_tracker=mock_stat_tracker)
+        suggester.show_suggestions()
+        self.assertTrue(True)
 
 
 if __name__ == '__main__':

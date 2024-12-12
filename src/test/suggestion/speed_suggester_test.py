@@ -1,6 +1,5 @@
 import unittest
-from unittest.mock import Mock
-
+from unittest.mock import Mock, MagicMock
 from src.main.config.config import Config
 from src.main.suggestion.speed_suggester import SpeedSuggester, SpeedSuggestions
 
@@ -64,6 +63,25 @@ class SpeedSuggesterTest(unittest.TestCase):
 
         suggester.calculate()
 
+    def test_execution(self):
+        mock_config = MagicMock()
+        mock_config.producer_speed_range = (1, 3)
+        mock_config.consumer_speed_range = (1, 2)
+        mock_config.num_producers = 2
+        mock_config.num_consumers = 2
+
+        mock_stat_tracker = MagicMock()
+        mock_stat_tracker.producer_throughput_list = [5000000, 6000000, 7000000]
+        mock_stat_tracker.consumer_throughput_list = [4000000, 4500000, 5000000]
+
+        mock_buffer_suggester = MagicMock()
+        mock_buffer_suggester.suggestion = None
+
+        suggester = SpeedSuggester(config=mock_config, statistic_tracker=mock_stat_tracker, buffer_suggester=mock_buffer_suggester)
+        suggester.calculate()
+
+        self.assertIn(SpeedSuggestions.INCREASE_PRODUCER_SPEED, suggester.suggestions)
+        self.assertIn(SpeedSuggestions.INCREASE_CONSUMER_SPEED, suggester.suggestions)
 
 if __name__ == '__main__':
     unittest.main()

@@ -22,6 +22,10 @@ class LockStateTest(unittest.TestCase):
         self.assertEqual(LockState.AVAILABLE.value, ('available',))
         self.assertEqual(LockState.UNAVAILABLE.value, ('unavailable',))
 
+    def test_execution(self):
+        self.assertEqual(LockState.AVAILABLE.value, ('available',))
+        self.assertEqual(LockState.UNAVAILABLE.value, ('unavailable',))
+
 
 if __name__ == '__main__':
     unittest.main()

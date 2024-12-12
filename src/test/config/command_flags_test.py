@@ -1,4 +1,6 @@
 import unittest
+from unittest.mock import Mock, patch
+
 from src.main.config.command_flags import CommandFlags
 
 class CommandFlagsTest(unittest.TestCase):
@@ -24,6 +26,23 @@ class CommandFlagsTest(unittest.TestCase):
         self.assertEqual(CommandFlags.NUM_ITEMS.value.full_flag, '--num-items')
         self.assertEqual(CommandFlags.VERBOSE.value.type, bool)
         self.assertEqual(CommandFlags.SUGGESTIONS.value.default_value, False)
+
+    @patch("src.main.config.command_flags.CommandFlag")
+    def test_execution(self, MockCommandFlag):
+        mock_flag = MockCommandFlag.return_value
+
+        mock_flag.configure_mock(
+            __str__=Mock(return_value="Mocked String"),
+            __repr__=Mock(return_value="Mocked Repr")
+        )
+
+        str_result = str(mock_flag)
+        repr_result = repr(mock_flag)
+
+        self.assertEqual(str_result, "Mocked String")
+        self.assertEqual(repr_result, "Mocked Repr")
+        mock_flag.__str__.assert_called_once()
+        mock_flag.__repr__.assert_called_once()
 
 
 if __name__ == '__main__':

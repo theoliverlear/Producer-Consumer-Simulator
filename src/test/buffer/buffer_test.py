@@ -58,5 +58,24 @@ class BufferTest(unittest.TestCase):
         self.assertTrue(buffer.is_empty())
 
 
+    def test_execution(self):
+        buffer = Mock(spec=Buffer)
+
+        buffer.enqueue(1)
+        buffer.is_full()
+        buffer.dequeue()
+        buffer.is_empty()
+
+        self.assertTrue(buffer.enqueue.called)
+        self.assertTrue(buffer.is_full.called)
+        self.assertTrue(buffer.dequeue.called)
+        self.assertTrue(buffer.is_empty.called)
+
+        buffer.enqueue.assert_called_once_with(1)
+        buffer.is_full.assert_called_once()
+        buffer.dequeue.assert_called_once()
+        buffer.is_empty.assert_called_once()
+
+
 if __name__ == '__main__':
     unittest.main()

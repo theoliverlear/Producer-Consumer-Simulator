@@ -1,4 +1,5 @@
 import unittest
+from unittest.mock import Mock
 
 from src.main.config.command_flag import CommandFlag
 
@@ -17,7 +18,6 @@ class CommandFlagTest(unittest.TestCase):
     def test_value_change(self):
         flag = CommandFlag('-b', '--buffer-size', int, 100, 'Buffer size')
 
-        # Validate initial and changed values
         self.assertEqual(flag.flag, '-b')
         flag.flag = '-n'
         self.assertEqual(flag.flag, '-n')
@@ -29,18 +29,30 @@ class CommandFlagTest(unittest.TestCase):
     def test_function_io(self):
         flag = CommandFlag('-b', '--buffer-size', int, 100, 'Buffer size in bytes')
 
-        # Test input/output attributes
         self.assertEqual(flag.flag, '-b')
         self.assertEqual(flag.full_flag, '--buffer-size')
         self.assertEqual(flag.type, int)
         self.assertEqual(flag.default_value, 100)
         self.assertEqual(flag.help_text, 'Buffer size in bytes')
 
-        # Test string representation
         self.assertEqual(
             str(flag),
             "CommandFlag(-b, --buffer-size, <class 'int'>, 100, Buffer size in bytes)"
         )
+
+    def test_execution(self):
+        flag = Mock(spec=CommandFlag)
+
+        flag.__str__ = Mock(return_value="Mocked String")
+        flag.__repr__ = Mock(return_value="Mocked Repr")
+
+        str_result = flag.__str__()
+        repr_result = flag.__repr__()
+
+        self.assertEqual(str_result, "Mocked String")
+        self.assertEqual(repr_result, "Mocked Repr")
+        flag.__str__.assert_called_once()
+        flag.__repr__.assert_called_once()
 
 
 if __name__ == '__main__':

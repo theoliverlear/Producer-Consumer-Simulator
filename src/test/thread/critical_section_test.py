@@ -43,9 +43,9 @@ class CriticalSectionTest(unittest.TestCase):
 
     def test_function_io(self):
         mock_function = Mock()
-        mock_function.__name__ = "mock_function"  # Set __name__ for logging
+        mock_function.__name__ = "mock_function"
         mock_self = Mock()
-        mock_self.mutex_lock = MagicMock()  # Use MagicMock for context manager support
+        mock_self.mutex_lock = MagicMock()
 
         wrapped_function = critical_section(mock_function)
         wrapped_function(mock_self)
@@ -53,6 +53,22 @@ class CriticalSectionTest(unittest.TestCase):
         mock_self.mutex_lock.__enter__.assert_called_once()
         mock_function.assert_called_once_with(mock_self)
         mock_self.mutex_lock.__exit__.assert_called_once()
+
+    def test_execution(self):
+        class MockClass:
+            def __init__(self):
+                self.mutex_lock = MagicMock()
+
+            @critical_section
+            def mock_method(self):
+                return "Executed"
+
+        mock_instance = MockClass()
+        result = mock_instance.mock_method()
+
+        self.assertEqual(result, "Executed")
+        mock_instance.mutex_lock.__enter__.assert_called_once()
+        mock_instance.mutex_lock.__exit__.assert_called_once()
 
 
 if __name__ == '__main__':
