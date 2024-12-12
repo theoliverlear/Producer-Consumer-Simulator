@@ -24,7 +24,6 @@ class Processor(ABC, threading.Thread):
         self.num_items_to_process = num_items_to_process
         self.statistic_tracker = statistic_tracker
 
-
     @abstractmethod
     def run(self):
         pass

@@ -65,6 +65,5 @@ class Simulator:
                                f"the '-s' flag to see suggestions.")
         log_in_bold(ending_message)
 
-
     def show_suggestions(self) -> None:
         self.suggester.show_suggestions()

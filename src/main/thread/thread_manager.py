@@ -28,28 +28,6 @@ class ThreadManager:
         self.producers = self.initialize_producers()
         self.consumers = self.initialize_consumers()
 
-    def join_all(self):
-        self.join_producers()
-        self.join_consumers()
-
-    def join_producers(self):
-        for producer in self.producers:
-            producer.join()
-
-    def join_consumers(self):
-        for consumer in self.consumers:
-            consumer.join()
-
-    def get_num_items_to_produce(self):
-        items_per_producer: int = self.num_items_to_process // self.num_producers
-        leftover_items: int = self.num_items_to_process % self.num_producers
-        return items_per_producer, leftover_items
-
-    def get_num_items_to_consume(self):
-        items_per_consumer: int = self.num_items_to_process // self.num_consumers
-        leftover_items: int = self.num_items_to_process % self.num_consumers
-        return items_per_consumer, leftover_items
-
     def initialize_producers(self):
         items_per_producer, leftover_items = self.get_num_items_to_produce()
         producers: List[Producer] = []
@@ -63,7 +41,6 @@ class ThreadManager:
                                       self.statistic_tracker))
             logging.debug(f"Producer {i + 1} will produce {items_to_produce} items.")
         return producers
-
 
     def initialize_consumers(self):
         items_per_consumer, leftover_items = self.get_num_items_to_consume()
@@ -79,6 +56,27 @@ class ThreadManager:
             logging.debug(f"Consumer {i + 1} will consume {items_to_consume} items.")
         return consumers
 
+    def get_num_items_to_produce(self):
+        items_per_producer: int = self.num_items_to_process // self.num_producers
+        leftover_items: int = self.num_items_to_process % self.num_producers
+        return items_per_producer, leftover_items
+
+    def get_num_items_to_consume(self):
+        items_per_consumer: int = self.num_items_to_process // self.num_consumers
+        leftover_items: int = self.num_items_to_process % self.num_consumers
+        return items_per_consumer, leftover_items
+
+    def join_all(self):
+        self.join_producers()
+        self.join_consumers()
+
+    def join_producers(self):
+        for producer in self.producers:
+            producer.join()
+
+    def join_consumers(self):
+        for consumer in self.consumers:
+            consumer.join()
 
     def start_all(self):
         threads: List[threading.Thread] = self.producers + self.consumers
