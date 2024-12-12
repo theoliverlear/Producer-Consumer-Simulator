@@ -40,9 +40,13 @@ class Consumer(Processor, ABC):
             logging.debug(f"Items remaining: {self.num_items_to_process}")
             self.simulate_processing()
         except EmptyBufferException:
-            num_remaining_string: str = f"{self.statistic_tracker.num_items_to_process - self.statistic_tracker.items_produced}"
+            num_remaining_items: int = (self.statistic_tracker.num_items_to_process
+                                        - self.statistic_tracker.items_produced)
+            num_remaining_string: str = f"{num_remaining_items}"
             logging.debug(f"Buffer is empty. {num_remaining_string} items remaining.")
-            if self.statistic_tracker.items_produced == self.statistic_tracker.num_items_to_process:
+            has_completed_processing: bool = (self.statistic_tracker.items_produced ==
+                                              self.statistic_tracker.num_items_to_process)
+            if has_completed_processing:
                 self.stop()
             else:
                 time.sleep(0.01)
