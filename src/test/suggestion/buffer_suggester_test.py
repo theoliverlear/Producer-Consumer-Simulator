@@ -5,6 +5,7 @@ from src.main.config.config import Config
 from src.main.suggestion.buffer_suggester import BufferSuggester, BufferSuggestions
 
 
+
 class BufferSuggesterTest(unittest.TestCase):
     def test_instantiation(self):
         config = Config(10, 100, 2, 2, (1, 3), (2, 4), False, True)
@@ -63,6 +64,17 @@ class BufferSuggesterTest(unittest.TestCase):
         suggester.calculate()
 
         self.assertEqual(suggester.suggestion, BufferSuggestions.KEEP_BUFFER_SIZE)
+
+    def test_error_handling(self):
+        with self.assertRaises(AttributeError):
+            BufferSuggester(None, None)
+
+        mock_config = Mock()
+        mock_config.buffer_size = 10
+        suggester = BufferSuggester(mock_config, None)
+
+        with self.assertRaises(AttributeError):
+            suggester.calculate()
 
 
 if __name__ == '__main__':

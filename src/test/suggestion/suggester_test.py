@@ -1,9 +1,9 @@
 import unittest
-from unittest.mock import Mock, MagicMock
+from unittest.mock import Mock, MagicMock, patch
 
 from src.main.config.config import Config
 from src.main.suggestion.buffer_suggester import BufferSuggestions
-from src.main.suggestion.speed_suggester import SpeedSuggestions
+from src.main.suggestion.speed_suggester import SpeedSuggestions, SpeedSuggester
 from src.main.suggestion.suggester import Suggester
 
 

@@ -54,6 +54,17 @@ class CommandFlagTest(unittest.TestCase):
         flag.__str__.assert_called_once()
         flag.__repr__.assert_called_once()
 
+    def test_error_handling(self):
+        flag = CommandFlag("-f", "--flag", str, "default", "Test help text")
+
+        self.assertEqual(flag.flag, "-f")
+        self.assertEqual(flag.full_flag, "--flag")
+        self.assertEqual(flag.type, str)
+        self.assertEqual(flag.default_value, "default")
+        self.assertEqual(flag.help_text, "Test help text")
+
+        self.assertEqual(str(flag), "CommandFlag(-f, --flag, <class 'str'>, default, Test help text)")
+
 
 if __name__ == '__main__':
     unittest.main()

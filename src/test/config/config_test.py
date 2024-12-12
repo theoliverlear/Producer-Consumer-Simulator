@@ -75,6 +75,26 @@ class ConfigTest(unittest.TestCase):
         self.assertTrue(config.verbose)
         self.assertFalse(config.suggestions)
 
+    def test_initialization(self):
+        config = Config(
+            buffer_size=256,
+            num_items_to_process=500,
+            num_producers=3,
+            num_consumers=2,
+            producer_speed_range=(2, 6),
+            consumer_speed_range=(3, 5),
+            verbose=True,
+            suggestions=True
+        )
+
+        self.assertEqual(config.buffer_size, 256)
+        self.assertEqual(config.num_items_to_process, 500)
+        self.assertEqual(config.num_producers, 3)
+        self.assertEqual(config.num_consumers, 2)
+        self.assertEqual(config.producer_speed_range, (2, 6))
+        self.assertEqual(config.consumer_speed_range, (3, 5))
+        self.assertTrue(config.verbose)
+        self.assertTrue(config.suggestions)
 
 if __name__ == '__main__':
     unittest.main()

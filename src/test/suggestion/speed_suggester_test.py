@@ -83,5 +83,24 @@ class SpeedSuggesterTest(unittest.TestCase):
         self.assertIn(SpeedSuggestions.INCREASE_PRODUCER_SPEED, suggester.suggestions)
         self.assertIn(SpeedSuggestions.INCREASE_CONSUMER_SPEED, suggester.suggestions)
 
+    def test_error_handling(self):
+        with self.assertRaises(AttributeError):
+            SpeedSuggester(None, None, None)
+
+        mock_config = Mock()
+        mock_config.producer_speed_range = [10, 20]
+        mock_config.consumer_speed_range = [5, 15]
+
+        mock_buffer_suggester = Mock()
+
+        mock_statistic_tracker = Mock()
+        del mock_statistic_tracker.num_full_buffer
+
+        suggester = SpeedSuggester(mock_config, mock_statistic_tracker, mock_buffer_suggester)
+
+        with self.assertRaises(AttributeError):
+            suggester.statistic_tracker.num_full_buffer
+
+
 if __name__ == '__main__':
     unittest.main()

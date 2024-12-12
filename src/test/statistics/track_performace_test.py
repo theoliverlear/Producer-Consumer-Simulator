@@ -1,7 +1,6 @@
 import unittest
 import time
 from unittest.mock import Mock, patch
-
 from src.main.statistics.track_performance import track_performance, track_producer_performance, \
     track_consumer_performance, track_exceptions, milliseconds_to_nanoseconds, nanoseconds_to_milliseconds
 
@@ -26,25 +25,24 @@ class TrackPerformanceTest(unittest.TestCase):
         self.assertEqual(producer_function(Mock(statistic_tracker=Mock())), "Producer")
 
     @patch("time.perf_counter", side_effect=[1.0, 1.5])
-    @patch("logging.info")
-    def test_value_change(self, mock_logging_info, mock_perf_counter):
+    @patch("logging.debug")
+    def test_value_change(self, mock_logging_debug, mock_perf_counter):
         class TestClass:
             @track_performance
             def test_method(self):
                 return "Completed"
 
         obj = TestClass()
-
         result = obj.test_method()
 
         self.assertEqual(result, "Completed")
 
-        mock_logging_info.assert_called_with(
+        mock_logging_debug.assert_called_with(
             "Execution time for test_method on thread MainThread: 500 milliseconds."
         )
 
-    @patch('src.main.statistics.track_performance.logging.info')
-    def test_function_io(self, mock_logging):
+    @patch('src.main.statistics.track_performance.logging.debug')
+    def test_function_io(self, mock_logging_debug):
         mock_function = Mock(return_value="Result")
         mock_function.__name__ = "mock_function"
 
@@ -53,7 +51,9 @@ class TrackPerformanceTest(unittest.TestCase):
         result = wrapped_function()
 
         self.assertEqual(result, "Result")
-        mock_logging.assert_called_once()
+
+        mock_logging_debug.assert_called_once()
+
 
     def test_execution(self):
         @track_performance
@@ -68,6 +68,17 @@ class TrackPerformanceTest(unittest.TestCase):
     def test_conversion_methods(self):
         self.assertEqual(milliseconds_to_nanoseconds(1), 1000000)
         self.assertAlmostEqual(nanoseconds_to_milliseconds(1000000), 1.0)
+
+    def test_error_handling(self):
+        @track_performance
+        def faulty_function():
+            raise ValueError("An intentional error occurred.")
+
+        with self.assertRaises(ValueError) as context:
+            faulty_function()
+
+        self.assertEqual(str(context.exception), "An intentional error occurred.")
+
 
 if __name__ == '__main__':
     unittest.main()

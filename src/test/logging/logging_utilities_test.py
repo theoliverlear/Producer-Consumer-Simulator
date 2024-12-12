@@ -47,6 +47,18 @@ class LoggingUtilitiesTest(unittest.TestCase):
             self.assertEqual(calls[0], call("\033[1mExecution Order Test\033[0m"))
             self.assertEqual(calls[1], call("\n" + "-" * 60))
 
+    def test_error_handling(self):
+        try:
+            log_in_bold(None)
+        except Exception as e:
+            self.fail(f"log_in_bold raised an unexpected exception with None: {e}")
+
+        try:
+            print_logging_seperator()
+        except Exception as e:
+            self.fail(f"print_logging_seperator raised an unexpected exception: {e}")
+
+
 
 if __name__ == '__main__':
     unittest.main()

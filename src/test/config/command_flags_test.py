@@ -44,6 +44,22 @@ class CommandFlagsTest(unittest.TestCase):
         mock_flag.__str__.assert_called_once()
         mock_flag.__repr__.assert_called_once()
 
+    def test_error_handling(self):
+        buffer_size_flag = CommandFlags.BUFFER_SIZE.value
+        self.assertEqual(buffer_size_flag.flag, "-b")
+        self.assertEqual(buffer_size_flag.full_flag, "--buffer-size")
+        self.assertEqual(buffer_size_flag.type, int)
+        self.assertEqual(buffer_size_flag.default_value, 100)
+        self.assertEqual(buffer_size_flag.help_text, "Buffer size in bytes")
+
+        num_items_flag = CommandFlags.NUM_ITEMS.value
+        self.assertEqual(num_items_flag.flag, "-n")
+        self.assertEqual(num_items_flag.full_flag, "--num-items")
+        self.assertEqual(num_items_flag.type, int)
+        self.assertEqual(num_items_flag.default_value, 100)
+        self.assertEqual(num_items_flag.help_text, "Number of items to process")
+
+        self.assertEqual(str(buffer_size_flag), "CommandFlag(-b, --buffer-size, <class 'int'>, 100, Buffer size in bytes)")
 
 if __name__ == '__main__':
     unittest.main()

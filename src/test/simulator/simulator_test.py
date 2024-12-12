@@ -75,6 +75,22 @@ class SimulatorTest(unittest.TestCase):
         simulator.simulate()
         mock_simulate.assert_called_once()
 
+    def test_error_handling(self):
+        try:
+            config_mock = MagicMock(spec=Config)
+            config_mock.num_items_to_process = 10
+            config_mock.buffer_size = 5
+            config_mock.num_producers = 2
+            config_mock.num_consumers = 2
+            config_mock.consumer_speed_range = (1, 5)
+            config_mock.producer_speed_range = (1, 5)
+            config_mock.suggestions = False
+
+            simulator = Simulator(config=config_mock)
+            simulator.simulate()
+        except Exception as e:
+            self.fail(f"Simulator raised an unexpected exception: {e}")
+
 
 if __name__ == '__main__':
     unittest.main()

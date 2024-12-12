@@ -2,8 +2,10 @@ import argparse
 import unittest
 from unittest.mock import Mock, patch
 
+from src.main.config import command_parser
 from src.main.config.command_flag import CommandFlag
-from src.main.config.command_parser import set_parser_args, get_config_from_arguments
+from src.main.config.command_parser import set_parser_args, get_config_from_arguments, parse_speed_range
+from src.main.config.config import Config
 
 
 class CommandParserTest(unittest.TestCase):
@@ -66,14 +68,47 @@ class CommandParserTest(unittest.TestCase):
         mock_flag.default_value = "default"
         mock_flag.help_text = "help text"
 
-        # Mock the parser
         parser = Mock()
         set_parser_args(parser, mock_flag)
 
-        # Simulate parser calls
         parser.add_argument.assert_called_once_with(
             "-f", "--full-flag", type=str, default="default", help="help text"
         )
+
+    def test_error_handling(self):
+        args = [
+            "-b", "256",
+            "-n", "500",
+            "-p", "3",
+            "-c", "2",
+            "-ps", "3:5",
+            "-cs", "3:5",
+            "-v",
+            "-s"
+            ]
+
+        with patch("argparse.ArgumentParser.parse_args") as mock_parse_args:
+            mock_parse_args.return_value = argparse.Namespace(
+                buffer_size=256,
+                num_items=500,  # Correct attribute name to match the function
+                num_producers=3,
+                num_consumers=2,
+                producer_speed_range="3:5",
+                consumer_speed_range="3:5",
+                verbose=True,
+                suggestions=True
+            )
+            config = get_config_from_arguments(args)
+
+        self.assertIsInstance(config, Config)
+        self.assertEqual(config.buffer_size, 256)
+        self.assertEqual(config.num_items_to_process, 500)  # Match the function's expectations
+        self.assertEqual(config.num_producers, 3)
+        self.assertEqual(config.num_consumers, 2)
+        self.assertEqual(config.producer_speed_range, (3, 5))
+        self.assertEqual(config.consumer_speed_range, (3, 5))
+        self.assertTrue(config.verbose)
+        self.assertTrue(config.suggestions)
 
 
 if __name__ == '__main__':

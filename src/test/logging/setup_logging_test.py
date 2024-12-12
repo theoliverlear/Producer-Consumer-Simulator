@@ -61,7 +61,13 @@ class SetupLoggingTest(unittest.TestCase):
 
             setup_logging(use_verbose=False)
             self.mock_default.assert_called_once()
-            self.mock_verbose.assert_called_once()  # Ensures only one verbose call
+            self.mock_verbose.assert_called_once()
+
+    def test_error_handling(self):
+        try:
+            setup_logging(None)
+        except Exception as e:
+            self.fail(f"setup_logging raised an unexpected exception with None: {e}")
 
 
 if __name__ == '__main__':

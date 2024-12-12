@@ -66,6 +66,21 @@ class StatisticTrackerTest(unittest.TestCase):
         self.assertIsNotNone(tracker.start_time)
         self.assertIsNotNone(tracker.end_time)
 
+    def test_error_handling(self):
+        try:
+            statistic_tracker = StatisticTracker(num_items_to_process=10)
+
+            statistic_tracker.increment_produced_items()
+            statistic_tracker.increment_consumed_items()
+            statistic_tracker.add_producer_throughput(100)
+            statistic_tracker.add_consumer_throughput(150)
+
+            statistic_tracker.start()
+            statistic_tracker.stop()
+
+        except Exception as e:
+            self.fail(f"StatisticTracker raised an unexpected exception: {e}")
+
 
 
 if __name__ == '__main__':

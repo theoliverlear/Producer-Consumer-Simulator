@@ -3,6 +3,7 @@ from unittest.mock import MagicMock, Mock, create_autospec
 
 from src.main.buffer.buffer import Buffer
 from src.main.buffer.empty_buffer_exception import EmptyBufferException
+from src.main.buffer.full_buffer_exception import FullBufferException
 from src.main.statistics.statistic_tracker import StatisticTracker
 
 
@@ -75,6 +76,19 @@ class BufferTest(unittest.TestCase):
         buffer.is_full.assert_called_once()
         buffer.dequeue.assert_called_once()
         buffer.is_empty.assert_called_once()
+
+    def test_error_handling(self):
+        buffer = MagicMock(spec=Buffer)
+        buffer.is_full.return_value = True
+        buffer.is_empty.return_value = True
+
+        buffer.enqueue.side_effect = FullBufferException
+        with self.assertRaises(FullBufferException):
+            buffer.enqueue(3)
+
+        buffer.dequeue.side_effect = EmptyBufferException
+        with self.assertRaises(EmptyBufferException):
+            buffer.dequeue()
 
 
 if __name__ == '__main__':
