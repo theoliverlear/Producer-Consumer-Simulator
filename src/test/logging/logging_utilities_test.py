@@ -59,6 +59,5 @@ class LoggingUtilitiesTest(unittest.TestCase):
             self.fail(f"print_logging_seperator raised an unexpected exception: {e}")
 
 
-
 if __name__ == '__main__':
     unittest.main()
