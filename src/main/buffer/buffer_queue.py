@@ -20,7 +20,6 @@ class BufferQueue(Buffer):
         self.buffer: deque = deque(maxlen=buffer_size)
         self.mutex_lock = mutex_lock
 
-
     def is_empty(self) -> bool:
         return len(self.buffer) == 0
 
