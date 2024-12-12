@@ -29,7 +29,6 @@ class Producer(Processor):
     def get_random_number() -> int:
         return random.randint(1, 100)
 
-
     def run(self) -> None:
         self.running = True
         while self.running and self.num_items_to_process > 0:
@@ -50,6 +49,8 @@ class Producer(Processor):
         self.simulate_processing()
 
     def stop(self):
-        num_remaining_string: str = f"{self.statistic_tracker.num_items_to_process - self.statistic_tracker.items_produced}"
+        num_items_remaining: int = (self.statistic_tracker.num_items_to_process -
+                                    self.statistic_tracker.items_produced)
+        num_remaining_string: str = f"{num_items_remaining}"
         logging.debug(f"Producer {self.id} stopped. {num_remaining_string} items remaining.")
         self.running = False
