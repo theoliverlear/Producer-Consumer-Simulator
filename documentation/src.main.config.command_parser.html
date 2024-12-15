@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Python: module src.main.config.command_parser</title>
+</head><body>
+
+<table class="heading">
+<tr class="heading-text decor">
+<td class="title">&nbsp;<br><strong class="title"><a href="src.html" class="white">src</a>.<a href="src.main.html" class="white">main</a>.<a href="src.main.config.html" class="white">config</a>.command_parser</strong></td>
+<td class="extra"><a href=".">index</a><br><a href="file:c%3A%5Cusers%5Colive%5Cgithub%5Cproducer-consumer-simulator%5Csrc%5Cmain%5Cconfig%5Ccommand_parser.py">c:\users\olive\github\producer-consumer-simulator\src\main\config\command_parser.py</a></td></tr></table>
+    <p></p>
+<p>
+<table class="section">
+<tr class="decor pkg-content-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Modules</strong></td></tr>
+    
+<tr><td class="decor pkg-content-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><table><tr><td class="multicolumn"><a href="argparse.html">argparse</a><br>
+</td><td class="multicolumn"></td><td class="multicolumn"></td><td class="multicolumn"></td></tr></table></td></tr></table><p>
+<table class="section">
+<tr class="decor functions-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Functions</strong></td></tr>
+    
+<tr><td class="decor functions-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><dl><dt><a name="-get_config_from_arguments"><strong>get_config_from_arguments</strong></a>(args: List[str]) -&gt; src.main.config.config.Config</dt><dd><span class="code">Parses&nbsp;command&nbsp;line&nbsp;arguments&nbsp;to&nbsp;configure&nbsp;the&nbsp;simulator&nbsp;settings.&nbsp;The<br>
+function&nbsp;uses&nbsp;argparse&nbsp;to&nbsp;process&nbsp;the&nbsp;passed&nbsp;arguments&nbsp;and&nbsp;maps&nbsp;them&nbsp;into<br>
+a&nbsp;`Config`&nbsp;object&nbsp;with&nbsp;attributes&nbsp;representing&nbsp;the&nbsp;simulation&nbsp;parameters.<br>
+An&nbsp;exception&nbsp;is&nbsp;captured&nbsp;and&nbsp;reported&nbsp;if&nbsp;argument&nbsp;parsing&nbsp;fails.<br>
+&nbsp;<br>
+:param&nbsp;args:&nbsp;A&nbsp;list&nbsp;of&nbsp;strings&nbsp;representing&nbsp;command&nbsp;line&nbsp;arguments.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Each&nbsp;string&nbsp;corresponds&nbsp;to&nbsp;an&nbsp;argument&nbsp;input&nbsp;by&nbsp;the&nbsp;user.<br>
+:type&nbsp;args:&nbsp;List[str]<br>
+:return:&nbsp;A&nbsp;Config&nbsp;object&nbsp;containing&nbsp;the&nbsp;simulation&nbsp;parameters&nbsp;derived&nbsp;from<br>
+&nbsp;the&nbsp;provided&nbsp;arguments.<br>
+:rtype:&nbsp;Config</span></dd></dl>
+ <dl><dt><a name="-parse_speed_range"><strong>parse_speed_range</strong></a>(speed_string: str) -&gt; Tuple[int, int]</dt><dd><span class="code">Parses&nbsp;a&nbsp;speed&nbsp;range&nbsp;string&nbsp;in&nbsp;the&nbsp;format&nbsp;'floor:ceiling'&nbsp;and<br>
+returns&nbsp;the&nbsp;corresponding&nbsp;integer&nbsp;values&nbsp;as&nbsp;a&nbsp;tuple.<br>
+&nbsp;<br>
+:param&nbsp;speed_string:&nbsp;A&nbsp;string&nbsp;representing&nbsp;a&nbsp;speed&nbsp;range&nbsp;in&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;format&nbsp;'floor:ceiling'&nbsp;where&nbsp;floor&nbsp;and&nbsp;ceiling&nbsp;are&nbsp;integers.<br>
+:type&nbsp;speed_string:&nbsp;str<br>
+:return:&nbsp;A&nbsp;tuple&nbsp;containing&nbsp;two&nbsp;integers,&nbsp;where&nbsp;the&nbsp;first&nbsp;element<br>
+&nbsp;&nbsp;&nbsp;&nbsp;represents&nbsp;the&nbsp;floor&nbsp;value&nbsp;and&nbsp;the&nbsp;second&nbsp;element&nbsp;represents<br>
+&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;ceiling&nbsp;value&nbsp;of&nbsp;the&nbsp;speed&nbsp;range.<br>
+:rtype:&nbsp;Tuple[int,&nbsp;int]</span></dd></dl>
+ <dl><dt><a name="-set_parser_args"><strong>set_parser_args</strong></a>(parser: argparse.ArgumentParser, command_flag: src.main.config.command_flag.CommandFlag)</dt><dd><span class="code">Sets&nbsp;the&nbsp;arguments&nbsp;of&nbsp;an&nbsp;ArgumentParser&nbsp;object&nbsp;based&nbsp;on&nbsp;the&nbsp;specified<br>
+command&nbsp;flag.&nbsp;The&nbsp;function&nbsp;dynamically&nbsp;configures&nbsp;the&nbsp;parser&nbsp;with&nbsp;the<br>
+appropriate&nbsp;argument&nbsp;type,&nbsp;default&nbsp;value&nbsp;(if&nbsp;provided),&nbsp;and&nbsp;help&nbsp;text,<br>
+based&nbsp;on&nbsp;the&nbsp;settings&nbsp;of&nbsp;the&nbsp;given&nbsp;CommandFlag&nbsp;object.<br>
+&nbsp;<br>
+:param&nbsp;parser:&nbsp;The&nbsp;argparse.ArgumentParser&nbsp;object&nbsp;to&nbsp;which&nbsp;the&nbsp;argument<br>
+configuration&nbsp;will&nbsp;be&nbsp;added.<br>
+:type&nbsp;parser:&nbsp;argparse.ArgumentParser<br>
+:param&nbsp;command_flag:&nbsp;An&nbsp;object&nbsp;representing&nbsp;the&nbsp;command&nbsp;line&nbsp;argument.<br>
+:type&nbsp;command_flag:&nbsp;CommandFlag<br>
+:return:&nbsp;The&nbsp;updated&nbsp;argparse.ArgumentParser&nbsp;object&nbsp;with&nbsp;the&nbsp;new<br>
+configuration&nbsp;added.<br>
+:rtype:&nbsp;argparse.ArgumentParser</span></dd></dl>
+</td></tr></table><p>
+<table class="section">
+<tr class="decor data-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Data</strong></td></tr>
+    
+<tr><td class="decor data-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><strong>List</strong> = typing.List<br>
+<strong>Tuple</strong> = typing.Tuple</td></tr></table>
+</body></html>

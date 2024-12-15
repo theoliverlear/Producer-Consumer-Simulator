@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Python: module src.main.suggestion.speed_suggester</title>
+</head><body>
+
+<table class="heading">
+<tr class="heading-text decor">
+<td class="title">&nbsp;<br><strong class="title"><a href="src.html" class="white">src</a>.<a href="src.main.html" class="white">main</a>.<a href="src.main.suggestion.html" class="white">suggestion</a>.speed_suggester</strong></td>
+<td class="extra"><a href=".">index</a><br><a href="file:c%3A%5Cusers%5Colive%5Cgithub%5Cproducer-consumer-simulator%5Csrc%5Cmain%5Csuggestion%5Cspeed_suggester.py">c:\users\olive\github\producer-consumer-simulator\src\main\suggestion\speed_suggester.py</a></td></tr></table>
+    <p></p>
+<p>
+<table class="section">
+<tr class="decor pkg-content-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Modules</strong></td></tr>
+    
+<tr><td class="decor pkg-content-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><table><tr><td class="multicolumn"><a href="statistics.html">statistics</a><br>
+</td><td class="multicolumn"></td><td class="multicolumn"></td><td class="multicolumn"></td></tr></table></td></tr></table><p>
+<table class="section">
+<tr class="decor index-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Classes</strong></td></tr>
+    
+<tr><td class="decor index-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><dl>
+<dt class="heading-text"><a href="builtins.html#object">builtins.object</a>
+</dt><dd>
+<dl>
+<dt class="heading-text"><a href="src.main.suggestion.speed_suggester.html#SpeedSuggester">SpeedSuggester</a>
+</dt></dl>
+</dd>
+<dt class="heading-text"><a href="enum.html#Enum">enum.Enum</a>(<a href="builtins.html#object">builtins.object</a>)
+</dt><dd>
+<dl>
+<dt class="heading-text"><a href="src.main.suggestion.speed_suggester.html#SpeedSuggestions">SpeedSuggestions</a>
+</dt></dl>
+</dd>
+</dl>
+ <p>
+<table class="section">
+<tr class="decor title-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><a name="SpeedSuggester">class <strong>SpeedSuggester</strong></a>(<a href="builtins.html#object">builtins.object</a>)</td></tr>
+    
+<tr><td class="decor title-decor" rowspan=2><span class="code">&nbsp;&nbsp;&nbsp;</span></td>
+<td class="decor title-decor" colspan=2><span class="code"><a href="#SpeedSuggester">SpeedSuggester</a>(config:&nbsp;src.main.config.config.Config,&nbsp;statistic_tracker:&nbsp;src.main.statistics.statistic_tracker.StatisticTracker,&nbsp;buffer_suggester:&nbsp;src.main.suggestion.buffer_suggester.BufferSuggester)<br>
+&nbsp;<br>
+This&nbsp;class&nbsp;analyzes&nbsp;the&nbsp;speed&nbsp;of&nbsp;producers&nbsp;and&nbsp;consumers,&nbsp;checks&nbsp;for<br>
+performance&nbsp;mismatches&nbsp;or&nbsp;bottlenecks,&nbsp;and&nbsp;provides&nbsp;actionable&nbsp;suggestions<br>
+to&nbsp;correct&nbsp;the&nbsp;issues.&nbsp;It&nbsp;uses&nbsp;statistical&nbsp;data&nbsp;and&nbsp;configuration&nbsp;ranges<br>
+to&nbsp;determine&nbsp;the&nbsp;intended&nbsp;speeds,&nbsp;compare&nbsp;them&nbsp;with&nbsp;actual&nbsp;speeds,&nbsp;and<br>
+give&nbsp;recommendations&nbsp;for&nbsp;speed&nbsp;adjustments&nbsp;or&nbsp;changes&nbsp;in&nbsp;the&nbsp;number&nbsp;of<br>
+producers&nbsp;and&nbsp;consumers.<br>
+&nbsp;<br>
+:ivar&nbsp;config:&nbsp;The&nbsp;configuration&nbsp;parameters&nbsp;for&nbsp;speed&nbsp;and&nbsp;system&nbsp;settings.<br>
+:type&nbsp;config:&nbsp;Config<br>
+:ivar&nbsp;statistic_tracker:&nbsp;Tracks&nbsp;and&nbsp;provides&nbsp;producer&nbsp;and&nbsp;consumer<br>
+&nbsp;&nbsp;&nbsp;&nbsp;throughput&nbsp;statistics.<br>
+:type&nbsp;statistic_tracker:&nbsp;StatisticTracker<br>
+:ivar&nbsp;buffer_suggester:&nbsp;Provides&nbsp;suggestions&nbsp;related&nbsp;to&nbsp;the&nbsp;buffer&nbsp;system.<br>
+:type&nbsp;buffer_suggester:&nbsp;BufferSuggester<br>
+:ivar&nbsp;intended_producer_speed:&nbsp;The&nbsp;target&nbsp;median&nbsp;speed&nbsp;for&nbsp;producers,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;based&nbsp;on&nbsp;configuration.<br>
+:type&nbsp;intended_producer_speed:&nbsp;float<br>
+:ivar&nbsp;intended_consumer_speed:&nbsp;The&nbsp;target&nbsp;median&nbsp;speed&nbsp;for&nbsp;consumers,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;based&nbsp;on&nbsp;configuration.<br>
+:type&nbsp;intended_consumer_speed:&nbsp;float<br>
+:ivar&nbsp;average_producer_speed:&nbsp;The&nbsp;calculated&nbsp;average&nbsp;speed&nbsp;for&nbsp;producers<br>
+&nbsp;&nbsp;&nbsp;&nbsp;derived&nbsp;from&nbsp;statistical&nbsp;data.<br>
+:type&nbsp;average_producer_speed:&nbsp;float<br>
+:ivar&nbsp;average_consumer_speed:&nbsp;The&nbsp;calculated&nbsp;average&nbsp;speed&nbsp;for&nbsp;consumers<br>
+&nbsp;&nbsp;&nbsp;&nbsp;derived&nbsp;from&nbsp;statistical&nbsp;data.<br>
+:type&nbsp;average_consumer_speed:&nbsp;float<br>
+:ivar&nbsp;producers_message:&nbsp;Information&nbsp;message&nbsp;regarding&nbsp;producer&nbsp;speeds.<br>
+:type&nbsp;producers_message:&nbsp;str<br>
+:ivar&nbsp;consumers_message:&nbsp;Information&nbsp;message&nbsp;regarding&nbsp;consumer&nbsp;speeds.<br>
+:type&nbsp;consumers_message:&nbsp;str<br>
+:ivar&nbsp;suggestions:&nbsp;A&nbsp;list&nbsp;of&nbsp;speed&nbsp;adjustments&nbsp;or&nbsp;changes&nbsp;suggested<br>
+&nbsp;&nbsp;&nbsp;&nbsp;by&nbsp;the&nbsp;system.<br>
+:type&nbsp;suggestions:&nbsp;List[<a href="#SpeedSuggestions">SpeedSuggestions</a>]<br>&nbsp;</span></td></tr>
+<tr><td>&nbsp;</td>
+<td class="singlecolumn">Methods defined here:<br>
+<dl><dt><a name="SpeedSuggester-__init__"><strong>__init__</strong></a>(self, config: src.main.config.config.Config, statistic_tracker: src.main.statistics.statistic_tracker.StatisticTracker, buffer_suggester: src.main.suggestion.buffer_suggester.BufferSuggester)</dt><dd><span class="code">Represents&nbsp;a&nbsp;manager&nbsp;to&nbsp;control&nbsp;and&nbsp;evaluate&nbsp;the&nbsp;producer&nbsp;and&nbsp;consumer<br>
+speeds&nbsp;using&nbsp;provided&nbsp;configuration,&nbsp;trackers,&nbsp;and&nbsp;suggesters.<br>
+&nbsp;<br>
+:param&nbsp;config:&nbsp;The&nbsp;configuration&nbsp;<a href="builtins.html#object">object</a>&nbsp;used&nbsp;to&nbsp;initialize&nbsp;the&nbsp;manager.<br>
+:type&nbsp;config:&nbsp;Config<br>
+:param&nbsp;statistic_tracker:&nbsp;Tracks&nbsp;statistical&nbsp;data&nbsp;for&nbsp;the&nbsp;simulation.<br>
+:type&nbsp;statistic_tracker:&nbsp;StatisticTracker<br>
+:param&nbsp;buffer_suggester:&nbsp;Suggests&nbsp;buffer-related&nbsp;adjustments.<br>
+:type&nbsp;buffer_suggester:&nbsp;BufferSuggester</span></dd></dl>
+
+<dl><dt><a name="SpeedSuggester-calculate"><strong>calculate</strong></a>(self) -&gt; None</dt><dd><span class="code">Calculates&nbsp;various&nbsp;metrics&nbsp;and&nbsp;suggestions&nbsp;related&nbsp;to&nbsp;producer&nbsp;and<br>
+consumer&nbsp;speeds&nbsp;and&nbsp;messages.<br>
+&nbsp;<br>
+:return:&nbsp;The&nbsp;method&nbsp;does&nbsp;not&nbsp;return&nbsp;any&nbsp;value.<br>
+:rtype:&nbsp;None</span></dd></dl>
+
+<dl><dt><a name="SpeedSuggester-calculate_number_of_consumers_suggestions"><strong>calculate_number_of_consumers_suggestions</strong></a>(self) -&gt; None</dt><dd><span class="code">Analyzes&nbsp;mismatched&nbsp;number&nbsp;of&nbsp;consumers&nbsp;based&nbsp;on&nbsp;specific&nbsp;conditions.<br>
+If&nbsp;a&nbsp;mismatch&nbsp;is&nbsp;detected,&nbsp;it&nbsp;appends&nbsp;the&nbsp;corresponding&nbsp;suggestion&nbsp;to<br>
+the&nbsp;list&nbsp;of&nbsp;suggestions.<br>
+&nbsp;<br>
+:return:&nbsp;The&nbsp;method&nbsp;does&nbsp;not&nbsp;return&nbsp;any&nbsp;value.<br>
+:rtype:&nbsp;None</span></dd></dl>
+
+<dl><dt><a name="SpeedSuggester-calculate_number_of_producers_suggestions"><strong>calculate_number_of_producers_suggestions</strong></a>(self) -&gt; None</dt><dd><span class="code">Analyzes&nbsp;mismatched&nbsp;number&nbsp;of&nbsp;producers&nbsp;based&nbsp;on&nbsp;specific&nbsp;conditions.<br>
+If&nbsp;a&nbsp;mismatch&nbsp;is&nbsp;detected,&nbsp;it&nbsp;appends&nbsp;the&nbsp;corresponding&nbsp;suggestion&nbsp;to<br>
+the&nbsp;list&nbsp;of&nbsp;suggestions.<br>
+&nbsp;<br>
+:return:&nbsp;The&nbsp;method&nbsp;does&nbsp;not&nbsp;return&nbsp;any&nbsp;value.<br>
+:rtype:&nbsp;None</span></dd></dl>
+
+<dl><dt><a name="SpeedSuggester-calculate_speed_suggestions"><strong>calculate_speed_suggestions</strong></a>(self) -&gt; None</dt><dd><span class="code">Analyzes&nbsp;production&nbsp;and&nbsp;consumption&nbsp;speeds&nbsp;and&nbsp;appends&nbsp;appropriate<br>
+speed&nbsp;adjustment&nbsp;suggestions&nbsp;if&nbsp;thresholds&nbsp;are&nbsp;exceeded.<br>
+&nbsp;<br>
+:return:&nbsp;The&nbsp;method&nbsp;does&nbsp;not&nbsp;return&nbsp;any&nbsp;value.<br>
+:rtype:&nbsp;None</span></dd></dl>
+
+<dl><dt><a name="SpeedSuggester-get_average_consumer_speed"><strong>get_average_consumer_speed</strong></a>(self) -&gt; float</dt><dd><span class="code">Calculates&nbsp;the&nbsp;average&nbsp;consumer&nbsp;speed&nbsp;in&nbsp;milliseconds&nbsp;based&nbsp;on<br>
+recorded&nbsp;throughput&nbsp;data.<br>
+&nbsp;<br>
+:return:&nbsp;The&nbsp;average&nbsp;consumer&nbsp;speed&nbsp;in&nbsp;milliseconds.<br>
+:rtype:&nbsp;float</span></dd></dl>
+
+<dl><dt><a name="SpeedSuggester-get_average_producer_speed"><strong>get_average_producer_speed</strong></a>(self) -&gt; float</dt><dd><span class="code">Calculate&nbsp;the&nbsp;average&nbsp;producer&nbsp;speed&nbsp;in&nbsp;milliseconds.<br>
+&nbsp;<br>
+This&nbsp;method&nbsp;computes&nbsp;the&nbsp;mean&nbsp;value&nbsp;of&nbsp;the&nbsp;producer&nbsp;throughput<br>
+in&nbsp;nanoseconds&nbsp;stored&nbsp;in&nbsp;`self.<strong>statistic_tracker</strong>.producer_throughput_list`<br>
+and&nbsp;converts&nbsp;the&nbsp;result&nbsp;into&nbsp;milliseconds&nbsp;before&nbsp;returning.<br>
+&nbsp;<br>
+:returns:&nbsp;The&nbsp;average&nbsp;producer&nbsp;speed&nbsp;in&nbsp;milliseconds.<br>
+:rtype:&nbsp;float</span></dd></dl>
+
+<dl><dt><a name="SpeedSuggester-get_buffer_suggestion"><strong>get_buffer_suggestion</strong></a>(self) -&gt; src.main.suggestion.buffer_suggester.BufferSuggestions</dt><dd><span class="code">This&nbsp;method&nbsp;retrieves&nbsp;the&nbsp;buffer&nbsp;suggestion&nbsp;from&nbsp;the&nbsp;buffer&nbsp;suggester.<br>
+&nbsp;<br>
+:return:&nbsp;A&nbsp;buffer&nbsp;suggestion&nbsp;instance&nbsp;from&nbsp;the&nbsp;BufferSuggestions&nbsp;enum.<br>
+:rtype:&nbsp;BufferSuggestions</span></dd></dl>
+
+<dl><dt><a name="SpeedSuggester-get_consumers_message"><strong>get_consumers_message</strong></a>(self) -&gt; str</dt><dd><span class="code">Generates&nbsp;a&nbsp;formatted&nbsp;message&nbsp;detailing&nbsp;the&nbsp;intended&nbsp;and&nbsp;actual<br>
+consumer&nbsp;average&nbsp;speeds&nbsp;in&nbsp;milliseconds.<br>
+&nbsp;<br>
+:return:&nbsp;A&nbsp;formatted&nbsp;string&nbsp;containing&nbsp;the&nbsp;intended&nbsp;and&nbsp;actual<br>
+consumer&nbsp;average&nbsp;speeds&nbsp;in&nbsp;milliseconds.<br>
+:rtype:&nbsp;str</span></dd></dl>
+
+<dl><dt><a name="SpeedSuggester-get_intended_consumer_speed"><strong>get_intended_consumer_speed</strong></a>(self) -&gt; float</dt><dd><span class="code">Calculate&nbsp;the&nbsp;intended&nbsp;consumer&nbsp;speed&nbsp;based&nbsp;on&nbsp;the&nbsp;range.<br>
+&nbsp;<br>
+:return:&nbsp;The&nbsp;calculated&nbsp;intended&nbsp;consumer&nbsp;speed&nbsp;as&nbsp;a&nbsp;float.<br>
+:rtype:&nbsp;float</span></dd></dl>
+
+<dl><dt><a name="SpeedSuggester-get_intended_producer_speed"><strong>get_intended_producer_speed</strong></a>(self) -&gt; float</dt><dd><span class="code">Calculate&nbsp;and&nbsp;return&nbsp;the&nbsp;intended&nbsp;producer&nbsp;speed.<br>
+&nbsp;<br>
+:return:&nbsp;The&nbsp;intended&nbsp;producer&nbsp;speed&nbsp;as&nbsp;a&nbsp;float&nbsp;value.<br>
+:rtype:&nbsp;float</span></dd></dl>
+
+<dl><dt><a name="SpeedSuggester-get_mismatched_number_of_consumers"><strong>get_mismatched_number_of_consumers</strong></a>(self) -&gt; bool</dt><dd><span class="code">Determines&nbsp;if&nbsp;there&nbsp;is&nbsp;a&nbsp;mismatch&nbsp;between&nbsp;the&nbsp;number&nbsp;of&nbsp;consumers&nbsp;and<br>
+producers,&nbsp;based&nbsp;on&nbsp;the&nbsp;configured&nbsp;values&nbsp;and&nbsp;speed&nbsp;suggestions.<br>
+&nbsp;<br>
+:return:&nbsp;A&nbsp;boolean&nbsp;indicating&nbsp;whether&nbsp;the&nbsp;number&nbsp;of&nbsp;consumers&nbsp;is&nbsp;less<br>
+&nbsp;&nbsp;&nbsp;&nbsp;than&nbsp;the&nbsp;number&nbsp;of&nbsp;producers&nbsp;under&nbsp;the&nbsp;specified&nbsp;conditions.<br>
+:rtype:&nbsp;bool</span></dd></dl>
+
+<dl><dt><a name="SpeedSuggester-get_mismatched_number_of_producers"><strong>get_mismatched_number_of_producers</strong></a>(self) -&gt; bool</dt><dd><span class="code">Determines&nbsp;if&nbsp;there&nbsp;is&nbsp;a&nbsp;mismatch&nbsp;between&nbsp;the&nbsp;number&nbsp;of&nbsp;producers&nbsp;and<br>
+consumers,&nbsp;based&nbsp;on&nbsp;the&nbsp;configured&nbsp;values&nbsp;and&nbsp;speed&nbsp;suggestions.<br>
+&nbsp;<br>
+:return:&nbsp;A&nbsp;boolean&nbsp;indicating&nbsp;whether&nbsp;the&nbsp;number&nbsp;of&nbsp;producers&nbsp;is&nbsp;less<br>
+&nbsp;&nbsp;&nbsp;&nbsp;than&nbsp;the&nbsp;number&nbsp;of&nbsp;consumers&nbsp;under&nbsp;the&nbsp;specified&nbsp;conditions.<br>
+:rtype:&nbsp;bool</span></dd></dl>
+
+<dl><dt><a name="SpeedSuggester-get_producers_message"><strong>get_producers_message</strong></a>(self) -&gt; str</dt><dd><span class="code">Generates&nbsp;a&nbsp;formatted&nbsp;message&nbsp;detailing&nbsp;the&nbsp;intended&nbsp;and&nbsp;actual<br>
+producer&nbsp;average&nbsp;speeds&nbsp;in&nbsp;milliseconds.<br>
+&nbsp;<br>
+:return:&nbsp;A&nbsp;formatted&nbsp;string&nbsp;containing&nbsp;the&nbsp;intended&nbsp;and&nbsp;actual<br>
+producer&nbsp;average&nbsp;speeds&nbsp;in&nbsp;milliseconds.<br>
+:rtype:&nbsp;str</span></dd></dl>
+
+<dl><dt><a name="SpeedSuggester-get_should_increase_consumer_speed"><strong>get_should_increase_consumer_speed</strong></a>(self) -&gt; bool</dt><dd><span class="code">This&nbsp;method&nbsp;evaluates&nbsp;if&nbsp;the&nbsp;average&nbsp;consumer&nbsp;speed&nbsp;surpasses&nbsp;the<br>
+intended&nbsp;consumer&nbsp;speed&nbsp;variability&nbsp;threshold.&nbsp;Returns&nbsp;a&nbsp;boolean<br>
+indicating&nbsp;whether&nbsp;an&nbsp;increase&nbsp;is&nbsp;necessary.<br>
+&nbsp;<br>
+:return:&nbsp;A&nbsp;boolean&nbsp;indicating&nbsp;if&nbsp;the&nbsp;consumer&nbsp;speed&nbsp;should&nbsp;be<br>
+increased.<br>
+:rtype:&nbsp;bool</span></dd></dl>
+
+<dl><dt><a name="SpeedSuggester-get_should_increase_producer_speed"><strong>get_should_increase_producer_speed</strong></a>(self) -&gt; bool</dt><dd><span class="code">This&nbsp;method&nbsp;evaluates&nbsp;if&nbsp;the&nbsp;average&nbsp;producer&nbsp;speed&nbsp;surpasses&nbsp;the<br>
+intended&nbsp;producer&nbsp;speed&nbsp;variability&nbsp;threshold.&nbsp;Returns&nbsp;a&nbsp;boolean<br>
+indicating&nbsp;whether&nbsp;an&nbsp;increase&nbsp;is&nbsp;necessary.<br>
+&nbsp;<br>
+:return:&nbsp;A&nbsp;boolean&nbsp;indicating&nbsp;if&nbsp;the&nbsp;producer&nbsp;speed&nbsp;should&nbsp;be<br>
+increased.<br>
+:rtype:&nbsp;bool</span></dd></dl>
+
+<dl><dt><a name="SpeedSuggester-show_statistics"><strong>show_statistics</strong></a>(self) -&gt; None</dt><dd><span class="code">Logs&nbsp;the&nbsp;statistics&nbsp;of&nbsp;consumers&nbsp;and&nbsp;producers&nbsp;in&nbsp;bold&nbsp;format.<br>
+&nbsp;<br>
+:return:&nbsp;This&nbsp;method&nbsp;does&nbsp;not&nbsp;return&nbsp;any&nbsp;value.<br>
+:rtype:&nbsp;None</span></dd></dl>
+
+<dl><dt><a name="SpeedSuggester-show_suggestions"><strong>show_suggestions</strong></a>(self) -&gt; None</dt><dd><span class="code">This&nbsp;method&nbsp;checks&nbsp;whether&nbsp;there&nbsp;are&nbsp;any&nbsp;suggestions&nbsp;available&nbsp;and<br>
+displays&nbsp;them.&nbsp;If&nbsp;no&nbsp;suggestions&nbsp;are&nbsp;available,&nbsp;a&nbsp;default&nbsp;message&nbsp;is<br>
+shown&nbsp;instead.<br>
+&nbsp;<br>
+:return:&nbsp;The&nbsp;method&nbsp;does&nbsp;not&nbsp;return&nbsp;any&nbsp;value.<br>
+:rtype:&nbsp;None</span></dd></dl>
+
+<hr>
+Static methods defined here:<br>
+<dl><dt><a name="SpeedSuggester-exceeds_threshold"><strong>exceeds_threshold</strong></a>(actual_speed: float, intended_speed: float) -&gt; bool</dt><dd><span class="code">Determines&nbsp;if&nbsp;the&nbsp;actual&nbsp;speed&nbsp;exceeds&nbsp;a&nbsp;specified&nbsp;performance<br>
+threshold&nbsp;of&nbsp;the&nbsp;intended&nbsp;speed.<br>
+&nbsp;<br>
+:param&nbsp;actual_speed:&nbsp;The&nbsp;measured&nbsp;speed&nbsp;to&nbsp;evaluate.<br>
+:type&nbsp;actual_speed:&nbsp;float<br>
+:param&nbsp;intended_speed:&nbsp;The&nbsp;target&nbsp;speed&nbsp;to&nbsp;compare&nbsp;against.<br>
+:type&nbsp;intended_speed:&nbsp;float<br>
+:return:&nbsp;True&nbsp;if&nbsp;the&nbsp;actual&nbsp;speed&nbsp;exceeds&nbsp;the&nbsp;calculated&nbsp;threshold&nbsp;of<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;intended&nbsp;speed,&nbsp;otherwise&nbsp;False.<br>
+:rtype:&nbsp;bool</span></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><span class="code">dictionary&nbsp;for&nbsp;instance&nbsp;variables</span></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><span class="code">list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object</span></dd>
+</dl>
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>PERFORMANCE_THRESHOLD</strong> = 1.2</dl>
+
+<dl><dt><strong>__annotations__</strong> = {'PERFORMANCE_THRESHOLD': &lt;class 'float'&gt;}</dl>
+
+</td></tr></table> <p>
+<table class="section">
+<tr class="decor title-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><a name="SpeedSuggestions">class <strong>SpeedSuggestions</strong></a>(<a href="enum.html#Enum">enum.Enum</a>)</td></tr>
+    
+<tr><td class="decor title-decor" rowspan=2><span class="code">&nbsp;&nbsp;&nbsp;</span></td>
+<td class="decor title-decor" colspan=2><span class="code"><a href="#SpeedSuggestions">SpeedSuggestions</a>(*values)<br>
+&nbsp;<br>
+Represents&nbsp;various&nbsp;suggestions&nbsp;for&nbsp;optimizing&nbsp;the&nbsp;speed&nbsp;or<br>
+count&nbsp;of&nbsp;producers&nbsp;and&nbsp;consumers&nbsp;in&nbsp;a&nbsp;system.<br>
+&nbsp;<br>
+:cvar&nbsp;NO_SUGGESTION:&nbsp;No&nbsp;changes&nbsp;are&nbsp;needed&nbsp;for&nbsp;the&nbsp;speed&nbsp;or&nbsp;amount&nbsp;of<br>
+&nbsp;producers&nbsp;and&nbsp;consumers.<br>
+:vartype&nbsp;NO_SUGGESTION:&nbsp;str<br>
+:cvar&nbsp;ADD_PRODUCERS:&nbsp;Suggests&nbsp;adding&nbsp;more&nbsp;producers.<br>
+:vartype&nbsp;ADD_PRODUCERS:&nbsp;str<br>
+:cvar&nbsp;ADD_CONSUMERS:&nbsp;Suggests&nbsp;adding&nbsp;more&nbsp;consumers.<br>
+:vartype&nbsp;ADD_CONSUMERS:&nbsp;str<br>
+:cvar&nbsp;INCREASE_PRODUCER_SPEED:&nbsp;Suggests&nbsp;increasing&nbsp;the&nbsp;speed&nbsp;of&nbsp;the<br>
+&nbsp;producers.<br>
+:vartype&nbsp;INCREASE_PRODUCER_SPEED:&nbsp;str<br>
+:cvar&nbsp;INCREASE_CONSUMER_SPEED:&nbsp;Suggests&nbsp;increasing&nbsp;the&nbsp;speed&nbsp;of&nbsp;the<br>
+&nbsp;consumers.<br>
+:vartype&nbsp;INCREASE_CONSUMER_SPEED:&nbsp;str<br>
+:cvar&nbsp;DECREASE_PRODUCER_SPEED:&nbsp;Suggests&nbsp;decreasing&nbsp;the&nbsp;speed&nbsp;of&nbsp;the<br>
+&nbsp;producers.<br>
+:vartype&nbsp;DECREASE_PRODUCER_SPEED:&nbsp;str<br>
+:cvar&nbsp;DECREASE_CONSUMER_SPEED:&nbsp;Suggests&nbsp;decreasing&nbsp;the&nbsp;speed&nbsp;of&nbsp;the<br>
+&nbsp;consumers.<br>
+:vartype&nbsp;DECREASE_CONSUMER_SPEED:&nbsp;str<br>&nbsp;</span></td></tr>
+<tr><td>&nbsp;</td>
+<td class="singlecolumn"><dl><dt>Method resolution order:</dt>
+<dd><a href="src.main.suggestion.speed_suggester.html#SpeedSuggestions">SpeedSuggestions</a></dd>
+<dd><a href="enum.html#Enum">enum.Enum</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>ADD_CONSUMERS</strong> = &lt;SpeedSuggestions.ADD_CONSUMERS: 'Add more consumers.'&gt;</dl>
+
+<dl><dt><strong>ADD_PRODUCERS</strong> = &lt;SpeedSuggestions.ADD_PRODUCERS: 'Add more producers.'&gt;</dl>
+
+<dl><dt><strong>DECREASE_CONSUMER_SPEED</strong> = &lt;SpeedSuggestions.DECREASE_CONSUMER_SPEED: 'Decrease the speed of the consumers.'&gt;</dl>
+
+<dl><dt><strong>DECREASE_PRODUCER_SPEED</strong> = &lt;SpeedSuggestions.DECREASE_PRODUCER_SPEED: 'Decrease the speed of the producers.'&gt;</dl>
+
+<dl><dt><strong>INCREASE_CONSUMER_SPEED</strong> = &lt;SpeedSuggestions.INCREASE_CONSUMER_SPEED: 'Increase the speed of the consumers.'&gt;</dl>
+
+<dl><dt><strong>INCREASE_PRODUCER_SPEED</strong> = &lt;SpeedSuggestions.INCREASE_PRODUCER_SPEED: 'Increase the speed of the producers.'&gt;</dl>
+
+<dl><dt><strong>NO_SUGGESTION</strong> = &lt;SpeedSuggestions.NO_SUGGESTION: 'No changes are...the speed or amount of producers and consumers.'&gt;</dl>
+
+<hr>
+Data descriptors inherited from <a href="enum.html#Enum">enum.Enum</a>:<br>
+<dl><dt><strong>name</strong></dt>
+<dd><span class="code">The&nbsp;name&nbsp;of&nbsp;the&nbsp;Enum&nbsp;member.</span></dd>
+</dl>
+<dl><dt><strong>value</strong></dt>
+<dd><span class="code">The&nbsp;value&nbsp;of&nbsp;the&nbsp;Enum&nbsp;member.</span></dd>
+</dl>
+<hr>
+Static methods inherited from <a href="enum.html#EnumType">enum.EnumType</a>:<br>
+<dl><dt><a name="SpeedSuggestions-__contains__"><strong>__contains__</strong></a>(value)</dt><dd><span class="code">Return&nbsp;True&nbsp;if&nbsp;`value`&nbsp;is&nbsp;in&nbsp;`cls`.<br>
+&nbsp;<br>
+`value`&nbsp;is&nbsp;in&nbsp;`cls`&nbsp;if:<br>
+1)&nbsp;`value`&nbsp;is&nbsp;a&nbsp;member&nbsp;of&nbsp;`cls`,&nbsp;or<br>
+2)&nbsp;`value`&nbsp;is&nbsp;the&nbsp;value&nbsp;of&nbsp;one&nbsp;of&nbsp;the&nbsp;`cls`'s&nbsp;members.</span></dd></dl>
+
+<dl><dt><a name="SpeedSuggestions-__getitem__"><strong>__getitem__</strong></a>(name)</dt><dd><span class="code">Return&nbsp;the&nbsp;member&nbsp;matching&nbsp;`name`.</span></dd></dl>
+
+<dl><dt><a name="SpeedSuggestions-__iter__"><strong>__iter__</strong></a>()</dt><dd><span class="code">Return&nbsp;members&nbsp;in&nbsp;definition&nbsp;order.</span></dd></dl>
+
+<dl><dt><a name="SpeedSuggestions-__len__"><strong>__len__</strong></a>()</dt><dd><span class="code">Return&nbsp;the&nbsp;number&nbsp;of&nbsp;members&nbsp;(no&nbsp;aliases)</span></dd></dl>
+
+<hr>
+Readonly properties inherited from <a href="enum.html#EnumType">enum.EnumType</a>:<br>
+<dl><dt><strong>__members__</strong></dt>
+<dd><span class="code">Returns&nbsp;a&nbsp;mapping&nbsp;of&nbsp;member&nbsp;name-&gt;value.<br>
+&nbsp;<br>
+This&nbsp;mapping&nbsp;lists&nbsp;all&nbsp;enum&nbsp;members,&nbsp;including&nbsp;aliases.&nbsp;Note&nbsp;that&nbsp;this<br>
+is&nbsp;a&nbsp;read-only&nbsp;view&nbsp;of&nbsp;the&nbsp;internal&nbsp;mapping.</span></dd>
+</dl>
+</td></tr></table></td></tr></table><p>
+<table class="section">
+<tr class="decor data-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Data</strong></td></tr>
+    
+<tr><td class="decor data-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><strong>List</strong> = typing.List</td></tr></table>
+</body></html>

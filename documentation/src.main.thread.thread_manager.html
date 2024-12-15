@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Python: module src.main.thread.thread_manager</title>
+</head><body>
+
+<table class="heading">
+<tr class="heading-text decor">
+<td class="title">&nbsp;<br><strong class="title"><a href="src.html" class="white">src</a>.<a href="src.main.html" class="white">main</a>.<a href="src.main.thread.html" class="white">thread</a>.thread_manager</strong></td>
+<td class="extra"><a href=".">index</a><br><a href="file:c%3A%5Cusers%5Colive%5Cgithub%5Cproducer-consumer-simulator%5Csrc%5Cmain%5Cthread%5Cthread_manager.py">c:\users\olive\github\producer-consumer-simulator\src\main\thread\thread_manager.py</a></td></tr></table>
+    <p></p>
+<p>
+<table class="section">
+<tr class="decor pkg-content-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Modules</strong></td></tr>
+    
+<tr><td class="decor pkg-content-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><table><tr><td class="multicolumn"><a href="logging.html">logging</a><br>
+</td><td class="multicolumn"><a href="random.html">random</a><br>
+</td><td class="multicolumn"><a href="threading.html">threading</a><br>
+</td><td class="multicolumn"></td></tr></table></td></tr></table><p>
+<table class="section">
+<tr class="decor index-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Classes</strong></td></tr>
+    
+<tr><td class="decor index-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><dl>
+<dt class="heading-text"><a href="builtins.html#object">builtins.object</a>
+</dt><dd>
+<dl>
+<dt class="heading-text"><a href="src.main.thread.thread_manager.html#ThreadManager">ThreadManager</a>
+</dt></dl>
+</dd>
+</dl>
+ <p>
+<table class="section">
+<tr class="decor title-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><a name="ThreadManager">class <strong>ThreadManager</strong></a>(<a href="builtins.html#object">builtins.object</a>)</td></tr>
+    
+<tr><td class="decor title-decor" rowspan=2><span class="code">&nbsp;&nbsp;&nbsp;</span></td>
+<td class="decor title-decor" colspan=2><span class="code"><a href="#ThreadManager">ThreadManager</a>(num_producers:&nbsp;int,&nbsp;num_consumers:&nbsp;int,&nbsp;consumer_speed_range:&nbsp;Tuple[int,&nbsp;int],&nbsp;producer_speed_range:&nbsp;Tuple[int,&nbsp;int],&nbsp;buffer:&nbsp;src.main.buffer.buffer.Buffer,&nbsp;num_items_to_process:&nbsp;int,&nbsp;statistic_tracker:&nbsp;src.main.statistics.statistic_tracker.StatisticTracker)<br>
+&nbsp;<br>
+Manages&nbsp;the&nbsp;creation,&nbsp;initialization,&nbsp;and&nbsp;synchronization&nbsp;of&nbsp;producer&nbsp;and<br>
+consumer&nbsp;threads&nbsp;for&nbsp;processing&nbsp;items&nbsp;in&nbsp;a&nbsp;shared&nbsp;buffer.<br>
+&nbsp;<br>
+:ivar&nbsp;buffer:&nbsp;Shared&nbsp;buffer&nbsp;where&nbsp;producers&nbsp;add&nbsp;items&nbsp;and&nbsp;consumers&nbsp;remove<br>
+them.<br>
+:type&nbsp;buffer:&nbsp;Buffer<br>
+:ivar&nbsp;num_items_to_process:&nbsp;Total&nbsp;number&nbsp;of&nbsp;items&nbsp;to&nbsp;be&nbsp;processed.<br>
+:type&nbsp;num_items_to_process:&nbsp;int<br>
+:ivar&nbsp;num_producers:&nbsp;Number&nbsp;of&nbsp;producer&nbsp;threads.<br>
+:type&nbsp;num_producers:&nbsp;int<br>
+:ivar&nbsp;num_consumers:&nbsp;Number&nbsp;of&nbsp;consumer&nbsp;threads.<br>
+:type&nbsp;num_consumers:&nbsp;int<br>
+:ivar&nbsp;producer_speed_range:&nbsp;Range&nbsp;of&nbsp;speeds&nbsp;for&nbsp;producers&nbsp;(min,&nbsp;max).<br>
+:type&nbsp;producer_speed_range:&nbsp;Tuple[int,&nbsp;int]<br>
+:ivar&nbsp;consumer_speed_range:&nbsp;Range&nbsp;of&nbsp;speeds&nbsp;for&nbsp;consumers&nbsp;(min,&nbsp;max).<br>
+:type&nbsp;consumer_speed_range:&nbsp;Tuple[int,&nbsp;int]<br>
+:ivar&nbsp;statistic_tracker:&nbsp;Tracker&nbsp;for&nbsp;monitoring&nbsp;and&nbsp;recording&nbsp;statistics.<br>
+:type&nbsp;statistic_tracker:&nbsp;StatisticTracker<br>
+:ivar&nbsp;threads_started:&nbsp;Indicator&nbsp;whether&nbsp;threads&nbsp;have&nbsp;been&nbsp;started.<br>
+:type&nbsp;threads_started:&nbsp;bool<br>
+:ivar&nbsp;producers:&nbsp;List&nbsp;of&nbsp;initialized&nbsp;producer&nbsp;threads.<br>
+:type&nbsp;producers:&nbsp;List[Producer]<br>
+:ivar&nbsp;consumers:&nbsp;List&nbsp;of&nbsp;initialized&nbsp;consumer&nbsp;threads.<br>
+:type&nbsp;consumers:&nbsp;List[Consumer]<br>&nbsp;</span></td></tr>
+<tr><td>&nbsp;</td>
+<td class="singlecolumn">Methods defined here:<br>
+<dl><dt><a name="ThreadManager-__init__"><strong>__init__</strong></a>(self, num_producers: int, num_consumers: int, consumer_speed_range: Tuple[int, int], producer_speed_range: Tuple[int, int], buffer: src.main.buffer.buffer.Buffer, num_items_to_process: int, statistic_tracker: src.main.statistics.statistic_tracker.StatisticTracker)</dt><dd><span class="code">This&nbsp;class&nbsp;initializes&nbsp;the&nbsp;producers&nbsp;and&nbsp;consumers&nbsp;based&nbsp;on&nbsp;the<br>
+provided&nbsp;configuration&nbsp;and&nbsp;handles&nbsp;their&nbsp;interactions&nbsp;with&nbsp;the&nbsp;buffer<br>
+for&nbsp;a&nbsp;given&nbsp;number&nbsp;of&nbsp;items.<br>
+&nbsp;<br>
+:param&nbsp;num_producers:&nbsp;Number&nbsp;of&nbsp;producer&nbsp;threads&nbsp;to&nbsp;create.<br>
+:type&nbsp;num_producers:&nbsp;int<br>
+:param&nbsp;num_consumers:&nbsp;Number&nbsp;of&nbsp;consumer&nbsp;threads&nbsp;to&nbsp;create.<br>
+:type&nbsp;num_consumers:&nbsp;int<br>
+:param&nbsp;consumer_speed_range:&nbsp;Speed&nbsp;range&nbsp;(min,&nbsp;max)&nbsp;for&nbsp;consumers.<br>
+:type&nbsp;consumer_speed_range:&nbsp;Tuple[int,&nbsp;int]<br>
+:param&nbsp;producer_speed_range:&nbsp;Speed&nbsp;range&nbsp;(min,&nbsp;max)&nbsp;for&nbsp;producers.<br>
+:type&nbsp;producer_speed_range:&nbsp;Tuple[int,&nbsp;int]<br>
+:param&nbsp;buffer:&nbsp;Shared&nbsp;buffer&nbsp;<a href="builtins.html#object">object</a>&nbsp;between&nbsp;producers&nbsp;and&nbsp;consumers.<br>
+:type&nbsp;buffer:&nbsp;Buffer<br>
+:param&nbsp;num_items_to_process:&nbsp;Total&nbsp;number&nbsp;of&nbsp;items&nbsp;to&nbsp;be&nbsp;processed&nbsp;by&nbsp;the&nbsp;system.<br>
+:type&nbsp;num_items_to_process:&nbsp;int<br>
+:param&nbsp;statistic_tracker:&nbsp;Tracker&nbsp;for&nbsp;collecting&nbsp;processing&nbsp;statistics.<br>
+:type&nbsp;statistic_tracker:&nbsp;StatisticTracker<br>
+&nbsp;<br>
+:ivar&nbsp;buffer:&nbsp;A&nbsp;shared&nbsp;buffer&nbsp;for&nbsp;producers&nbsp;and&nbsp;consumers&nbsp;to&nbsp;exchange<br>
+data.<br>
+:type&nbsp;buffer:&nbsp;Buffer<br>
+:ivar&nbsp;num_items_to_process:&nbsp;The&nbsp;total&nbsp;number&nbsp;of&nbsp;items&nbsp;to&nbsp;be&nbsp;processed.<br>
+:type&nbsp;num_items_to_process:&nbsp;int<br>
+:ivar&nbsp;num_producers:&nbsp;The&nbsp;total&nbsp;number&nbsp;of&nbsp;producer&nbsp;threads.<br>
+:type&nbsp;num_producers:&nbsp;int<br>
+:ivar&nbsp;num_consumers:&nbsp;The&nbsp;total&nbsp;number&nbsp;of&nbsp;consumer&nbsp;threads.<br>
+:type&nbsp;num_consumers:&nbsp;int<br>
+:ivar&nbsp;producer_speed_range:&nbsp;Speed&nbsp;range&nbsp;(min,&nbsp;max)&nbsp;for&nbsp;producers.<br>
+:type&nbsp;producer_speed_range:&nbsp;Tuple[int,&nbsp;int]<br>
+:ivar&nbsp;consumer_speed_range:&nbsp;Speed&nbsp;range&nbsp;(min,&nbsp;max)&nbsp;for&nbsp;consumers.<br>
+:type&nbsp;consumer_speed_range:&nbsp;Tuple[int,&nbsp;int]<br>
+:ivar&nbsp;statistic_tracker:&nbsp;Tracks&nbsp;and&nbsp;collects&nbsp;performance&nbsp;statistics.<br>
+:type&nbsp;statistic_tracker:&nbsp;StatisticTracker<br>
+:ivar&nbsp;threads_started:&nbsp;Indicates&nbsp;whether&nbsp;the&nbsp;threads&nbsp;have&nbsp;been<br>
+started.<br>
+:type&nbsp;threads_started:&nbsp;bool<br>
+:ivar&nbsp;producers:&nbsp;List&nbsp;of&nbsp;initialized&nbsp;producer&nbsp;instances.<br>
+:type&nbsp;producers:&nbsp;List[Producer]<br>
+:ivar&nbsp;consumers:&nbsp;List&nbsp;of&nbsp;initialized&nbsp;consumer&nbsp;instances.<br>
+:type&nbsp;consumers:&nbsp;List[Consumer]</span></dd></dl>
+
+<dl><dt><a name="ThreadManager-get_num_items_to_consume"><strong>get_num_items_to_consume</strong></a>(self) -&gt; Tuple[int, int]</dt><dd><span class="code">Calculates&nbsp;the&nbsp;number&nbsp;of&nbsp;items&nbsp;each&nbsp;consumer&nbsp;will&nbsp;handle&nbsp;and&nbsp;the<br>
+remaining&nbsp;items&nbsp;that&nbsp;are&nbsp;unassigned.<br>
+&nbsp;<br>
+:return:&nbsp;A&nbsp;tuple&nbsp;where&nbsp;the&nbsp;first&nbsp;element&nbsp;is&nbsp;the&nbsp;number&nbsp;of&nbsp;items<br>
+assigned&nbsp;to&nbsp;each&nbsp;consumer,&nbsp;and&nbsp;the&nbsp;second&nbsp;element&nbsp;is&nbsp;the&nbsp;leftover<br>
+items&nbsp;that&nbsp;are&nbsp;unassigned&nbsp;after&nbsp;distribution.<br>
+:rtype:&nbsp;Tuple[int,&nbsp;int]</span></dd></dl>
+
+<dl><dt><a name="ThreadManager-get_num_items_to_produce"><strong>get_num_items_to_produce</strong></a>(self) -&gt; Tuple[int, int]</dt><dd><span class="code">Calculates&nbsp;the&nbsp;number&nbsp;of&nbsp;items&nbsp;each&nbsp;producer&nbsp;will&nbsp;handle&nbsp;and&nbsp;the<br>
+remaining&nbsp;items&nbsp;that&nbsp;are&nbsp;unassigned.<br>
+&nbsp;<br>
+:return:&nbsp;A&nbsp;tuple&nbsp;where&nbsp;the&nbsp;first&nbsp;element&nbsp;is&nbsp;the&nbsp;number&nbsp;of&nbsp;items<br>
+assigned&nbsp;to&nbsp;each&nbsp;producer,&nbsp;and&nbsp;the&nbsp;second&nbsp;element&nbsp;is&nbsp;the&nbsp;leftover<br>
+items&nbsp;that&nbsp;are&nbsp;unassigned&nbsp;after&nbsp;distribution.<br>
+:rtype:&nbsp;Tuple[int,&nbsp;int]</span></dd></dl>
+
+<dl><dt><a name="ThreadManager-initialize_consumers"><strong>initialize_consumers</strong></a>(self) -&gt; List[src.main.thread.processor.consumer.consumer.Consumer]</dt><dd><span class="code">Initializes&nbsp;and&nbsp;returns&nbsp;a&nbsp;list&nbsp;of&nbsp;Consumer&nbsp;objects.<br>
+&nbsp;<br>
+:return:&nbsp;A&nbsp;list&nbsp;of&nbsp;initialized&nbsp;Consumer&nbsp;objects.<br>
+:rtype:&nbsp;List[Consumer]</span></dd></dl>
+
+<dl><dt><a name="ThreadManager-initialize_producers"><strong>initialize_producers</strong></a>(self) -&gt; List[src.main.thread.processor.producer.producer.Producer]</dt><dd><span class="code">Initializes&nbsp;and&nbsp;returns&nbsp;a&nbsp;list&nbsp;of&nbsp;Producer&nbsp;objects.<br>
+&nbsp;<br>
+:return:&nbsp;A&nbsp;list&nbsp;of&nbsp;initialized&nbsp;Producer&nbsp;objects.<br>
+:rtype:&nbsp;List[Producer]</span></dd></dl>
+
+<dl><dt><a name="ThreadManager-join_all"><strong>join_all</strong></a>(self) -&gt; None</dt><dd><span class="code">Join&nbsp;all&nbsp;running&nbsp;threads&nbsp;for&nbsp;producers&nbsp;and&nbsp;consumers.<br>
+&nbsp;<br>
+:return:&nbsp;This&nbsp;method&nbsp;does&nbsp;not&nbsp;return&nbsp;any&nbsp;value.<br>
+:rtype:&nbsp;None</span></dd></dl>
+
+<dl><dt><a name="ThreadManager-join_consumers"><strong>join_consumers</strong></a>(self) -&gt; None</dt><dd><span class="code">Join&nbsp;all&nbsp;consumer&nbsp;threads&nbsp;running&nbsp;in&nbsp;the&nbsp;system.<br>
+&nbsp;<br>
+:return:&nbsp;This&nbsp;method&nbsp;does&nbsp;not&nbsp;return&nbsp;any&nbsp;value.<br>
+:rtype:&nbsp;None</span></dd></dl>
+
+<dl><dt><a name="ThreadManager-join_producers"><strong>join_producers</strong></a>(self) -&gt; None</dt><dd><span class="code">Join&nbsp;all&nbsp;producer&nbsp;threads&nbsp;running&nbsp;in&nbsp;the&nbsp;system.<br>
+&nbsp;<br>
+:return:&nbsp;This&nbsp;method&nbsp;does&nbsp;not&nbsp;return&nbsp;any&nbsp;value.<br>
+:rtype:&nbsp;None</span></dd></dl>
+
+<dl><dt><a name="ThreadManager-start_all"><strong>start_all</strong></a>(self) -&gt; None</dt><dd><span class="code">Starts&nbsp;all&nbsp;producer&nbsp;and&nbsp;consumer&nbsp;threads.<br>
+&nbsp;<br>
+:return:&nbsp;This&nbsp;method&nbsp;does&nbsp;not&nbsp;return&nbsp;any&nbsp;value.<br>
+:rtype:&nbsp;None</span></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><span class="code">dictionary&nbsp;for&nbsp;instance&nbsp;variables</span></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><span class="code">list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object</span></dd>
+</dl>
+</td></tr></table></td></tr></table><p>
+<table class="section">
+<tr class="decor data-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Data</strong></td></tr>
+    
+<tr><td class="decor data-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><strong>List</strong> = typing.List<br>
+<strong>Tuple</strong> = typing.Tuple</td></tr></table>
+</body></html>

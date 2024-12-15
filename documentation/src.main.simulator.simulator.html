@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Python: module src.main.simulator.simulator</title>
+</head><body>
+
+<table class="heading">
+<tr class="heading-text decor">
+<td class="title">&nbsp;<br><strong class="title"><a href="src.html" class="white">src</a>.<a href="src.main.html" class="white">main</a>.<a href="src.main.simulator.html" class="white">simulator</a>.simulator</strong></td>
+<td class="extra"><a href=".">index</a><br><a href="file:c%3A%5Cusers%5Colive%5Cgithub%5Cproducer-consumer-simulator%5Csrc%5Cmain%5Csimulator%5Csimulator.py">c:\users\olive\github\producer-consumer-simulator\src\main\simulator\simulator.py</a></td></tr></table>
+    <p></p>
+<p>
+<table class="section">
+<tr class="decor pkg-content-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Modules</strong></td></tr>
+    
+<tr><td class="decor pkg-content-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><table><tr><td class="multicolumn"><a href="logging.html">logging</a><br>
+</td><td class="multicolumn"><a href="time.html">time</a><br>
+</td><td class="multicolumn"></td><td class="multicolumn"></td></tr></table></td></tr></table><p>
+<table class="section">
+<tr class="decor index-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Classes</strong></td></tr>
+    
+<tr><td class="decor index-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><dl>
+<dt class="heading-text"><a href="builtins.html#object">builtins.object</a>
+</dt><dd>
+<dl>
+<dt class="heading-text"><a href="src.main.simulator.simulator.html#Simulator">Simulator</a>
+</dt></dl>
+</dd>
+</dl>
+ <p>
+<table class="section">
+<tr class="decor title-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><a name="Simulator">class <strong>Simulator</strong></a>(<a href="builtins.html#object">builtins.object</a>)</td></tr>
+    
+<tr><td class="decor title-decor" rowspan=2><span class="code">&nbsp;&nbsp;&nbsp;</span></td>
+<td class="decor title-decor" colspan=2><span class="code"><a href="#Simulator">Simulator</a>(config:&nbsp;src.main.config.config.Config)<br>
+&nbsp;<br>
+Handles&nbsp;the&nbsp;main&nbsp;execution&nbsp;of&nbsp;the&nbsp;Producer-Consumer&nbsp;<a href="#Simulator">Simulator</a>.<br>
+&nbsp;<br>
+This&nbsp;class&nbsp;is&nbsp;responsible&nbsp;for&nbsp;initializing&nbsp;and&nbsp;orchestrating&nbsp;various<br>
+components&nbsp;such&nbsp;as&nbsp;buffer&nbsp;management,&nbsp;thread&nbsp;handling,&nbsp;and&nbsp;statistical<br>
+tracking.&nbsp;Its&nbsp;purpose&nbsp;is&nbsp;to&nbsp;simulate&nbsp;a&nbsp;producer-consumer&nbsp;runtime&nbsp;with<br>
+customizable&nbsp;configurations.<br>
+&nbsp;<br>
+:ivar&nbsp;config:&nbsp;Configuration&nbsp;settings&nbsp;for&nbsp;the&nbsp;simulator.<br>
+:type&nbsp;config:&nbsp;Config<br>
+:ivar&nbsp;statistic_tracker:&nbsp;Tracks&nbsp;statistics&nbsp;and&nbsp;metrics&nbsp;during&nbsp;simulation.<br>
+:type&nbsp;statistic_tracker:&nbsp;StatisticTracker<br>
+:ivar&nbsp;buffer:&nbsp;Buffer&nbsp;implementation&nbsp;for&nbsp;producer-consumer&nbsp;data&nbsp;exchange.<br>
+:type&nbsp;buffer:&nbsp;Buffer<br>
+:ivar&nbsp;thread_manager:&nbsp;Manages&nbsp;producer&nbsp;and&nbsp;consumer&nbsp;threads.<br>
+:type&nbsp;thread_manager:&nbsp;ThreadManager<br>
+:ivar&nbsp;suggester:&nbsp;Provides&nbsp;suggestions&nbsp;post-simulation&nbsp;if&nbsp;enabled.<br>
+:type&nbsp;suggester:&nbsp;Suggester<br>
+:ivar&nbsp;is_running:&nbsp;Indicates&nbsp;whether&nbsp;the&nbsp;simulation&nbsp;is&nbsp;currently&nbsp;active.<br>
+:type&nbsp;is_running:&nbsp;bool<br>&nbsp;</span></td></tr>
+<tr><td>&nbsp;</td>
+<td class="singlecolumn">Methods defined here:<br>
+<dl><dt><a name="Simulator-__init__"><strong>__init__</strong></a>(self, config: src.main.config.config.Config)</dt><dd><span class="code">This&nbsp;class&nbsp;initializes&nbsp;and&nbsp;configures&nbsp;the&nbsp;simulator&nbsp;environment,<br>
+setting&nbsp;up&nbsp;required&nbsp;components&nbsp;such&nbsp;as&nbsp;statistics&nbsp;tracker,&nbsp;buffer,<br>
+thread&nbsp;manager,&nbsp;and&nbsp;optional&nbsp;suggester&nbsp;based&nbsp;on&nbsp;the&nbsp;given<br>
+configuration.<br>
+&nbsp;<br>
+:ivar&nbsp;config:&nbsp;The&nbsp;configuration&nbsp;settings&nbsp;for&nbsp;the&nbsp;simulator.<br>
+:type&nbsp;config:&nbsp;Config<br>
+:ivar&nbsp;statistic_tracker:&nbsp;Object&nbsp;that&nbsp;tracks&nbsp;simulation&nbsp;statistics&nbsp;like<br>
+buffer&nbsp;state&nbsp;and&nbsp;processing&nbsp;speed.<br>
+:type&nbsp;statistic_tracker:&nbsp;StatisticTracker<br>
+:ivar&nbsp;buffer:&nbsp;Buffer&nbsp;used&nbsp;for&nbsp;storing&nbsp;items.<br>
+:type&nbsp;buffer:&nbsp;Buffer<br>
+:ivar&nbsp;thread_manager:&nbsp;Manages&nbsp;threads&nbsp;for&nbsp;producers&nbsp;and&nbsp;consumers.<br>
+:type&nbsp;thread_manager:&nbsp;ThreadManager<br>
+:ivar&nbsp;suggester:&nbsp;Optional&nbsp;component&nbsp;for&nbsp;managing&nbsp;the&nbsp;suggestions<br>
+feature.<br>
+:type&nbsp;suggester:&nbsp;Suggester<br>
+:ivar&nbsp;is_running:&nbsp;Boolean&nbsp;indicating&nbsp;whether&nbsp;the&nbsp;simulation&nbsp;is<br>
+running.<br>
+:type&nbsp;is_running:&nbsp;bool</span></dd></dl>
+
+<dl><dt><a name="Simulator-show_ending_message"><strong>show_ending_message</strong></a>(self) -&gt; None</dt><dd><span class="code">This&nbsp;function&nbsp;formats&nbsp;and&nbsp;displays&nbsp;a&nbsp;message&nbsp;that&nbsp;the&nbsp;simulation&nbsp;has<br>
+completed.&nbsp;Optionally,&nbsp;it&nbsp;informs&nbsp;the&nbsp;user&nbsp;about&nbsp;how&nbsp;to&nbsp;enable<br>
+suggestions&nbsp;if&nbsp;they&nbsp;were&nbsp;not&nbsp;used&nbsp;during&nbsp;the&nbsp;simulation.<br>
+&nbsp;<br>
+:returns:&nbsp;None</span></dd></dl>
+
+<dl><dt><a name="Simulator-show_suggestions"><strong>show_suggestions</strong></a>(self) -&gt; None</dt><dd><span class="code">This&nbsp;method&nbsp;invokes&nbsp;the&nbsp;`show_suggestions`&nbsp;method&nbsp;of&nbsp;the&nbsp;`suggester`<br>
+<a href="builtins.html#object">object</a>&nbsp;to&nbsp;display&nbsp;configuration&nbsp;suggestions.<br>
+&nbsp;<br>
+:return:&nbsp;None</span></dd></dl>
+
+<dl><dt><a name="Simulator-simulate"><strong>simulate</strong></a>(self) -&gt; None</dt><dd><span class="code">This&nbsp;method&nbsp;orchestrates&nbsp;the&nbsp;entire&nbsp;lifecycle&nbsp;of&nbsp;a&nbsp;simulation.&nbsp;It<br>
+includes&nbsp;initial&nbsp;setup,&nbsp;statistics&nbsp;tracking,&nbsp;thread&nbsp;management,<br>
+handling&nbsp;interruptions,&nbsp;and&nbsp;performing&nbsp;cleanup&nbsp;actions.&nbsp;Suggestions<br>
+are&nbsp;displayed&nbsp;if&nbsp;configured.<br>
+&nbsp;<br>
+:raises&nbsp;KeyboardInterrupt:&nbsp;If&nbsp;a&nbsp;keyboard&nbsp;interrupt&nbsp;signal&nbsp;is&nbsp;received<br>
+during&nbsp;thread&nbsp;join.<br>
+:rtype:&nbsp;None<br>
+:return:&nbsp;No&nbsp;return&nbsp;value.&nbsp;The&nbsp;method&nbsp;modifies&nbsp;the&nbsp;runtime&nbsp;state&nbsp;of&nbsp;the<br>
+&nbsp;system.</span></dd></dl>
+
+<dl><dt><a name="Simulator-start"><strong>start</strong></a>(self) -&gt; None</dt><dd><span class="code">Starts&nbsp;the&nbsp;necessary&nbsp;threads&nbsp;for&nbsp;managing&nbsp;operations&nbsp;and&nbsp;sets&nbsp;the<br>
+running&nbsp;state&nbsp;to&nbsp;True.<br>
+&nbsp;<br>
+:return:&nbsp;None</span></dd></dl>
+
+<dl><dt><a name="Simulator-stop"><strong>stop</strong></a>(self) -&gt; None</dt><dd><span class="code">Stops&nbsp;the&nbsp;current&nbsp;running&nbsp;process&nbsp;by&nbsp;setting&nbsp;the&nbsp;running&nbsp;state&nbsp;to<br>
+False&nbsp;and&nbsp;joining&nbsp;all&nbsp;threads.<br>
+&nbsp;<br>
+:return:&nbsp;None</span></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><span class="code">dictionary&nbsp;for&nbsp;instance&nbsp;variables</span></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><span class="code">list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object</span></dd>
+</dl>
+</td></tr></table></td></tr></table>
+</body></html>
