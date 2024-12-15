@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Python: module src.main.config.config</title>
+</head><body>
+
+<table class="heading">
+<tr class="heading-text decor">
+<td class="title">&nbsp;<br><strong class="title"><a href="src.html" class="white">src</a>.<a href="src.main.html" class="white">main</a>.<a href="src.main.config.html" class="white">config</a>.config</strong></td>
+<td class="extra"><a href=".">index</a><br><a href="file:c%3A%5Cusers%5Colive%5Cgithub%5Cproducer-consumer-simulator%5Csrc%5Cmain%5Cconfig%5Cconfig.py">c:\users\olive\github\producer-consumer-simulator\src\main\config\config.py</a></td></tr></table>
+    <p></p>
+<p>
+<table class="section">
+<tr class="decor index-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Classes</strong></td></tr>
+    
+<tr><td class="decor index-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><dl>
+<dt class="heading-text"><a href="builtins.html#object">builtins.object</a>
+</dt><dd>
+<dl>
+<dt class="heading-text"><a href="src.main.config.config.html#Config">Config</a>
+</dt></dl>
+</dd>
+</dl>
+ <p>
+<table class="section">
+<tr class="decor title-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><a name="Config">class <strong>Config</strong></a>(<a href="builtins.html#object">builtins.object</a>)</td></tr>
+    
+<tr><td class="decor title-decor" rowspan=2><span class="code">&nbsp;&nbsp;&nbsp;</span></td>
+<td class="decor title-decor" colspan=2><span class="code"><a href="#Config">Config</a>(buffer_size:&nbsp;int,&nbsp;num_items_to_process:&nbsp;int,&nbsp;num_producers:&nbsp;int,&nbsp;num_consumers:&nbsp;int,&nbsp;consumer_speed_range:&nbsp;Tuple[int,&nbsp;int],&nbsp;producer_speed_range:&nbsp;Tuple[int,&nbsp;int],&nbsp;verbose:&nbsp;bool,&nbsp;suggestions:&nbsp;bool)<br>
+&nbsp;<br>
+Configuration&nbsp;class&nbsp;for&nbsp;managing&nbsp;and&nbsp;storing&nbsp;parameters&nbsp;related&nbsp;to&nbsp;a<br>
+producer-consumer&nbsp;problem.<br>
+&nbsp;<br>
+This&nbsp;class&nbsp;encapsulates&nbsp;the&nbsp;configuration&nbsp;settings&nbsp;needed&nbsp;to&nbsp;control<br>
+the&nbsp;behavior&nbsp;of&nbsp;producers,&nbsp;consumers,&nbsp;buffer&nbsp;size,&nbsp;and&nbsp;other&nbsp;operational<br>
+parameters.&nbsp;It&nbsp;provides&nbsp;a&nbsp;structured&nbsp;way&nbsp;to&nbsp;handle&nbsp;various&nbsp;configurable<br>
+aspects&nbsp;such&nbsp;as&nbsp;speed&nbsp;range,&nbsp;verbosity,&nbsp;and&nbsp;suggestions.<br>
+&nbsp;<br>
+:ivar&nbsp;buffer_size:&nbsp;The&nbsp;maximum&nbsp;number&nbsp;of&nbsp;items&nbsp;that&nbsp;can&nbsp;be&nbsp;stored&nbsp;in&nbsp;the<br>
+buffer.<br>
+:type&nbsp;buffer_size:&nbsp;int<br>
+:ivar&nbsp;num_items_to_process:&nbsp;Total&nbsp;number&nbsp;of&nbsp;items&nbsp;to&nbsp;be&nbsp;produced&nbsp;and<br>
+&nbsp;&nbsp;&nbsp;&nbsp;consumed&nbsp;by&nbsp;the&nbsp;system.<br>
+:type&nbsp;num_items_to_process:&nbsp;int<br>
+:ivar&nbsp;num_producers:&nbsp;Number&nbsp;of&nbsp;producer&nbsp;threads&nbsp;to&nbsp;actively&nbsp;produce&nbsp;items.<br>
+:type&nbsp;num_producers:&nbsp;int<br>
+:ivar&nbsp;num_consumers:&nbsp;Number&nbsp;of&nbsp;consumer&nbsp;threads&nbsp;to&nbsp;actively&nbsp;consume&nbsp;items.<br>
+:type&nbsp;num_consumers:&nbsp;int<br>
+:ivar&nbsp;consumer_speed_range:&nbsp;A&nbsp;tuple&nbsp;defining&nbsp;the&nbsp;range&nbsp;of&nbsp;speeds&nbsp;at&nbsp;which<br>
+consumers&nbsp;operate.<br>
+:type&nbsp;consumer_speed_range:&nbsp;Tuple[int,&nbsp;int]<br>
+:ivar&nbsp;producer_speed_range:&nbsp;A&nbsp;tuple&nbsp;defining&nbsp;the&nbsp;range&nbsp;of&nbsp;speeds&nbsp;at&nbsp;which<br>
+producers&nbsp;operate.<br>
+:type&nbsp;producer_speed_range:&nbsp;Tuple[int,&nbsp;int]<br>
+:ivar&nbsp;verbose:&nbsp;A&nbsp;flag&nbsp;indicating&nbsp;whether&nbsp;detailed&nbsp;logs&nbsp;or&nbsp;outputs<br>
+&nbsp;&nbsp;&nbsp;&nbsp;should&nbsp;be&nbsp;enabled.<br>
+:type&nbsp;verbose:&nbsp;bool<br>
+:ivar&nbsp;suggestions:&nbsp;A&nbsp;flag&nbsp;indicating&nbsp;whether&nbsp;additional&nbsp;recommendations<br>
+&nbsp;&nbsp;&nbsp;&nbsp;or&nbsp;suggestions&nbsp;are&nbsp;shown&nbsp;during&nbsp;program&nbsp;execution.<br>
+:type&nbsp;suggestions:&nbsp;bool<br>&nbsp;</span></td></tr>
+<tr><td>&nbsp;</td>
+<td class="singlecolumn">Methods defined here:<br>
+<dl><dt><a name="Config-__init__"><strong>__init__</strong></a>(self, buffer_size: int, num_items_to_process: int, num_producers: int, num_consumers: int, consumer_speed_range: Tuple[int, int], producer_speed_range: Tuple[int, int], verbose: bool, suggestions: bool)</dt><dd><span class="code">Constructor&nbsp;for&nbsp;initializing&nbsp;the&nbsp;class&nbsp;with&nbsp;configurable&nbsp;parameters&nbsp;to<br>
+define&nbsp;a&nbsp;producer-consumer&nbsp;system.&nbsp;These&nbsp;parameters&nbsp;include&nbsp;buffer<br>
+size,&nbsp;number&nbsp;of&nbsp;producers&nbsp;and&nbsp;consumers,&nbsp;the&nbsp;range&nbsp;for&nbsp;producer&nbsp;and<br>
+consumer&nbsp;speeds,&nbsp;and&nbsp;configuring&nbsp;verbosity&nbsp;and&nbsp;suggestions&nbsp;features.<br>
+&nbsp;<br>
+:parameter&nbsp;buffer_size:&nbsp;The&nbsp;maximum&nbsp;size&nbsp;of&nbsp;the&nbsp;buffer.<br>
+:type&nbsp;buffer_size:&nbsp;int<br>
+:parameter&nbsp;num_items_to_process:&nbsp;An&nbsp;integer&nbsp;representing&nbsp;the&nbsp;total<br>
+number&nbsp;of&nbsp;items&nbsp;to&nbsp;be&nbsp;processed&nbsp;by&nbsp;producers&nbsp;and&nbsp;consumers.<br>
+:type&nbsp;num_items_to_process:&nbsp;int<br>
+:parameter&nbsp;num_producers:&nbsp;An&nbsp;integer&nbsp;indicating&nbsp;the&nbsp;number&nbsp;of&nbsp;producer<br>
+&nbsp;&nbsp;&nbsp;&nbsp;threads&nbsp;in&nbsp;the&nbsp;system.<br>
+:type&nbsp;num_producers:&nbsp;int<br>
+:parameter&nbsp;num_consumers:&nbsp;An&nbsp;integer&nbsp;indicating&nbsp;the&nbsp;number&nbsp;of&nbsp;consumer<br>
+&nbsp;&nbsp;&nbsp;&nbsp;threads&nbsp;in&nbsp;the&nbsp;system.<br>
+:type&nbsp;num_consumers:&nbsp;int<br>
+:parameter&nbsp;consumer_speed_range:&nbsp;A&nbsp;tuple&nbsp;of&nbsp;two&nbsp;integers&nbsp;defining&nbsp;the<br>
+range&nbsp;(in&nbsp;milliseconds)&nbsp;of&nbsp;processing&nbsp;speed&nbsp;for&nbsp;consumers.<br>
+:type&nbsp;consumer_speed_range:&nbsp;Tuple[int,&nbsp;int]<br>
+:parameter&nbsp;producer_speed_range:&nbsp;A&nbsp;tuple&nbsp;of&nbsp;two&nbsp;integers&nbsp;defining&nbsp;the<br>
+range&nbsp;(in&nbsp;milliseconds)&nbsp;of&nbsp;processing&nbsp;speed&nbsp;for&nbsp;producers.<br>
+:type&nbsp;producer_speed_range:&nbsp;Tuple[int,&nbsp;int]<br>
+:parameter&nbsp;verbose:&nbsp;A&nbsp;boolean&nbsp;flag&nbsp;to&nbsp;control&nbsp;verbose&nbsp;output&nbsp;for<br>
+debugging&nbsp;or&nbsp;logging&nbsp;purposes.<br>
+:type&nbsp;verbose:&nbsp;bool<br>
+:parameter&nbsp;suggestions:&nbsp;A&nbsp;boolean&nbsp;option&nbsp;to&nbsp;enable&nbsp;or&nbsp;disable<br>
+suggestions&nbsp;for&nbsp;potential&nbsp;improvements&nbsp;in&nbsp;the&nbsp;system&nbsp;during&nbsp;runtime.<br>
+:type&nbsp;suggestions:&nbsp;bool</span></dd></dl>
+
+<dl><dt><a name="Config-__str__"><strong>__str__</strong></a>(self)</dt><dd><span class="code">Generates&nbsp;a&nbsp;formatted&nbsp;string&nbsp;representation&nbsp;of&nbsp;the&nbsp;instance.<br>
+&nbsp;<br>
+:return:&nbsp;A&nbsp;formatted&nbsp;string&nbsp;containing&nbsp;the&nbsp;instance&nbsp;attribute&nbsp;details.<br>
+:rtype:&nbsp;str</span></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><span class="code">dictionary&nbsp;for&nbsp;instance&nbsp;variables</span></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><span class="code">list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object</span></dd>
+</dl>
+</td></tr></table></td></tr></table><p>
+<table class="section">
+<tr class="decor data-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Data</strong></td></tr>
+    
+<tr><td class="decor data-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><strong>Tuple</strong> = typing.Tuple</td></tr></table>
+</body></html>

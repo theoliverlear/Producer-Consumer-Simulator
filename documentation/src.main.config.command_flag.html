@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Python: module src.main.config.command_flag</title>
+</head><body>
+
+<table class="heading">
+<tr class="heading-text decor">
+<td class="title">&nbsp;<br><strong class="title"><a href="src.html" class="white">src</a>.<a href="src.main.html" class="white">main</a>.<a href="src.main.config.html" class="white">config</a>.command_flag</strong></td>
+<td class="extra"><a href=".">index</a><br><a href="file:c%3A%5Cusers%5Colive%5Cgithub%5Cproducer-consumer-simulator%5Csrc%5Cmain%5Cconfig%5Ccommand_flag.py">c:\users\olive\github\producer-consumer-simulator\src\main\config\command_flag.py</a></td></tr></table>
+    <p></p>
+<p>
+<table class="section">
+<tr class="decor index-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Classes</strong></td></tr>
+    
+<tr><td class="decor index-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><dl>
+<dt class="heading-text"><a href="builtins.html#object">builtins.object</a>
+</dt><dd>
+<dl>
+<dt class="heading-text"><a href="src.main.config.command_flag.html#CommandFlag">CommandFlag</a>
+</dt></dl>
+</dd>
+</dl>
+ <p>
+<table class="section">
+<tr class="decor title-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><a name="CommandFlag">class <strong>CommandFlag</strong></a>(<a href="builtins.html#object">builtins.object</a>)</td></tr>
+    
+<tr><td class="decor title-decor" rowspan=2><span class="code">&nbsp;&nbsp;&nbsp;</span></td>
+<td class="decor title-decor" colspan=2><span class="code"><a href="#CommandFlag">CommandFlag</a>(flag:&nbsp;str,&nbsp;full_flag:&nbsp;str,&nbsp;type,&nbsp;default_value,&nbsp;help_text:&nbsp;str)<br>
+&nbsp;<br>
+Represents&nbsp;a&nbsp;command-line&nbsp;flag&nbsp;and&nbsp;its&nbsp;associated&nbsp;attributes.<br>
+&nbsp;<br>
+This&nbsp;class&nbsp;encapsulates&nbsp;the&nbsp;properties&nbsp;of&nbsp;a&nbsp;command-line&nbsp;flag,&nbsp;such&nbsp;as<br>
+the&nbsp;short&nbsp;flag,&nbsp;full&nbsp;flag,&nbsp;type,&nbsp;default&nbsp;value,&nbsp;and&nbsp;help&nbsp;text.&nbsp;It&nbsp;is<br>
+designed&nbsp;to&nbsp;facilitate&nbsp;the&nbsp;creation,&nbsp;management,&nbsp;and&nbsp;representation<br>
+of&nbsp;command-line&nbsp;flags.<br>
+&nbsp;<br>
+:ivar&nbsp;flag:&nbsp;The&nbsp;short&nbsp;version&nbsp;of&nbsp;the&nbsp;command-line&nbsp;flag.<br>
+:type&nbsp;flag:&nbsp;str<br>
+:ivar&nbsp;full_flag:&nbsp;The&nbsp;full&nbsp;version&nbsp;of&nbsp;the&nbsp;command-line&nbsp;flag.<br>
+:type&nbsp;full_flag:&nbsp;str<br>
+:ivar&nbsp;type:&nbsp;The&nbsp;expected&nbsp;type&nbsp;of&nbsp;the&nbsp;command-line&nbsp;flag's&nbsp;value.<br>
+:ivar&nbsp;default_value:&nbsp;The&nbsp;default&nbsp;value&nbsp;for&nbsp;this&nbsp;flag.<br>
+:ivar&nbsp;help_text:&nbsp;A&nbsp;description&nbsp;of&nbsp;the&nbsp;purpose&nbsp;and&nbsp;usage&nbsp;of&nbsp;the&nbsp;flag.<br>
+:type&nbsp;help_text:&nbsp;str<br>&nbsp;</span></td></tr>
+<tr><td>&nbsp;</td>
+<td class="singlecolumn">Methods defined here:<br>
+<dl><dt><a name="CommandFlag-__init__"><strong>__init__</strong></a>(self, flag: str, full_flag: str, type, default_value, help_text: str)</dt><dd><span class="code">Represents&nbsp;a&nbsp;command-line&nbsp;flag&nbsp;with&nbsp;its&nbsp;attributes&nbsp;such&nbsp;as&nbsp;shorthand<br>
+flag,&nbsp;full-length&nbsp;flag,&nbsp;type,&nbsp;default&nbsp;value,&nbsp;and&nbsp;help&nbsp;text.<br>
+&nbsp;<br>
+:param&nbsp;flag:&nbsp;A&nbsp;short&nbsp;form&nbsp;used&nbsp;for&nbsp;the&nbsp;flag&nbsp;in&nbsp;the&nbsp;command-line&nbsp;(e.g.,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;"-h").<br>
+:type&nbsp;flag:&nbsp;str<br>
+&nbsp;<br>
+:param&nbsp;full_flag:&nbsp;The&nbsp;full&nbsp;flag&nbsp;name&nbsp;used&nbsp;in&nbsp;the&nbsp;command-line&nbsp;(e.g.,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;"--help").<br>
+:type&nbsp;full_flag:&nbsp;str<br>
+:param&nbsp;type:&nbsp;Expected&nbsp;Python&nbsp;<a href="builtins.html#object">object</a>&nbsp;type&nbsp;for&nbsp;the&nbsp;flag's&nbsp;value<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(e.g.,&nbsp;int,&nbsp;str,&nbsp;etc.).<br>
+:type&nbsp;type:&nbsp;Type<br>
+:param&nbsp;default_value:&nbsp;The&nbsp;default&nbsp;value&nbsp;assigned&nbsp;to&nbsp;the&nbsp;flag&nbsp;when&nbsp;not<br>
+&nbsp;&nbsp;&nbsp;&nbsp;specified&nbsp;in&nbsp;the&nbsp;command-line.<br>
+:param&nbsp;help_text:&nbsp;Descriptive&nbsp;text&nbsp;explaining&nbsp;the&nbsp;purpose&nbsp;and&nbsp;usage&nbsp;of<br>
+&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;flag.<br>
+:type&nbsp;help_text:&nbsp;str</span></dd></dl>
+
+<dl><dt><a name="CommandFlag-__str__"><strong>__str__</strong></a>(self)</dt><dd><span class="code">Converts&nbsp;the&nbsp;`<a href="#CommandFlag">CommandFlag</a>`&nbsp;<a href="builtins.html#object">object</a>&nbsp;into&nbsp;its&nbsp;string&nbsp;representation,<br>
+displaying&nbsp;all&nbsp;attributes&nbsp;in&nbsp;a&nbsp;formatted&nbsp;manner.<br>
+&nbsp;<br>
+:return:&nbsp;A&nbsp;string&nbsp;representation&nbsp;of&nbsp;the&nbsp;`<a href="#CommandFlag">CommandFlag</a>`&nbsp;instance.<br>
+:rtype:&nbsp;str</span></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><span class="code">dictionary&nbsp;for&nbsp;instance&nbsp;variables</span></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><span class="code">list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object</span></dd>
+</dl>
+</td></tr></table></td></tr></table>
+</body></html>

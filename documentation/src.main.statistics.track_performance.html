@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Python: module src.main.statistics.track_performance</title>
+</head><body>
+
+<table class="heading">
+<tr class="heading-text decor">
+<td class="title">&nbsp;<br><strong class="title"><a href="src.html" class="white">src</a>.<a href="src.main.html" class="white">main</a>.<a href="src.main.statistics.html" class="white">statistics</a>.track_performance</strong></td>
+<td class="extra"><a href=".">index</a><br><a href="file:c%3A%5Cusers%5Colive%5Cgithub%5Cproducer-consumer-simulator%5Csrc%5Cmain%5Cstatistics%5Ctrack_performance.py">c:\users\olive\github\producer-consumer-simulator\src\main\statistics\track_performance.py</a></td></tr></table>
+    <p></p>
+<p>
+<table class="section">
+<tr class="decor pkg-content-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Modules</strong></td></tr>
+    
+<tr><td class="decor pkg-content-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><table><tr><td class="multicolumn"><a href="functools.html">functools</a><br>
+</td><td class="multicolumn"><a href="logging.html">logging</a><br>
+</td><td class="multicolumn"><a href="threading.html">threading</a><br>
+</td><td class="multicolumn"><a href="time.html">time</a><br>
+</td></tr></table></td></tr></table><p>
+<table class="section">
+<tr class="decor functions-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Functions</strong></td></tr>
+    
+<tr><td class="decor functions-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><dl><dt><a name="-format_execution_time_number"><strong>format_execution_time_number</strong></a>(execution_time: float | int) -&gt; str</dt><dd><span class="code">Formats&nbsp;the&nbsp;given&nbsp;execution&nbsp;time&nbsp;number&nbsp;to&nbsp;include&nbsp;commas&nbsp;as<br>
+thousands&nbsp;separators.&nbsp;For&nbsp;integer&nbsp;values,&nbsp;the&nbsp;output&nbsp;is&nbsp;formatted<br>
+with&nbsp;commas&nbsp;and&nbsp;no&nbsp;decimals.&nbsp;For&nbsp;floating-point&nbsp;numbers,&nbsp;it&nbsp;formats<br>
+up&nbsp;to&nbsp;four&nbsp;digits&nbsp;after&nbsp;the&nbsp;decimal&nbsp;place.<br>
+&nbsp;<br>
+:param&nbsp;execution_time:&nbsp;The&nbsp;execution&nbsp;time&nbsp;as&nbsp;either&nbsp;an&nbsp;integer<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(e.g.,&nbsp;nanoseconds)&nbsp;or&nbsp;a&nbsp;float&nbsp;(e.g.,&nbsp;milliseconds&nbsp;with&nbsp;decimals).<br>
+:type&nbsp;execution_time:&nbsp;float&nbsp;|&nbsp;int<br>
+:return:&nbsp;A&nbsp;formatted&nbsp;string&nbsp;representation&nbsp;of&nbsp;the&nbsp;execution&nbsp;time<br>
+&nbsp;&nbsp;&nbsp;&nbsp;with&nbsp;appropriate&nbsp;separators&nbsp;and&nbsp;precision.<br>
+:rtype:&nbsp;str</span></dd></dl>
+ <dl><dt><a name="-milliseconds_to_nanoseconds"><strong>milliseconds_to_nanoseconds</strong></a>(milliseconds: float | int) -&gt; int</dt><dd><span class="code">Converts&nbsp;the&nbsp;given&nbsp;time&nbsp;in&nbsp;milliseconds&nbsp;to&nbsp;nanoseconds.<br>
+&nbsp;<br>
+:param&nbsp;milliseconds:&nbsp;Time&nbsp;duration&nbsp;in&nbsp;milliseconds&nbsp;to&nbsp;be&nbsp;converted.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Can&nbsp;be&nbsp;a&nbsp;float&nbsp;or&nbsp;an&nbsp;integer.<br>
+:type&nbsp;milliseconds:&nbsp;float&nbsp;|&nbsp;int<br>
+:return:&nbsp;The&nbsp;equivalent&nbsp;time&nbsp;duration&nbsp;in&nbsp;nanoseconds&nbsp;as&nbsp;an&nbsp;integer.<br>
+:rtype:&nbsp;int</span></dd></dl>
+ <dl><dt><a name="-nanoseconds_to_milliseconds"><strong>nanoseconds_to_milliseconds</strong></a>(nanoseconds: int | float) -&gt; float</dt><dd><span class="code">Converts&nbsp;a&nbsp;time&nbsp;duration&nbsp;from&nbsp;nanoseconds&nbsp;to&nbsp;milliseconds.&nbsp;This<br>
+function&nbsp;accepts&nbsp;either&nbsp;an&nbsp;integer&nbsp;or&nbsp;float&nbsp;representing&nbsp;the&nbsp;number&nbsp;of<br>
+nanoseconds&nbsp;and&nbsp;returns&nbsp;the&nbsp;equivalent&nbsp;duration&nbsp;in&nbsp;milliseconds.<br>
+&nbsp;<br>
+:param&nbsp;nanoseconds:&nbsp;Time&nbsp;duration&nbsp;in&nbsp;nanoseconds&nbsp;to&nbsp;be&nbsp;converted.<br>
+:type&nbsp;nanoseconds:&nbsp;int&nbsp;|&nbsp;float<br>
+:return:&nbsp;Converted&nbsp;time&nbsp;duration&nbsp;in&nbsp;milliseconds.<br>
+:rtype:&nbsp;float</span></dd></dl>
+ <dl><dt><a name="-track_consumer_performance"><strong>track_consumer_performance</strong></a>(function)</dt><dd><span class="code">A&nbsp;decorator&nbsp;that&nbsp;measures&nbsp;the&nbsp;execution&nbsp;time&nbsp;of&nbsp;a&nbsp;function&nbsp;called&nbsp;within<br>
+a&nbsp;consumer&nbsp;thread,&nbsp;logs&nbsp;its&nbsp;details,&nbsp;and&nbsp;tracks&nbsp;performance&nbsp;metrics.<br>
+&nbsp;<br>
+:param&nbsp;function:&nbsp;Function&nbsp;to&nbsp;be&nbsp;wrapped&nbsp;and&nbsp;monitored&nbsp;by&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;decorator.<br>
+:type&nbsp;function:&nbsp;Callable<br>
+:return:&nbsp;The&nbsp;decorated&nbsp;function&nbsp;with&nbsp;added&nbsp;performance&nbsp;tracking&nbsp;and<br>
+&nbsp;&nbsp;&nbsp;&nbsp;logging&nbsp;logic.<br>
+:rtype:&nbsp;Callable</span></dd></dl>
+ <dl><dt><a name="-track_exceptions"><strong>track_exceptions</strong></a>(function)</dt><dd><span class="code">A&nbsp;decorator&nbsp;function&nbsp;used&nbsp;to&nbsp;wrap&nbsp;a&nbsp;function&nbsp;and&nbsp;track&nbsp;specific<br>
+exceptions.&nbsp;The&nbsp;decorator&nbsp;increments&nbsp;the&nbsp;corresponding&nbsp;counters<br>
+in&nbsp;the&nbsp;statistic&nbsp;tracker&nbsp;when&nbsp;exceptions&nbsp;are&nbsp;caught.<br>
+&nbsp;<br>
+:param&nbsp;function:&nbsp;The&nbsp;function&nbsp;to&nbsp;be&nbsp;wrapped&nbsp;by&nbsp;the&nbsp;decorator.<br>
+:type&nbsp;function:&nbsp;Callable<br>
+:return:&nbsp;The&nbsp;wrapped&nbsp;function&nbsp;with&nbsp;exception&nbsp;tracking&nbsp;logic.<br>
+:rtype:&nbsp;Callable</span></dd></dl>
+ <dl><dt><a name="-track_performance"><strong>track_performance</strong></a>(function)</dt><dd><span class="code">Tracks&nbsp;the&nbsp;execution&nbsp;time&nbsp;of&nbsp;the&nbsp;given&nbsp;function&nbsp;and&nbsp;logs&nbsp;it&nbsp;with<br>
+additional&nbsp;information,&nbsp;such&nbsp;as&nbsp;the&nbsp;thread&nbsp;name&nbsp;and&nbsp;formatted&nbsp;time<br>
+string.&nbsp;If&nbsp;execution&nbsp;time&nbsp;is&nbsp;less&nbsp;than&nbsp;1&nbsp;millisecond,&nbsp;it&nbsp;converts<br>
+the&nbsp;duration&nbsp;to&nbsp;nanoseconds&nbsp;and&nbsp;logs&nbsp;it&nbsp;accordingly.<br>
+&nbsp;<br>
+:param&nbsp;function:&nbsp;The&nbsp;function&nbsp;whose&nbsp;execution&nbsp;time&nbsp;is&nbsp;to&nbsp;be&nbsp;tracked.<br>
+:type&nbsp;function:&nbsp;Callable<br>
+:return:&nbsp;A&nbsp;wrapped&nbsp;function&nbsp;that&nbsp;tracks&nbsp;execution&nbsp;time&nbsp;when&nbsp;invoked.<br>
+:rtype:&nbsp;Callable</span></dd></dl>
+ <dl><dt><a name="-track_producer_performance"><strong>track_producer_performance</strong></a>(function)</dt><dd><span class="code">A&nbsp;decorator&nbsp;that&nbsp;measures&nbsp;the&nbsp;execution&nbsp;time&nbsp;of&nbsp;a&nbsp;function&nbsp;called&nbsp;within<br>
+a&nbsp;producer&nbsp;thread,&nbsp;logs&nbsp;its&nbsp;details,&nbsp;and&nbsp;tracks&nbsp;performance&nbsp;metrics.<br>
+&nbsp;<br>
+:param&nbsp;function:&nbsp;Function&nbsp;to&nbsp;be&nbsp;wrapped&nbsp;and&nbsp;monitored&nbsp;by&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;decorator.<br>
+:type&nbsp;function:&nbsp;Callable<br>
+:return:&nbsp;The&nbsp;decorated&nbsp;function&nbsp;with&nbsp;added&nbsp;performance&nbsp;tracking&nbsp;and<br>
+&nbsp;&nbsp;&nbsp;&nbsp;logging&nbsp;logic.<br>
+:rtype:&nbsp;Callable</span></dd></dl>
+</td></tr></table>
+</body></html>

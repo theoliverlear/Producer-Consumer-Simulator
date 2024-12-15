@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Python: module src.main.thread.processor.lock.mutex_lock</title>
+</head><body>
+
+<table class="heading">
+<tr class="heading-text decor">
+<td class="title">&nbsp;<br><strong class="title"><a href="src.html" class="white">src</a>.<a href="src.main.html" class="white">main</a>.<a href="src.main.thread.html" class="white">thread</a>.<a href="src.main.thread.processor.html" class="white">processor</a>.<a href="src.main.thread.processor.lock.html" class="white">lock</a>.mutex_lock</strong></td>
+<td class="extra"><a href=".">index</a><br><a href="file:c%3A%5Cusers%5Colive%5Cgithub%5Cproducer-consumer-simulator%5Csrc%5Cmain%5Cthread%5Cprocessor%5Clock%5Cmutex_lock.py">c:\users\olive\github\producer-consumer-simulator\src\main\thread\processor\lock\mutex_lock.py</a></td></tr></table>
+    <p></p>
+<p>
+<table class="section">
+<tr class="decor pkg-content-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Modules</strong></td></tr>
+    
+<tr><td class="decor pkg-content-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><table><tr><td class="multicolumn"><a href="logging.html">logging</a><br>
+</td><td class="multicolumn"><a href="threading.html">threading</a><br>
+</td><td class="multicolumn"></td><td class="multicolumn"></td></tr></table></td></tr></table><p>
+<table class="section">
+<tr class="decor index-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Classes</strong></td></tr>
+    
+<tr><td class="decor index-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><dl>
+<dt class="heading-text"><a href="builtins.html#object">builtins.object</a>
+</dt><dd>
+<dl>
+<dt class="heading-text"><a href="src.main.thread.processor.lock.mutex_lock.html#MutexLock">MutexLock</a>
+</dt></dl>
+</dd>
+</dl>
+ <p>
+<table class="section">
+<tr class="decor title-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><a name="MutexLock">class <strong>MutexLock</strong></a>(<a href="builtins.html#object">builtins.object</a>)</td></tr>
+    
+<tr><td class="decor title-decor" rowspan=2><span class="code">&nbsp;&nbsp;&nbsp;</span></td>
+<td class="decor title-decor" colspan=2><span class="code">Thread-safe&nbsp;mutex&nbsp;lock&nbsp;implementation&nbsp;for&nbsp;synchronizing&nbsp;access&nbsp;to&nbsp;a&nbsp;shared<br>
+resource&nbsp;across&nbsp;multiple&nbsp;threads.<br>
+&nbsp;<br>
+:ivar&nbsp;lock_state:&nbsp;The&nbsp;current&nbsp;state&nbsp;of&nbsp;the&nbsp;lock,&nbsp;indicating&nbsp;whether&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;lock&nbsp;is&nbsp;AVAILABLE&nbsp;or&nbsp;UNAVAILABLE.<br>
+:type&nbsp;lock_state:&nbsp;LockState<br>
+:ivar&nbsp;condition:&nbsp;A&nbsp;threading.Condition&nbsp;instance&nbsp;used&nbsp;for&nbsp;implementing<br>
+&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;lock&nbsp;mechanism&nbsp;and&nbsp;managing&nbsp;thread&nbsp;synchronization.<br>
+:type&nbsp;condition:&nbsp;Condition<br>&nbsp;</span></td></tr>
+<tr><td>&nbsp;</td>
+<td class="singlecolumn">Methods defined here:<br>
+<dl><dt><a name="MutexLock-__enter__"><strong>__enter__</strong></a>(self)</dt><dd><span class="code">Handles&nbsp;context&nbsp;management&nbsp;for&nbsp;acquiring&nbsp;and&nbsp;releasing&nbsp;resources.<br>
+&nbsp;<br>
+:return:&nbsp;The&nbsp;acquired&nbsp;resource&nbsp;instance.<br>
+:rtype:&nbsp;<a href="builtins.html#object">object</a></span></dd></dl>
+
+<dl><dt><a name="MutexLock-__exit__"><strong>__exit__</strong></a>(self, exception_type, exception_value, exception_traceback)</dt><dd><span class="code">Handle&nbsp;the&nbsp;cleanup&nbsp;and&nbsp;resource&nbsp;release&nbsp;when&nbsp;exiting&nbsp;a&nbsp;context.<br>
+&nbsp;<br>
+:param&nbsp;exception_type:&nbsp;The&nbsp;type&nbsp;of&nbsp;exception&nbsp;raised&nbsp;in&nbsp;the&nbsp;context.<br>
+:type&nbsp;exception_type:&nbsp;type<br>
+:param&nbsp;exception_value:&nbsp;The&nbsp;exception&nbsp;<a href="builtins.html#object">object</a>&nbsp;raised&nbsp;in&nbsp;the&nbsp;context.<br>
+:type&nbsp;exception_value:&nbsp;Exception<br>
+:param&nbsp;exception_traceback:&nbsp;The&nbsp;traceback&nbsp;for&nbsp;the&nbsp;exception.<br>
+:type&nbsp;exception_traceback:&nbsp;Traceback<br>
+:return:&nbsp;This&nbsp;method&nbsp;does&nbsp;not&nbsp;return&nbsp;any&nbsp;value.<br>
+:rtype:&nbsp;None</span></dd></dl>
+
+<dl><dt><a name="MutexLock-__init__"><strong>__init__</strong></a>(self)</dt><dd><span class="code">Class&nbsp;to&nbsp;manage&nbsp;a&nbsp;thread-safe&nbsp;locking&nbsp;mechanism&nbsp;for&nbsp;resource<br>
+availability.<br>
+&nbsp;<br>
+:ivar&nbsp;lock_state:&nbsp;The&nbsp;current&nbsp;state&nbsp;of&nbsp;the&nbsp;lock,&nbsp;indicating&nbsp;whether<br>
+the&nbsp;lock&nbsp;is&nbsp;AVAILABLE&nbsp;or&nbsp;UNAVAILABLE.<br>
+:type&nbsp;lock_state:&nbsp;LockState<br>
+:ivar&nbsp;condition:&nbsp;A&nbsp;threading.Condition&nbsp;instance&nbsp;used&nbsp;for&nbsp;implementing<br>
+the&nbsp;lock&nbsp;mechanism&nbsp;and&nbsp;managing&nbsp;thread&nbsp;synchronization.<br>
+:type&nbsp;condition:&nbsp;Condition</span></dd></dl>
+
+<dl><dt><a name="MutexLock-acquire"><strong>acquire</strong></a>(self) -&gt; None</dt><dd><span class="code">Acquires&nbsp;the&nbsp;lock&nbsp;if&nbsp;it&nbsp;is&nbsp;not&nbsp;already&nbsp;held&nbsp;by&nbsp;another&nbsp;thread.&nbsp;If&nbsp;the<br>
+lock&nbsp;is&nbsp;currently&nbsp;held,&nbsp;the&nbsp;method&nbsp;blocks&nbsp;the&nbsp;current&nbsp;thread&nbsp;until&nbsp;the<br>
+lock&nbsp;becomes&nbsp;available.<br>
+&nbsp;<br>
+:raises&nbsp;threading.ThreadError:&nbsp;If&nbsp;the&nbsp;thread&nbsp;is&nbsp;interrupted&nbsp;while<br>
+waiting&nbsp;to&nbsp;acquire&nbsp;the&nbsp;lock.<br>
+&nbsp;<br>
+:return:&nbsp;This&nbsp;method&nbsp;does&nbsp;not&nbsp;return&nbsp;any&nbsp;value.<br>
+:rtype:&nbsp;None</span></dd></dl>
+
+<dl><dt><a name="MutexLock-is_available"><strong>is_available</strong></a>(self) -&gt; bool</dt><dd><span class="code">Checks&nbsp;if&nbsp;the&nbsp;current&nbsp;lock&nbsp;state&nbsp;is&nbsp;available.<br>
+&nbsp;<br>
+:return:&nbsp;Boolean&nbsp;value&nbsp;indicating&nbsp;whether&nbsp;the&nbsp;lock&nbsp;state&nbsp;is&nbsp;set<br>
+&nbsp;&nbsp;&nbsp;&nbsp;to&nbsp;AVAILABLE.<br>
+:rtype:&nbsp;bool</span></dd></dl>
+
+<dl><dt><a name="MutexLock-is_locked"><strong>is_locked</strong></a>(self) -&gt; bool</dt><dd><span class="code">Determines&nbsp;if&nbsp;the&nbsp;lock&nbsp;is&nbsp;currently&nbsp;in&nbsp;a&nbsp;locked&nbsp;state.<br>
+&nbsp;<br>
+:return:&nbsp;Boolean&nbsp;indicating&nbsp;whether&nbsp;the&nbsp;<a href="builtins.html#object">object</a>&nbsp;is&nbsp;in&nbsp;a&nbsp;locked&nbsp;state.<br>
+:rtype:&nbsp;bool</span></dd></dl>
+
+<dl><dt><a name="MutexLock-lock"><strong>lock</strong></a>(self) -&gt; None</dt><dd><span class="code">Locks&nbsp;the&nbsp;current&nbsp;state&nbsp;by&nbsp;setting&nbsp;`lock_state`&nbsp;to&nbsp;`UNAVAILABLE`.<br>
+&nbsp;<br>
+:return:&nbsp;This&nbsp;method&nbsp;does&nbsp;not&nbsp;return&nbsp;any&nbsp;value.<br>
+:rtype:&nbsp;None</span></dd></dl>
+
+<dl><dt><a name="MutexLock-release"><strong>release</strong></a>(self) -&gt; None</dt><dd><span class="code">Releases&nbsp;the&nbsp;lock&nbsp;held&nbsp;by&nbsp;the&nbsp;current&nbsp;thread&nbsp;and&nbsp;notifies&nbsp;all&nbsp;threads<br>
+waiting&nbsp;for&nbsp;the&nbsp;condition.<br>
+&nbsp;<br>
+:return:&nbsp;This&nbsp;method&nbsp;does&nbsp;not&nbsp;return&nbsp;any&nbsp;value.<br>
+:rtype:&nbsp;None</span></dd></dl>
+
+<dl><dt><a name="MutexLock-unlock"><strong>unlock</strong></a>(self) -&gt; None</dt><dd><span class="code">Unlocks&nbsp;the&nbsp;current&nbsp;lock&nbsp;by&nbsp;changing&nbsp;its&nbsp;state&nbsp;to&nbsp;available.<br>
+&nbsp;<br>
+:return:&nbsp;This&nbsp;method&nbsp;does&nbsp;not&nbsp;return&nbsp;any&nbsp;value.<br>
+:rtype:&nbsp;None</span></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><span class="code">dictionary&nbsp;for&nbsp;instance&nbsp;variables</span></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><span class="code">list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object</span></dd>
+</dl>
+</td></tr></table></td></tr></table>
+</body></html>

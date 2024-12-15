@@ -6,7 +6,19 @@ from src.main.logging.setup_logging import setup_logging
 from src.main.simulator.simulator import Simulator
 
 
-def main():
+def main() -> None:
+    """
+    Executes the main sequence of the program.
+
+    The main function initializes the application configuration
+    by parsing the provided command-line arguments, sets up
+    logging based on the verbosity configuration, and starts
+    the simulation process.
+
+    :raises SystemExit: Raised if there are issues with parsing the
+        command-line arguments or unexpected errors during setup or
+        simulation.
+    """
     config: Config = get_config_from_arguments(sys.argv[1:])
     setup_logging(config.verbose)
     simulator: Simulator = Simulator(config)

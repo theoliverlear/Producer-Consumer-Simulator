@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Python: module src.main.suggestion.buffer_suggester</title>
+</head><body>
+
+<table class="heading">
+<tr class="heading-text decor">
+<td class="title">&nbsp;<br><strong class="title"><a href="src.html" class="white">src</a>.<a href="src.main.html" class="white">main</a>.<a href="src.main.suggestion.html" class="white">suggestion</a>.buffer_suggester</strong></td>
+<td class="extra"><a href=".">index</a><br><a href="file:c%3A%5Cusers%5Colive%5Cgithub%5Cproducer-consumer-simulator%5Csrc%5Cmain%5Csuggestion%5Cbuffer_suggester.py">c:\users\olive\github\producer-consumer-simulator\src\main\suggestion\buffer_suggester.py</a></td></tr></table>
+    <p></p>
+<p>
+<table class="section">
+<tr class="decor index-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Classes</strong></td></tr>
+    
+<tr><td class="decor index-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><dl>
+<dt class="heading-text"><a href="builtins.html#object">builtins.object</a>
+</dt><dd>
+<dl>
+<dt class="heading-text"><a href="src.main.suggestion.buffer_suggester.html#BufferSuggester">BufferSuggester</a>
+</dt></dl>
+</dd>
+<dt class="heading-text"><a href="enum.html#Enum">enum.Enum</a>(<a href="builtins.html#object">builtins.object</a>)
+</dt><dd>
+<dl>
+<dt class="heading-text"><a href="src.main.suggestion.buffer_suggester.html#BufferSuggestions">BufferSuggestions</a>
+</dt></dl>
+</dd>
+</dl>
+ <p>
+<table class="section">
+<tr class="decor title-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><a name="BufferSuggester">class <strong>BufferSuggester</strong></a>(<a href="builtins.html#object">builtins.object</a>)</td></tr>
+    
+<tr><td class="decor title-decor" rowspan=2><span class="code">&nbsp;&nbsp;&nbsp;</span></td>
+<td class="decor title-decor" colspan=2><span class="code"><a href="#BufferSuggester">BufferSuggester</a>(config:&nbsp;src.main.config.config.Config,&nbsp;statistic_tracker:&nbsp;src.main.statistics.statistic_tracker.StatisticTracker)<br>
+&nbsp;<br>
+The&nbsp;`<a href="#BufferSuggester">BufferSuggester</a>`&nbsp;class&nbsp;evaluates&nbsp;system&nbsp;buffer&nbsp;usage&nbsp;statistics<br>
+and&nbsp;provides&nbsp;suggestions&nbsp;to&nbsp;increase,&nbsp;decrease,&nbsp;or&nbsp;maintain&nbsp;the&nbsp;buffer<br>
+size.<br>
+&nbsp;<br>
+:ivar&nbsp;config:&nbsp;Configuration&nbsp;<a href="builtins.html#object">object</a>&nbsp;containing&nbsp;system-level&nbsp;settings.<br>
+:type&nbsp;config:&nbsp;Config<br>
+:ivar&nbsp;statistic_tracker:&nbsp;Tracker&nbsp;for&nbsp;buffer&nbsp;statistics&nbsp;such&nbsp;as&nbsp;full&nbsp;and<br>
+&nbsp;empty&nbsp;buffer&nbsp;occurrences&nbsp;and&nbsp;the&nbsp;number&nbsp;of&nbsp;items&nbsp;to&nbsp;process.<br>
+:type&nbsp;statistic_tracker:&nbsp;StatisticTracker<br>
+:ivar&nbsp;buffer_size:&nbsp;Buffer&nbsp;size&nbsp;obtained&nbsp;from&nbsp;the&nbsp;configuration.<br>
+:type&nbsp;buffer_size:&nbsp;int<br>
+:ivar&nbsp;num_full_buffer:&nbsp;Number&nbsp;of&nbsp;occurrences&nbsp;when&nbsp;the&nbsp;buffer&nbsp;has&nbsp;been<br>
+&nbsp;&nbsp;&nbsp;&nbsp;full&nbsp;during&nbsp;its&nbsp;operation.<br>
+:type&nbsp;num_full_buffer:&nbsp;int<br>
+:ivar&nbsp;num_empty_buffer:&nbsp;Number&nbsp;of&nbsp;occurrences&nbsp;when&nbsp;the&nbsp;buffer&nbsp;has&nbsp;been<br>
+&nbsp;&nbsp;&nbsp;&nbsp;empty&nbsp;during&nbsp;its&nbsp;operation.<br>
+:type&nbsp;num_empty_buffer:&nbsp;int<br>
+:ivar&nbsp;num_items_to_process:&nbsp;Total&nbsp;number&nbsp;of&nbsp;items&nbsp;processed&nbsp;by&nbsp;the&nbsp;system.<br>
+:type&nbsp;num_items_to_process:&nbsp;int<br>
+:ivar&nbsp;suggestion:&nbsp;A&nbsp;buffer&nbsp;suggestion,&nbsp;indicating&nbsp;whether&nbsp;to&nbsp;increase,<br>
+&nbsp;decrease,&nbsp;or&nbsp;maintain&nbsp;the&nbsp;buffer&nbsp;size.<br>
+:type&nbsp;suggestion:&nbsp;<a href="#BufferSuggestions">BufferSuggestions</a><br>&nbsp;</span></td></tr>
+<tr><td>&nbsp;</td>
+<td class="singlecolumn">Methods defined here:<br>
+<dl><dt><a name="BufferSuggester-__init__"><strong>__init__</strong></a>(self, config: src.main.config.config.Config, statistic_tracker: src.main.statistics.statistic_tracker.StatisticTracker)</dt><dd><span class="code">Handles&nbsp;the&nbsp;initialization&nbsp;and&nbsp;management&nbsp;of&nbsp;buffer-related&nbsp;variables.<br>
+&nbsp;<br>
+:param&nbsp;config:&nbsp;Configuration&nbsp;<a href="builtins.html#object">object</a>&nbsp;containing&nbsp;buffer-related<br>
+settings.<br>
+:type&nbsp;config:&nbsp;Config<br>
+:param&nbsp;statistic_tracker:&nbsp;Object&nbsp;used&nbsp;for&nbsp;tracking&nbsp;runtime&nbsp;statistics.<br>
+:type&nbsp;statistic_tracker:&nbsp;StatisticTracker<br>
+:ivar&nbsp;config:&nbsp;Configuration&nbsp;<a href="builtins.html#object">object</a>&nbsp;containing&nbsp;system-level&nbsp;settings.<br>
+:ivar&nbsp;statistic_tracker:&nbsp;Object&nbsp;tracking&nbsp;runtime&nbsp;statistics.<br>
+:ivar&nbsp;buffer_size:&nbsp;Size&nbsp;of&nbsp;the&nbsp;buffer,&nbsp;sourced&nbsp;from&nbsp;the&nbsp;config<br>
+attribute.<br>
+:ivar&nbsp;num_full_buffer:&nbsp;Counter&nbsp;for&nbsp;the&nbsp;number&nbsp;of&nbsp;times&nbsp;buffer&nbsp;was<br>
+full.<br>
+:ivar&nbsp;num_empty_buffer:&nbsp;Counter&nbsp;for&nbsp;the&nbsp;number&nbsp;of&nbsp;times&nbsp;buffers&nbsp;was<br>
+empty.<br>
+:ivar&nbsp;num_items_to_process:&nbsp;Total&nbsp;number&nbsp;of&nbsp;items&nbsp;to&nbsp;process&nbsp;in&nbsp;the<br>
+buffer.<br>
+:ivar&nbsp;suggestion:&nbsp;Buffer&nbsp;suggestion&nbsp;of&nbsp;type&nbsp;<a href="#BufferSuggestions">BufferSuggestions</a>.</span></dd></dl>
+
+<dl><dt><a name="BufferSuggester-calculate"><strong>calculate</strong></a>(self) -&gt; None</dt><dd><span class="code">Calculates&nbsp;buffer&nbsp;size&nbsp;adjustment&nbsp;suggestions&nbsp;based&nbsp;on&nbsp;the&nbsp;buffer&nbsp;usage<br>
+statistics,&nbsp;such&nbsp;as&nbsp;the&nbsp;number&nbsp;of&nbsp;full&nbsp;and&nbsp;empty&nbsp;buffers&nbsp;and&nbsp;items&nbsp;to<br>
+process.<br>
+&nbsp;<br>
+:return:&nbsp;This&nbsp;method&nbsp;does&nbsp;not&nbsp;return&nbsp;any&nbsp;value.<br>
+:rtype:&nbsp;None</span></dd></dl>
+
+<dl><dt><a name="BufferSuggester-calculate_reduction_suggestion"><strong>calculate_reduction_suggestion</strong></a>(self) -&gt; None</dt><dd><span class="code">Calculates&nbsp;and&nbsp;updates&nbsp;the&nbsp;buffer&nbsp;size&nbsp;reduction&nbsp;suggestion.<br>
+&nbsp;<br>
+:return:&nbsp;This&nbsp;method&nbsp;does&nbsp;not&nbsp;return&nbsp;any&nbsp;value.<br>
+:rtype:&nbsp;None</span></dd></dl>
+
+<dl><dt><a name="BufferSuggester-should_decrease_buffer_size"><strong>should_decrease_buffer_size</strong></a>(self) -&gt; bool</dt><dd><span class="code">Determines&nbsp;if&nbsp;the&nbsp;buffer&nbsp;size&nbsp;should&nbsp;be&nbsp;decreased&nbsp;based&nbsp;on&nbsp;the<br>
+comparison&nbsp;of&nbsp;the&nbsp;product&nbsp;of&nbsp;the&nbsp;number&nbsp;of&nbsp;items&nbsp;to&nbsp;process&nbsp;and&nbsp;a<br>
+predefined&nbsp;buffer&nbsp;change&nbsp;threshold&nbsp;with&nbsp;the&nbsp;number&nbsp;of&nbsp;empty&nbsp;buffers.<br>
+&nbsp;<br>
+:return:&nbsp;A&nbsp;boolean&nbsp;indicating&nbsp;whether&nbsp;the&nbsp;buffer&nbsp;size&nbsp;should&nbsp;be&nbsp;decreased.<br>
+:rtype:&nbsp;bool</span></dd></dl>
+
+<dl><dt><a name="BufferSuggester-should_increase_buffer_size"><strong>should_increase_buffer_size</strong></a>(self) -&gt; bool</dt><dd><span class="code">Determines&nbsp;if&nbsp;the&nbsp;buffer&nbsp;size&nbsp;should&nbsp;be&nbsp;increased&nbsp;based&nbsp;on&nbsp;the<br>
+processing&nbsp;requirements&nbsp;and&nbsp;the&nbsp;tracked&nbsp;statistics.<br>
+&nbsp;<br>
+:return:&nbsp;A&nbsp;boolean&nbsp;indicating&nbsp;whether&nbsp;the&nbsp;buffer&nbsp;size&nbsp;needs&nbsp;to&nbsp;be<br>
+&nbsp;increased.<br>
+:rtype:&nbsp;bool</span></dd></dl>
+
+<dl><dt><a name="BufferSuggester-should_keep_buffer_size"><strong>should_keep_buffer_size</strong></a>(self) -&gt; bool</dt><dd><span class="code">Determines&nbsp;whether&nbsp;the&nbsp;buffer&nbsp;size&nbsp;should&nbsp;remain&nbsp;unchanged.<br>
+&nbsp;<br>
+:return:&nbsp;A&nbsp;boolean&nbsp;value&nbsp;indicating&nbsp;whether&nbsp;the&nbsp;buffer&nbsp;size&nbsp;should<br>
+&nbsp;&nbsp;&nbsp;&nbsp;remain&nbsp;unchanged.<br>
+:rtype:&nbsp;bool</span></dd></dl>
+
+<dl><dt><a name="BufferSuggester-show_statistics"><strong>show_statistics</strong></a>(self) -&gt; None</dt><dd><span class="code">Logs&nbsp;the&nbsp;buffer&nbsp;statistics&nbsp;to&nbsp;display&nbsp;the&nbsp;frequency&nbsp;of&nbsp;buffer&nbsp;states<br>
+during&nbsp;processing.&nbsp;It&nbsp;calculates&nbsp;the&nbsp;ratio&nbsp;of&nbsp;empty&nbsp;or&nbsp;full&nbsp;buffer<br>
+occurrences&nbsp;to&nbsp;the&nbsp;total&nbsp;number&nbsp;of&nbsp;items&nbsp;processed,&nbsp;formats&nbsp;the<br>
+statistics,&nbsp;and&nbsp;logs&nbsp;them&nbsp;in&nbsp;bold.<br>
+&nbsp;<br>
+:return:&nbsp;None</span></dd></dl>
+
+<dl><dt><a name="BufferSuggester-show_suggestions"><strong>show_suggestions</strong></a>(self) -&gt; None</dt><dd><span class="code">Logs&nbsp;suggestion&nbsp;values&nbsp;in&nbsp;a&nbsp;formatted&nbsp;string&nbsp;with&nbsp;bold&nbsp;and&nbsp;underline<br>
+styles.<br>
+&nbsp;<br>
+:return:&nbsp;This&nbsp;method&nbsp;does&nbsp;not&nbsp;return&nbsp;any&nbsp;value.<br>
+:rtype:&nbsp;None</span></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><span class="code">dictionary&nbsp;for&nbsp;instance&nbsp;variables</span></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><span class="code">list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object</span></dd>
+</dl>
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>BUFFER_CHANGE_THRESHOLD</strong> = 0.1</dl>
+
+<dl><dt><strong>BUFFER_SIZE_THRESHOLD</strong> = 0.65</dl>
+
+<dl><dt><strong>__annotations__</strong> = {'BUFFER_CHANGE_THRESHOLD': &lt;class 'float'&gt;, 'BUFFER_SIZE_THRESHOLD': &lt;class 'float'&gt;}</dl>
+
+</td></tr></table> <p>
+<table class="section">
+<tr class="decor title-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><a name="BufferSuggestions">class <strong>BufferSuggestions</strong></a>(<a href="enum.html#Enum">enum.Enum</a>)</td></tr>
+    
+<tr><td class="decor title-decor" rowspan=2><span class="code">&nbsp;&nbsp;&nbsp;</span></td>
+<td class="decor title-decor" colspan=2><span class="code"><a href="#BufferSuggestions">BufferSuggestions</a>(*values)<br>
+&nbsp;<br>
+Enumeration&nbsp;representing&nbsp;suggestions&nbsp;for&nbsp;buffer&nbsp;size&nbsp;adjustments.<br>
+&nbsp;<br>
+:cvar&nbsp;INCREASE_BUFFER_SIZE:&nbsp;Suggests&nbsp;increasing&nbsp;the&nbsp;buffer&nbsp;size.<br>
+:type&nbsp;INCREASE_BUFFER_SIZE:&nbsp;str<br>
+:cvar&nbsp;DECREASE_BUFFER_SIZE:&nbsp;Suggests&nbsp;decreasing&nbsp;the&nbsp;buffer&nbsp;size.<br>
+:type&nbsp;DECREASE_BUFFER_SIZE:&nbsp;str<br>
+:cvar&nbsp;KEEP_BUFFER_SIZE:&nbsp;Suggests&nbsp;maintaining&nbsp;the&nbsp;current&nbsp;buffer&nbsp;size.<br>
+:type&nbsp;KEEP_BUFFER_SIZE:&nbsp;str<br>
+:cvar&nbsp;BUFFER_SIZE_MAY_BE_REDUCED:&nbsp;Indicates&nbsp;that,&nbsp;optionally,&nbsp;the&nbsp;buffer<br>
+&nbsp;&nbsp;&nbsp;&nbsp;size&nbsp;could&nbsp;be&nbsp;reduced,&nbsp;depending&nbsp;on&nbsp;requirements.<br>
+:type&nbsp;BUFFER_SIZE_MAY_BE_REDUCED:&nbsp;str<br>&nbsp;</span></td></tr>
+<tr><td>&nbsp;</td>
+<td class="singlecolumn"><dl><dt>Method resolution order:</dt>
+<dd><a href="src.main.suggestion.buffer_suggester.html#BufferSuggestions">BufferSuggestions</a></dd>
+<dd><a href="enum.html#Enum">enum.Enum</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>BUFFER_SIZE_MAY_BE_REDUCED</strong> = &lt;BufferSuggestions.BUFFER_SIZE_MAY_BE_REDUCED: 'Buffer size may be reduced.'&gt;</dl>
+
+<dl><dt><strong>DECREASE_BUFFER_SIZE</strong> = &lt;BufferSuggestions.DECREASE_BUFFER_SIZE: 'Buffer size should be decreased.'&gt;</dl>
+
+<dl><dt><strong>INCREASE_BUFFER_SIZE</strong> = &lt;BufferSuggestions.INCREASE_BUFFER_SIZE: 'Buffer size should be increased.'&gt;</dl>
+
+<dl><dt><strong>KEEP_BUFFER_SIZE</strong> = &lt;BufferSuggestions.KEEP_BUFFER_SIZE: 'Buffer size should be kept the same.'&gt;</dl>
+
+<hr>
+Data descriptors inherited from <a href="enum.html#Enum">enum.Enum</a>:<br>
+<dl><dt><strong>name</strong></dt>
+<dd><span class="code">The&nbsp;name&nbsp;of&nbsp;the&nbsp;Enum&nbsp;member.</span></dd>
+</dl>
+<dl><dt><strong>value</strong></dt>
+<dd><span class="code">The&nbsp;value&nbsp;of&nbsp;the&nbsp;Enum&nbsp;member.</span></dd>
+</dl>
+<hr>
+Static methods inherited from <a href="enum.html#EnumType">enum.EnumType</a>:<br>
+<dl><dt><a name="BufferSuggestions-__contains__"><strong>__contains__</strong></a>(value)</dt><dd><span class="code">Return&nbsp;True&nbsp;if&nbsp;`value`&nbsp;is&nbsp;in&nbsp;`cls`.<br>
+&nbsp;<br>
+`value`&nbsp;is&nbsp;in&nbsp;`cls`&nbsp;if:<br>
+1)&nbsp;`value`&nbsp;is&nbsp;a&nbsp;member&nbsp;of&nbsp;`cls`,&nbsp;or<br>
+2)&nbsp;`value`&nbsp;is&nbsp;the&nbsp;value&nbsp;of&nbsp;one&nbsp;of&nbsp;the&nbsp;`cls`'s&nbsp;members.</span></dd></dl>
+
+<dl><dt><a name="BufferSuggestions-__getitem__"><strong>__getitem__</strong></a>(name)</dt><dd><span class="code">Return&nbsp;the&nbsp;member&nbsp;matching&nbsp;`name`.</span></dd></dl>
+
+<dl><dt><a name="BufferSuggestions-__iter__"><strong>__iter__</strong></a>()</dt><dd><span class="code">Return&nbsp;members&nbsp;in&nbsp;definition&nbsp;order.</span></dd></dl>
+
+<dl><dt><a name="BufferSuggestions-__len__"><strong>__len__</strong></a>()</dt><dd><span class="code">Return&nbsp;the&nbsp;number&nbsp;of&nbsp;members&nbsp;(no&nbsp;aliases)</span></dd></dl>
+
+<hr>
+Readonly properties inherited from <a href="enum.html#EnumType">enum.EnumType</a>:<br>
+<dl><dt><strong>__members__</strong></dt>
+<dd><span class="code">Returns&nbsp;a&nbsp;mapping&nbsp;of&nbsp;member&nbsp;name-&gt;value.<br>
+&nbsp;<br>
+This&nbsp;mapping&nbsp;lists&nbsp;all&nbsp;enum&nbsp;members,&nbsp;including&nbsp;aliases.&nbsp;Note&nbsp;that&nbsp;this<br>
+is&nbsp;a&nbsp;read-only&nbsp;view&nbsp;of&nbsp;the&nbsp;internal&nbsp;mapping.</span></dd>
+</dl>
+</td></tr></table></td></tr></table>
+</body></html>

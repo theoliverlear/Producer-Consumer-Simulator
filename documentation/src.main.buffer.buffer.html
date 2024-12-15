@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Python: module src.main.buffer.buffer</title>
+</head><body>
+
+<table class="heading">
+<tr class="heading-text decor">
+<td class="title">&nbsp;<br><strong class="title"><a href="src.html" class="white">src</a>.<a href="src.main.html" class="white">main</a>.<a href="src.main.buffer.html" class="white">buffer</a>.buffer</strong></td>
+<td class="extra"><a href=".">index</a><br><a href="file:c%3A%5Cusers%5Colive%5Cgithub%5Cproducer-consumer-simulator%5Csrc%5Cmain%5Cbuffer%5Cbuffer.py">c:\users\olive\github\producer-consumer-simulator\src\main\buffer\buffer.py</a></td></tr></table>
+    <p></p>
+<p>
+<table class="section">
+<tr class="decor pkg-content-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Modules</strong></td></tr>
+    
+<tr><td class="decor pkg-content-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><table><tr><td class="multicolumn"><a href="logging.html">logging</a><br>
+</td><td class="multicolumn"></td><td class="multicolumn"></td><td class="multicolumn"></td></tr></table></td></tr></table><p>
+<table class="section">
+<tr class="decor index-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Classes</strong></td></tr>
+    
+<tr><td class="decor index-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><dl>
+<dt class="heading-text"><a href="abc.html#ABC">abc.ABC</a>(<a href="builtins.html#object">builtins.object</a>)
+</dt><dd>
+<dl>
+<dt class="heading-text"><a href="src.main.buffer.buffer.html#Buffer">Buffer</a>
+</dt></dl>
+</dd>
+</dl>
+ <p>
+<table class="section">
+<tr class="decor title-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><a name="Buffer">class <strong>Buffer</strong></a>(<a href="abc.html#ABC">abc.ABC</a>)</td></tr>
+    
+<tr><td class="decor title-decor" rowspan=2><span class="code">&nbsp;&nbsp;&nbsp;</span></td>
+<td class="decor title-decor" colspan=2><span class="code"><a href="#Buffer">Buffer</a>(buffer_size:&nbsp;int,&nbsp;statistic_tracker:&nbsp;src.main.statistics.statistic_tracker.StatisticTracker)<br>
+&nbsp;<br>
+Abstract&nbsp;base&nbsp;class&nbsp;for&nbsp;a&nbsp;buffer&nbsp;data&nbsp;structure.<br>
+&nbsp;<br>
+This&nbsp;class&nbsp;serves&nbsp;as&nbsp;a&nbsp;blueprint&nbsp;for&nbsp;creating&nbsp;buffer&nbsp;implementations&nbsp;with<br>
+a&nbsp;fixed&nbsp;size.&nbsp;It&nbsp;provides&nbsp;abstract&nbsp;methods&nbsp;for&nbsp;enqueueing&nbsp;and&nbsp;dequeueing<br>
+operations,&nbsp;as&nbsp;well&nbsp;as&nbsp;checking&nbsp;if&nbsp;the&nbsp;buffer&nbsp;is&nbsp;empty&nbsp;or&nbsp;full.&nbsp;The&nbsp;class<br>
+also&nbsp;interacts&nbsp;with&nbsp;a&nbsp;statistic&nbsp;tracker&nbsp;to&nbsp;monitor&nbsp;buffer-related&nbsp;metrics.<br>
+&nbsp;<br>
+:ivar&nbsp;buffer_size:&nbsp;The&nbsp;maximum&nbsp;number&nbsp;of&nbsp;elements&nbsp;the&nbsp;buffer&nbsp;can&nbsp;hold.<br>
+:type&nbsp;buffer_size:&nbsp;int<br>
+:ivar&nbsp;statistic_tracker:&nbsp;The&nbsp;statistic&nbsp;tracking&nbsp;object&nbsp;associated<br>
+&nbsp;&nbsp;&nbsp;&nbsp;with&nbsp;the&nbsp;buffer&nbsp;for&nbsp;monitoring&nbsp;buffer&nbsp;operations.<br>
+:type&nbsp;statistic_tracker:&nbsp;StatisticTracker<br>&nbsp;</span></td></tr>
+<tr><td>&nbsp;</td>
+<td class="singlecolumn"><dl><dt>Method resolution order:</dt>
+<dd><a href="src.main.buffer.buffer.html#Buffer">Buffer</a></dd>
+<dd><a href="abc.html#ABC">abc.ABC</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="Buffer-__init__"><strong>__init__</strong></a>(self, buffer_size: int, statistic_tracker: src.main.statistics.statistic_tracker.StatisticTracker)</dt><dd><span class="code">Initializes&nbsp;the&nbsp;<a href="#Buffer">Buffer</a>&nbsp;class&nbsp;with&nbsp;a&nbsp;specified&nbsp;buffer&nbsp;size&nbsp;and&nbsp;a<br>
+statistic&nbsp;tracker.<br>
+&nbsp;<br>
+The&nbsp;buffer&nbsp;size&nbsp;determines&nbsp;how&nbsp;much&nbsp;data&nbsp;can&nbsp;be&nbsp;stored&nbsp;at&nbsp;a&nbsp;time.&nbsp;The<br>
+statistic&nbsp;tracker&nbsp;enables&nbsp;the&nbsp;class&nbsp;to&nbsp;track&nbsp;usage&nbsp;statistics&nbsp;for&nbsp;the<br>
+buffer.<br>
+&nbsp;<br>
+:param&nbsp;buffer_size:&nbsp;An&nbsp;integer&nbsp;specifying&nbsp;the&nbsp;size&nbsp;of&nbsp;the&nbsp;buffer.<br>
+:type&nbsp;buffer_size:&nbsp;int<br>
+:param&nbsp;statistic_tracker:&nbsp;An&nbsp;instance&nbsp;of&nbsp;StatisticTracker&nbsp;responsible<br>
+&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;tracking&nbsp;the&nbsp;buffer's&nbsp;statistics.<br>
+:type&nbsp;statistic_tracker:&nbsp;StatisticTracker</span></dd></dl>
+
+<dl><dt><a name="Buffer-dequeue"><strong>dequeue</strong></a>(self) -&gt; int</dt><dd><span class="code">Abstract&nbsp;method&nbsp;to&nbsp;dequeue&nbsp;an&nbsp;element&nbsp;from&nbsp;a&nbsp;data&nbsp;structure.<br>
+&nbsp;<br>
+This&nbsp;method&nbsp;is&nbsp;intended&nbsp;to&nbsp;be&nbsp;implemented&nbsp;by&nbsp;subclasses&nbsp;and&nbsp;ensures<br>
+the&nbsp;removal&nbsp;of&nbsp;an&nbsp;item&nbsp;from&nbsp;the&nbsp;data&nbsp;structure.&nbsp;It&nbsp;returns&nbsp;the<br>
+dequeued&nbsp;element&nbsp;and&nbsp;should&nbsp;be&nbsp;overridden&nbsp;to&nbsp;define&nbsp;specific&nbsp;behavior.<br>
+&nbsp;<br>
+:raises&nbsp;NotImplementedError:&nbsp;If&nbsp;the&nbsp;method&nbsp;is&nbsp;not&nbsp;overridden&nbsp;in&nbsp;a<br>
+subclass.<br>
+:return:&nbsp;The&nbsp;element&nbsp;dequeued&nbsp;from&nbsp;the&nbsp;data&nbsp;structure.<br>
+:rtype:&nbsp;int</span></dd></dl>
+
+<dl><dt><a name="Buffer-enqueue"><strong>enqueue</strong></a>(self, number_to_enqueue: int) -&gt; None</dt><dd><span class="code">Enqueue&nbsp;the&nbsp;provided&nbsp;number&nbsp;into&nbsp;the&nbsp;queue.&nbsp;This&nbsp;method&nbsp;must&nbsp;be<br>
+implemented&nbsp;by&nbsp;subclasses&nbsp;to&nbsp;define&nbsp;the&nbsp;specific&nbsp;behavior&nbsp;of&nbsp;adding&nbsp;an<br>
+&nbsp;item&nbsp;to&nbsp;the&nbsp;queue.<br>
+&nbsp;<br>
+:raises&nbsp;NotImplementedError:&nbsp;If&nbsp;the&nbsp;method&nbsp;is&nbsp;not&nbsp;overridden&nbsp;in&nbsp;a<br>
+subclass.<br>
+:param&nbsp;number_to_enqueue:&nbsp;The&nbsp;number&nbsp;to&nbsp;be&nbsp;added&nbsp;to&nbsp;the&nbsp;queue.<br>
+:type&nbsp;number_to_enqueue:&nbsp;int<br>
+:return:&nbsp;This&nbsp;method&nbsp;does&nbsp;not&nbsp;return&nbsp;anything.<br>
+:rtype:&nbsp;None</span></dd></dl>
+
+<dl><dt><a name="Buffer-is_empty"><strong>is_empty</strong></a>(self) -&gt; bool</dt><dd><span class="code">An&nbsp;abstract&nbsp;method&nbsp;to&nbsp;check&nbsp;whether&nbsp;the&nbsp;collection&nbsp;is&nbsp;empty.<br>
+&nbsp;<br>
+This&nbsp;method&nbsp;must&nbsp;be&nbsp;implemented&nbsp;by&nbsp;any&nbsp;subclass&nbsp;to&nbsp;determine&nbsp;if&nbsp;the<br>
+collection&nbsp;contains&nbsp;no&nbsp;elements.<br>
+&nbsp;<br>
+:raises&nbsp;NotImplementedError:&nbsp;If&nbsp;the&nbsp;method&nbsp;is&nbsp;not&nbsp;overridden&nbsp;in&nbsp;a<br>
+subclass.<br>
+:rtype:&nbsp;bool<br>
+:return:&nbsp;True&nbsp;if&nbsp;the&nbsp;collection&nbsp;is&nbsp;empty,&nbsp;otherwise&nbsp;False.</span></dd></dl>
+
+<dl><dt><a name="Buffer-is_full"><strong>is_full</strong></a>(self) -&gt; bool</dt><dd><span class="code">Represents&nbsp;an&nbsp;abstract&nbsp;method&nbsp;to&nbsp;determine&nbsp;if&nbsp;a&nbsp;container&nbsp;is&nbsp;full.<br>
+&nbsp;<br>
+This&nbsp;method&nbsp;is&nbsp;expected&nbsp;to&nbsp;be&nbsp;implemented&nbsp;by&nbsp;subclasses<br>
+to&nbsp;provide&nbsp;specific&nbsp;logic&nbsp;for&nbsp;determining&nbsp;the&nbsp;"full"&nbsp;condition.<br>
+&nbsp;<br>
+:raises&nbsp;NotImplementedError:&nbsp;If&nbsp;the&nbsp;method&nbsp;is&nbsp;not&nbsp;overridden&nbsp;in&nbsp;a<br>
+subclass.<br>
+:return:&nbsp;A&nbsp;boolean&nbsp;indicating&nbsp;whether&nbsp;the&nbsp;resource&nbsp;or&nbsp;container&nbsp;is<br>
+full.<br>
+:rtype:&nbsp;bool</span></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><span class="code">dictionary&nbsp;for&nbsp;instance&nbsp;variables</span></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><span class="code">list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object</span></dd>
+</dl>
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>__abstractmethods__</strong> = frozenset({'dequeue', 'enqueue', 'is_empty', 'is_full'})</dl>
+
+</td></tr></table></td></tr></table>
+</body></html>

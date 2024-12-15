@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Python: module src.main.statistics.statistic_tracker</title>
+</head><body>
+
+<table class="heading">
+<tr class="heading-text decor">
+<td class="title">&nbsp;<br><strong class="title"><a href="src.html" class="white">src</a>.<a href="src.main.html" class="white">main</a>.<a href="src.main.statistics.html" class="white">statistics</a>.statistic_tracker</strong></td>
+<td class="extra"><a href=".">index</a><br><a href="file:c%3A%5Cusers%5Colive%5Cgithub%5Cproducer-consumer-simulator%5Csrc%5Cmain%5Cstatistics%5Cstatistic_tracker.py">c:\users\olive\github\producer-consumer-simulator\src\main\statistics\statistic_tracker.py</a></td></tr></table>
+    <p></p>
+<p>
+<table class="section">
+<tr class="decor pkg-content-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Modules</strong></td></tr>
+    
+<tr><td class="decor pkg-content-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><table><tr><td class="multicolumn"><a href="time.html">time</a><br>
+</td><td class="multicolumn"></td><td class="multicolumn"></td><td class="multicolumn"></td></tr></table></td></tr></table><p>
+<table class="section">
+<tr class="decor index-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Classes</strong></td></tr>
+    
+<tr><td class="decor index-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><dl>
+<dt class="heading-text"><a href="builtins.html#object">builtins.object</a>
+</dt><dd>
+<dl>
+<dt class="heading-text"><a href="src.main.statistics.statistic_tracker.html#StatisticTracker">StatisticTracker</a>
+</dt></dl>
+</dd>
+</dl>
+ <p>
+<table class="section">
+<tr class="decor title-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><a name="StatisticTracker">class <strong>StatisticTracker</strong></a>(<a href="builtins.html#object">builtins.object</a>)</td></tr>
+    
+<tr><td class="decor title-decor" rowspan=2><span class="code">&nbsp;&nbsp;&nbsp;</span></td>
+<td class="decor title-decor" colspan=2><span class="code"><a href="#StatisticTracker">StatisticTracker</a>(num_items_to_process:&nbsp;int)<br>
+&nbsp;<br>
+Tracks&nbsp;statistics&nbsp;for&nbsp;producer-consumer&nbsp;operations,&nbsp;including&nbsp;throughput<br>
+and&nbsp;buffer&nbsp;state&nbsp;metrics.<br>
+&nbsp;<br>
+:ivar&nbsp;num_items_to_process:&nbsp;Total&nbsp;number&nbsp;of&nbsp;items&nbsp;the&nbsp;tracker&nbsp;expects<br>
+&nbsp;&nbsp;&nbsp;&nbsp;to&nbsp;process.<br>
+:type&nbsp;num_items_to_process:&nbsp;int<br>
+:ivar&nbsp;producer_throughput_list:&nbsp;Records&nbsp;producer&nbsp;throughput&nbsp;values.<br>
+:type&nbsp;producer_throughput_list:&nbsp;List[float]<br>
+:ivar&nbsp;consumer_throughput_list:&nbsp;Records&nbsp;consumer&nbsp;throughput&nbsp;values.<br>
+:type&nbsp;consumer_throughput_list:&nbsp;List[float]<br>
+:ivar&nbsp;items_produced:&nbsp;Counter&nbsp;for&nbsp;items&nbsp;produced.<br>
+:type&nbsp;items_produced:&nbsp;int<br>
+:ivar&nbsp;items_consumed:&nbsp;Counter&nbsp;for&nbsp;items&nbsp;consumed.<br>
+:type&nbsp;items_consumed:&nbsp;int<br>
+:ivar&nbsp;num_empty_buffer:&nbsp;Counter&nbsp;for&nbsp;how&nbsp;many&nbsp;times&nbsp;the&nbsp;buffer&nbsp;was&nbsp;empty.<br>
+:type&nbsp;num_empty_buffer:&nbsp;int<br>
+:ivar&nbsp;num_full_buffer:&nbsp;Counter&nbsp;for&nbsp;how&nbsp;many&nbsp;times&nbsp;the&nbsp;buffer&nbsp;was&nbsp;full.<br>
+:type&nbsp;num_full_buffer:&nbsp;int<br>
+:ivar&nbsp;start_time:&nbsp;Time&nbsp;when&nbsp;tracking&nbsp;started.<br>
+:type&nbsp;start_time:&nbsp;float<br>
+:ivar&nbsp;end_time:&nbsp;Time&nbsp;when&nbsp;tracking&nbsp;stopped.<br>
+:type&nbsp;end_time:&nbsp;float<br>&nbsp;</span></td></tr>
+<tr><td>&nbsp;</td>
+<td class="singlecolumn">Methods defined here:<br>
+<dl><dt><a name="StatisticTracker-__init__"><strong>__init__</strong></a>(self, num_items_to_process: int)</dt><dd><span class="code">This&nbsp;class&nbsp;tracks&nbsp;the&nbsp;throughput&nbsp;and&nbsp;performance&nbsp;metrics&nbsp;for&nbsp;a<br>
+producer-consumer&nbsp;system.&nbsp;It&nbsp;keeps&nbsp;record&nbsp;of&nbsp;throughput&nbsp;lists&nbsp;for<br>
+producers&nbsp;and&nbsp;consumers,&nbsp;production&nbsp;and&nbsp;consumption&nbsp;counts,&nbsp;and&nbsp;buffer<br>
+&nbsp;states.<br>
+&nbsp;<br>
+:param&nbsp;num_items_to_process:&nbsp;The&nbsp;total&nbsp;number&nbsp;of&nbsp;items&nbsp;to&nbsp;be&nbsp;produced<br>
+&nbsp;&nbsp;&nbsp;&nbsp;and&nbsp;consumed&nbsp;in&nbsp;the&nbsp;system.<br>
+:type&nbsp;num_items_to_process:&nbsp;int<br>
+:ivar&nbsp;num_items_to_process:&nbsp;The&nbsp;number&nbsp;of&nbsp;items&nbsp;to&nbsp;process.<br>
+:type&nbsp;num_items_to_process:&nbsp;int<br>
+:ivar&nbsp;producer_throughput_list:&nbsp;List&nbsp;to&nbsp;hold&nbsp;throughput&nbsp;metrics&nbsp;for<br>
+&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;producer.<br>
+:type&nbsp;producer_throughput_list:&nbsp;List[float]<br>
+:ivar&nbsp;consumer_throughput_list:&nbsp;List&nbsp;to&nbsp;hold&nbsp;throughput&nbsp;metrics&nbsp;for<br>
+&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;consumer.<br>
+:type&nbsp;consumer_throughput_list:&nbsp;List[float]<br>
+:ivar&nbsp;items_produced:&nbsp;Number&nbsp;of&nbsp;items&nbsp;produced&nbsp;so&nbsp;far.<br>
+:type&nbsp;items_produced:&nbsp;int<br>
+:ivar&nbsp;items_consumed:&nbsp;Number&nbsp;of&nbsp;items&nbsp;consumed&nbsp;so&nbsp;far.<br>
+:type&nbsp;items_consumed:&nbsp;int<br>
+:ivar&nbsp;num_empty_buffer:&nbsp;Count&nbsp;of&nbsp;how&nbsp;many&nbsp;times&nbsp;the&nbsp;buffer&nbsp;was&nbsp;empty<br>
+&nbsp;&nbsp;&nbsp;&nbsp;during&nbsp;the&nbsp;process.<br>
+:type&nbsp;num_empty_buffer:&nbsp;int<br>
+:ivar&nbsp;num_full_buffer:&nbsp;Count&nbsp;of&nbsp;how&nbsp;many&nbsp;times&nbsp;the&nbsp;buffer&nbsp;was&nbsp;full<br>
+&nbsp;&nbsp;&nbsp;&nbsp;during&nbsp;the&nbsp;process.<br>
+:type&nbsp;num_full_buffer:&nbsp;int<br>
+:ivar&nbsp;start_time:&nbsp;The&nbsp;start&nbsp;time&nbsp;of&nbsp;the&nbsp;process.<br>
+:type&nbsp;start_time:&nbsp;Any<br>
+:ivar&nbsp;end_time:&nbsp;The&nbsp;end&nbsp;time&nbsp;of&nbsp;the&nbsp;process.<br>
+:type&nbsp;end_time:&nbsp;Any</span></dd></dl>
+
+<dl><dt><a name="StatisticTracker-add_consumer_throughput"><strong>add_consumer_throughput</strong></a>(self, throughput: float) -&gt; None</dt><dd><span class="code">Adds&nbsp;the&nbsp;throughput&nbsp;value&nbsp;for&nbsp;a&nbsp;producer&nbsp;to&nbsp;the&nbsp;throughput&nbsp;list.<br>
+&nbsp;<br>
+:param&nbsp;throughput:&nbsp;Throughput&nbsp;of&nbsp;the&nbsp;consumer&nbsp;to&nbsp;be&nbsp;added.<br>
+:type&nbsp;throughput:&nbsp;float<br>
+:return:&nbsp;This&nbsp;method&nbsp;does&nbsp;not&nbsp;return&nbsp;any&nbsp;value.<br>
+:rtype:&nbsp;None</span></dd></dl>
+
+<dl><dt><a name="StatisticTracker-add_producer_throughput"><strong>add_producer_throughput</strong></a>(self, throughput: float) -&gt; None</dt><dd><span class="code">Adds&nbsp;the&nbsp;throughput&nbsp;value&nbsp;for&nbsp;a&nbsp;producer&nbsp;to&nbsp;the&nbsp;throughput&nbsp;list.<br>
+&nbsp;<br>
+:param&nbsp;throughput:&nbsp;The&nbsp;throughput&nbsp;value&nbsp;to&nbsp;be&nbsp;added,&nbsp;representing&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;production&nbsp;rate&nbsp;of&nbsp;a&nbsp;producer&nbsp;as&nbsp;a&nbsp;float.<br>
+:return:&nbsp;This&nbsp;method&nbsp;does&nbsp;not&nbsp;return&nbsp;any&nbsp;value.<br>
+:rtype:&nbsp;None</span></dd></dl>
+
+<dl><dt><a name="StatisticTracker-get_buffer_statistics"><strong>get_buffer_statistics</strong></a>(self) -&gt; str</dt><dd><span class="code">Provides&nbsp;a&nbsp;summary&nbsp;of&nbsp;the&nbsp;buffer's&nbsp;usage&nbsp;statistics.&nbsp;It&nbsp;reports&nbsp;how<br>
+many&nbsp;times&nbsp;the&nbsp;buffer&nbsp;was&nbsp;empty&nbsp;or&nbsp;full&nbsp;based&nbsp;on&nbsp;the&nbsp;recorded&nbsp;values.<br>
+&nbsp;<br>
+:return:&nbsp;A&nbsp;string&nbsp;containing&nbsp;formatted&nbsp;statistics&nbsp;about&nbsp;the&nbsp;buffer's<br>
+&nbsp;&nbsp;&nbsp;&nbsp;usage.<br>
+:rtype:&nbsp;str</span></dd></dl>
+
+<dl><dt><a name="StatisticTracker-get_performance_info"><strong>get_performance_info</strong></a>(self) -&gt; str</dt><dd><span class="code">Calculates&nbsp;and&nbsp;formats&nbsp;performance&nbsp;information&nbsp;for&nbsp;producer&nbsp;and&nbsp;consumer<br>
+throughput.&nbsp;The&nbsp;method&nbsp;determines&nbsp;and&nbsp;converts&nbsp;time&nbsp;units&nbsp;based&nbsp;on&nbsp;the<br>
+provided&nbsp;throughput&nbsp;values,&nbsp;ensuring&nbsp;appropriate&nbsp;time&nbsp;intervals&nbsp;are<br>
+used&nbsp;either&nbsp;in&nbsp;nanoseconds&nbsp;or&nbsp;milliseconds.<br>
+&nbsp;<br>
+:return:&nbsp;A&nbsp;formatted&nbsp;string&nbsp;summarizing&nbsp;producer&nbsp;and&nbsp;consumer<br>
+throughput&nbsp;in&nbsp;the&nbsp;appropriate&nbsp;time&nbsp;interval.<br>
+:rtype:&nbsp;str</span></dd></dl>
+
+<dl><dt><a name="StatisticTracker-get_total_time"><strong>get_total_time</strong></a>(self) -&gt; float</dt><dd><span class="code">Calculates&nbsp;the&nbsp;total&nbsp;time&nbsp;duration&nbsp;based&nbsp;on&nbsp;the&nbsp;difference&nbsp;between<br>
+the&nbsp;<a href="builtins.html#object">object</a>'s&nbsp;end&nbsp;time&nbsp;and&nbsp;start&nbsp;time&nbsp;attributes.<br>
+&nbsp;<br>
+:return:&nbsp;The&nbsp;total&nbsp;duration&nbsp;as&nbsp;a&nbsp;float&nbsp;value.<br>
+:rtype:&nbsp;float</span></dd></dl>
+
+<dl><dt><a name="StatisticTracker-increment_consumed_items"><strong>increment_consumed_items</strong></a>(self) -&gt; None</dt><dd><span class="code">Increments&nbsp;the&nbsp;count&nbsp;of&nbsp;consumed&nbsp;items.<br>
+&nbsp;<br>
+:return:&nbsp;This&nbsp;method&nbsp;does&nbsp;not&nbsp;return&nbsp;any&nbsp;value.<br>
+:rtype:&nbsp;None</span></dd></dl>
+
+<dl><dt><a name="StatisticTracker-increment_empty_buffer"><strong>increment_empty_buffer</strong></a>(self) -&gt; None</dt><dd><span class="code">Increments&nbsp;the&nbsp;value&nbsp;of&nbsp;`num_empty_buffer`.<br>
+&nbsp;<br>
+:return:&nbsp;This&nbsp;method&nbsp;does&nbsp;not&nbsp;return&nbsp;any&nbsp;value.<br>
+:rtype:&nbsp;None</span></dd></dl>
+
+<dl><dt><a name="StatisticTracker-increment_full_buffer"><strong>increment_full_buffer</strong></a>(self) -&gt; None</dt><dd><span class="code">Increments&nbsp;the&nbsp;value&nbsp;of&nbsp;`num_full_buffer`.<br>
+&nbsp;<br>
+:return:&nbsp;None<br>
+:rtype:&nbsp;None</span></dd></dl>
+
+<dl><dt><a name="StatisticTracker-increment_produced_items"><strong>increment_produced_items</strong></a>(self) -&gt; None</dt><dd><span class="code">Increments&nbsp;the&nbsp;count&nbsp;of&nbsp;produced&nbsp;items.<br>
+&nbsp;<br>
+:return:&nbsp;This&nbsp;method&nbsp;does&nbsp;not&nbsp;return&nbsp;any&nbsp;value.<br>
+:rtype:&nbsp;None</span></dd></dl>
+
+<dl><dt><a name="StatisticTracker-show_statistics"><strong>show_statistics</strong></a>(self) -&gt; None</dt><dd><span class="code">Displays&nbsp;statistics&nbsp;related&nbsp;to&nbsp;buffer&nbsp;usage&nbsp;and&nbsp;system&nbsp;performance.<br>
+&nbsp;<br>
+This&nbsp;function&nbsp;outputs&nbsp;details&nbsp;such&nbsp;as&nbsp;buffer&nbsp;statistics&nbsp;and&nbsp;performance<br>
+information.&nbsp;It&nbsp;leverages&nbsp;logging&nbsp;helpers&nbsp;for&nbsp;bold&nbsp;formatting&nbsp;and<br>
+separator&nbsp;lines&nbsp;for&nbsp;improved&nbsp;readability.<br>
+&nbsp;<br>
+:return:&nbsp;None</span></dd></dl>
+
+<dl><dt><a name="StatisticTracker-start"><strong>start</strong></a>(self) -&gt; None</dt><dd><span class="code">This&nbsp;method&nbsp;initializes&nbsp;the&nbsp;tracking&nbsp;mechanism&nbsp;for&nbsp;monitoring<br>
+processes&nbsp;within&nbsp;the&nbsp;system.<br>
+&nbsp;<br>
+:return:&nbsp;None</span></dd></dl>
+
+<dl><dt><a name="StatisticTracker-start_tracking"><strong>start_tracking</strong></a>(self) -&gt; None</dt><dd><span class="code">Starts&nbsp;tracking&nbsp;time&nbsp;by&nbsp;recording&nbsp;the&nbsp;current&nbsp;time&nbsp;using&nbsp;the&nbsp;time<br>
+module.<br>
+&nbsp;<br>
+:rtype:&nbsp;None<br>
+:return:&nbsp;This&nbsp;method&nbsp;does&nbsp;not&nbsp;return&nbsp;any&nbsp;value.</span></dd></dl>
+
+<dl><dt><a name="StatisticTracker-stop"><strong>stop</strong></a>(self) -&gt; None</dt><dd><span class="code">Stops&nbsp;the&nbsp;tracking&nbsp;process&nbsp;and&nbsp;displays&nbsp;the&nbsp;gathered&nbsp;statistics.<br>
+&nbsp;<br>
+:return:&nbsp;This&nbsp;method&nbsp;does&nbsp;not&nbsp;return&nbsp;any&nbsp;value.<br>
+:rtype:&nbsp;None</span></dd></dl>
+
+<dl><dt><a name="StatisticTracker-stop_tracking"><strong>stop_tracking</strong></a>(self) -&gt; None</dt><dd><span class="code">Stops&nbsp;the&nbsp;tracking&nbsp;process&nbsp;by&nbsp;recording&nbsp;the&nbsp;end&nbsp;time.<br>
+&nbsp;<br>
+:return:&nbsp;This&nbsp;method&nbsp;does&nbsp;not&nbsp;return&nbsp;any&nbsp;value.<br>
+:rtype:&nbsp;None</span></dd></dl>
+
+<hr>
+Static methods defined here:<br>
+<dl><dt><a name="StatisticTracker-get_average_throughput"><strong>get_average_throughput</strong></a>(throughput_list: List[float]) -&gt; float</dt><dd><span class="code">Calculate&nbsp;and&nbsp;return&nbsp;the&nbsp;average&nbsp;throughput&nbsp;value&nbsp;from&nbsp;a&nbsp;given&nbsp;list&nbsp;of<br>
+throughput&nbsp;values.<br>
+&nbsp;<br>
+:param&nbsp;throughput_list:&nbsp;A&nbsp;list&nbsp;of&nbsp;throughput&nbsp;values&nbsp;as&nbsp;floats.<br>
+:type&nbsp;throughput_list:&nbsp;List[float]<br>
+:return:&nbsp;The&nbsp;average&nbsp;throughput&nbsp;value&nbsp;as&nbsp;a&nbsp;float.</span></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><span class="code">dictionary&nbsp;for&nbsp;instance&nbsp;variables</span></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><span class="code">list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object</span></dd>
+</dl>
+</td></tr></table></td></tr></table><p>
+<table class="section">
+<tr class="decor data-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Data</strong></td></tr>
+    
+<tr><td class="decor data-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><strong>List</strong> = typing.List</td></tr></table>
+</body></html>

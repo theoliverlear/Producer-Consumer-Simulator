@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Python: module src.main.buffer.buffer_queue</title>
+</head><body>
+
+<table class="heading">
+<tr class="heading-text decor">
+<td class="title">&nbsp;<br><strong class="title"><a href="src.html" class="white">src</a>.<a href="src.main.html" class="white">main</a>.<a href="src.main.buffer.html" class="white">buffer</a>.buffer_queue</strong></td>
+<td class="extra"><a href=".">index</a><br><a href="file:c%3A%5Cusers%5Colive%5Cgithub%5Cproducer-consumer-simulator%5Csrc%5Cmain%5Cbuffer%5Cbuffer_queue.py">c:\users\olive\github\producer-consumer-simulator\src\main\buffer\buffer_queue.py</a></td></tr></table>
+    <p></p>
+<p>
+<table class="section">
+<tr class="decor pkg-content-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Modules</strong></td></tr>
+    
+<tr><td class="decor pkg-content-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><table><tr><td class="multicolumn"><a href="logging.html">logging</a><br>
+</td><td class="multicolumn"></td><td class="multicolumn"></td><td class="multicolumn"></td></tr></table></td></tr></table><p>
+<table class="section">
+<tr class="decor index-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Classes</strong></td></tr>
+    
+<tr><td class="decor index-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><dl>
+<dt class="heading-text"><a href="src.main.buffer.buffer.html#Buffer">src.main.buffer.buffer.Buffer</a>(<a href="abc.html#ABC">abc.ABC</a>)
+</dt><dd>
+<dl>
+<dt class="heading-text"><a href="src.main.buffer.buffer_queue.html#BufferQueue">BufferQueue</a>
+</dt></dl>
+</dd>
+</dl>
+ <p>
+<table class="section">
+<tr class="decor title-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><a name="BufferQueue">class <strong>BufferQueue</strong></a>(<a href="src.main.buffer.buffer.html#Buffer">src.main.buffer.buffer.Buffer</a>)</td></tr>
+    
+<tr><td class="decor title-decor" rowspan=2><span class="code">&nbsp;&nbsp;&nbsp;</span></td>
+<td class="decor title-decor" colspan=2><span class="code"><a href="#BufferQueue">BufferQueue</a>(buffer_size:&nbsp;int,&nbsp;mutex_lock:&nbsp;src.main.thread.processor.lock.mutex_lock.MutexLock,&nbsp;statistic_tracker:&nbsp;src.main.statistics.statistic_tracker.StatisticTracker)<br>
+&nbsp;<br>
+A&nbsp;class&nbsp;that&nbsp;represents&nbsp;a&nbsp;thread-safe&nbsp;buffer&nbsp;queue.<br>
+&nbsp;<br>
+The&nbsp;class&nbsp;provides&nbsp;functionalities&nbsp;for&nbsp;managing&nbsp;a&nbsp;fixed-size&nbsp;queue&nbsp;with<br>
+concurrent&nbsp;access&nbsp;control.&nbsp;It&nbsp;supports&nbsp;enqueueing&nbsp;and&nbsp;dequeuing&nbsp;elements<br>
+while&nbsp;ensuring&nbsp;thread&nbsp;safety&nbsp;using&nbsp;a&nbsp;mutex&nbsp;lock.&nbsp;Additionally,&nbsp;it&nbsp;includes<br>
+performance&nbsp;tracking,&nbsp;exception&nbsp;handling,&nbsp;and&nbsp;statistics&nbsp;collection.<br>
+&nbsp;<br>
+:ivar&nbsp;buffer:&nbsp;A&nbsp;deque&nbsp;used&nbsp;to&nbsp;store&nbsp;the&nbsp;elements&nbsp;in&nbsp;the&nbsp;buffer,&nbsp;with&nbsp;a<br>
+fixed&nbsp;maximum&nbsp;length.<br>
+:type&nbsp;buffer:&nbsp;collections.deque<br>
+:ivar&nbsp;mutex_lock:&nbsp;A&nbsp;lock&nbsp;used&nbsp;to&nbsp;manage&nbsp;concurrent&nbsp;access&nbsp;to&nbsp;the&nbsp;buffer.<br>
+:type&nbsp;mutex_lock:&nbsp;MutexLock<br>
+:ivar&nbsp;statistic_tracker:&nbsp;An&nbsp;object&nbsp;used&nbsp;for&nbsp;tracking&nbsp;statistics&nbsp;related&nbsp;to<br>
+&nbsp;the&nbsp;buffer's&nbsp;operation.<br>
+:type&nbsp;statistic_tracker:&nbsp;StatisticTracker<br>&nbsp;</span></td></tr>
+<tr><td>&nbsp;</td>
+<td class="singlecolumn"><dl><dt>Method resolution order:</dt>
+<dd><a href="src.main.buffer.buffer_queue.html#BufferQueue">BufferQueue</a></dd>
+<dd><a href="src.main.buffer.buffer.html#Buffer">src.main.buffer.buffer.Buffer</a></dd>
+<dd><a href="abc.html#ABC">abc.ABC</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="BufferQueue-__init__"><strong>__init__</strong></a>(self, buffer_size: int, mutex_lock: src.main.thread.processor.lock.mutex_lock.MutexLock, statistic_tracker: src.main.statistics.statistic_tracker.StatisticTracker)</dt><dd><span class="code">Initializes&nbsp;the&nbsp;class&nbsp;with&nbsp;a&nbsp;buffer&nbsp;size,&nbsp;a&nbsp;mutex&nbsp;lock&nbsp;for<br>
+thread-safety,&nbsp;and&nbsp;a&nbsp;statistic&nbsp;tracker&nbsp;for&nbsp;monitoring.<br>
+&nbsp;<br>
+:param&nbsp;buffer_size:&nbsp;The&nbsp;maximum&nbsp;number&nbsp;of&nbsp;elements&nbsp;the&nbsp;deque&nbsp;buffer<br>
+&nbsp;&nbsp;&nbsp;&nbsp;can&nbsp;hold.<br>
+:type&nbsp;buffer_size:&nbsp;int<br>
+:param&nbsp;mutex_lock:&nbsp;A&nbsp;lock&nbsp;used&nbsp;to&nbsp;synchronize&nbsp;access&nbsp;to&nbsp;the&nbsp;buffer.<br>
+:type&nbsp;mutex_lock:&nbsp;MutexLock<br>
+:param&nbsp;statistic_tracker:&nbsp;An&nbsp;object&nbsp;responsible&nbsp;for&nbsp;tracking&nbsp;relevant<br>
+statistics.<br>
+:type&nbsp;statistic_tracker:&nbsp;StatisticTracker</span></dd></dl>
+
+<dl><dt><a name="BufferQueue-dequeue"><strong>dequeue</strong></a>(self) -&gt; int</dt><dd><span class="code">Dequeues&nbsp;an&nbsp;item&nbsp;from&nbsp;the&nbsp;buffer.<br>
+&nbsp;<br>
+This&nbsp;method&nbsp;removes&nbsp;and&nbsp;returns&nbsp;the&nbsp;last&nbsp;item&nbsp;in&nbsp;the&nbsp;buffer&nbsp;if&nbsp;it&nbsp;is<br>
+not&nbsp;empty.&nbsp;If&nbsp;the&nbsp;buffer&nbsp;is&nbsp;empty,&nbsp;an&nbsp;exception&nbsp;is&nbsp;raised&nbsp;instead.<br>
+The&nbsp;method&nbsp;is&nbsp;decorated&nbsp;with&nbsp;performance&nbsp;tracking,&nbsp;critical&nbsp;section<br>
+locking,&nbsp;and&nbsp;exception&nbsp;tracking&nbsp;functionality.<br>
+&nbsp;<br>
+:raises&nbsp;EmptyBufferException:&nbsp;Raised&nbsp;when&nbsp;attempting&nbsp;to&nbsp;dequeue&nbsp;from<br>
+an&nbsp;empty&nbsp;buffer.<br>
+:return:&nbsp;The&nbsp;last&nbsp;item&nbsp;in&nbsp;the&nbsp;buffer.<br>
+:rtype:&nbsp;int</span></dd></dl>
+
+<dl><dt><a name="BufferQueue-enqueue"><strong>enqueue</strong></a>(self, number_to_enqueue: int) -&gt; None</dt><dd><span class="code">Adds&nbsp;a&nbsp;number&nbsp;to&nbsp;the&nbsp;queue&nbsp;if&nbsp;the&nbsp;buffer&nbsp;is&nbsp;not&nbsp;full.&nbsp;If&nbsp;the&nbsp;buffer&nbsp;is<br>
+full,&nbsp;raises&nbsp;a&nbsp;`FullBufferException`.<br>
+&nbsp;<br>
+This&nbsp;method&nbsp;ensures&nbsp;thread&nbsp;safety&nbsp;using&nbsp;a&nbsp;critical&nbsp;section&nbsp;decorator<br>
+and&nbsp;tracks&nbsp;function&nbsp;performance&nbsp;and&nbsp;exceptions&nbsp;through&nbsp;the&nbsp;applied<br>
+decorators.<br>
+&nbsp;<br>
+:param&nbsp;number_to_enqueue:&nbsp;The&nbsp;integer&nbsp;value&nbsp;to&nbsp;add&nbsp;to&nbsp;the&nbsp;queue.<br>
+:type&nbsp;number_to_enqueue:&nbsp;int<br>
+:return:&nbsp;None<br>
+:raises&nbsp;FullBufferException:&nbsp;If&nbsp;the&nbsp;buffer&nbsp;is&nbsp;full&nbsp;and&nbsp;no&nbsp;space&nbsp;is<br>
+&nbsp;&nbsp;&nbsp;&nbsp;available&nbsp;to&nbsp;add&nbsp;the&nbsp;number.</span></dd></dl>
+
+<dl><dt><a name="BufferQueue-is_empty"><strong>is_empty</strong></a>(self) -&gt; bool</dt><dd><span class="code">Determines&nbsp;if&nbsp;the&nbsp;buffer&nbsp;is&nbsp;empty.<br>
+&nbsp;<br>
+This&nbsp;method&nbsp;checks&nbsp;whether&nbsp;the&nbsp;internal&nbsp;buffer&nbsp;has&nbsp;any&nbsp;elements&nbsp;or<br>
+not.<br>
+&nbsp;<br>
+:return:&nbsp;Boolean&nbsp;indicating&nbsp;whether&nbsp;the&nbsp;buffer&nbsp;is&nbsp;empty&nbsp;or&nbsp;not.<br>
+:rtype:&nbsp;bool</span></dd></dl>
+
+<dl><dt><a name="BufferQueue-is_full"><strong>is_full</strong></a>(self) -&gt; bool</dt><dd><span class="code">Checks&nbsp;if&nbsp;the&nbsp;buffer&nbsp;is&nbsp;full.<br>
+&nbsp;<br>
+This&nbsp;method&nbsp;verifies&nbsp;whether&nbsp;the&nbsp;number&nbsp;of&nbsp;elements&nbsp;in&nbsp;the&nbsp;buffer&nbsp;has<br>
+reached&nbsp;its&nbsp;maximum&nbsp;capacity&nbsp;as&nbsp;defined&nbsp;by&nbsp;its&nbsp;maximum&nbsp;length.<br>
+&nbsp;<br>
+:return:&nbsp;True&nbsp;if&nbsp;the&nbsp;buffer&nbsp;is&nbsp;full,&nbsp;False&nbsp;otherwise.<br>
+:rtype:&nbsp;bool</span></dd></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>__abstractmethods__</strong> = frozenset()</dl>
+
+<hr>
+Data descriptors inherited from <a href="src.main.buffer.buffer.html#Buffer">src.main.buffer.buffer.Buffer</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><span class="code">dictionary&nbsp;for&nbsp;instance&nbsp;variables</span></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><span class="code">list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object</span></dd>
+</dl>
+</td></tr></table></td></tr></table>
+</body></html>

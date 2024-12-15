@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Python: module src.main.logging.setup_logging</title>
+</head><body>
+
+<table class="heading">
+<tr class="heading-text decor">
+<td class="title">&nbsp;<br><strong class="title"><a href="src.html" class="white">src</a>.<a href="src.main.html" class="white">main</a>.<a href="src.main.logging.html" class="white">logging</a>.setup_logging</strong></td>
+<td class="extra"><a href=".">index</a><br><a href="file:c%3A%5Cusers%5Colive%5Cgithub%5Cproducer-consumer-simulator%5Csrc%5Cmain%5Clogging%5Csetup_logging.py">c:\users\olive\github\producer-consumer-simulator\src\main\logging\setup_logging.py</a></td></tr></table>
+    <p></p>
+<p>
+<table class="section">
+<tr class="decor pkg-content-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Modules</strong></td></tr>
+    
+<tr><td class="decor pkg-content-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><table><tr><td class="multicolumn"><a href="logging.html">logging</a><br>
+</td><td class="multicolumn"><a href="threading.html">threading</a><br>
+</td><td class="multicolumn"></td><td class="multicolumn"></td></tr></table></td></tr></table><p>
+<table class="section">
+<tr class="decor functions-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Functions</strong></td></tr>
+    
+<tr><td class="decor functions-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><dl><dt><a name="-execution_trace"><strong>execution_trace</strong></a>(function)</dt><dd><span class="code">A&nbsp;decorator&nbsp;that&nbsp;logs&nbsp;the&nbsp;execution&nbsp;details&nbsp;of&nbsp;a&nbsp;function,&nbsp;including&nbsp;its<br>
+name&nbsp;and&nbsp;the&nbsp;thread&nbsp;on&nbsp;which&nbsp;it&nbsp;is&nbsp;executed.<br>
+&nbsp;<br>
+:param&nbsp;function:&nbsp;The&nbsp;function&nbsp;to&nbsp;be&nbsp;wrapped&nbsp;and&nbsp;logged.<br>
+:type&nbsp;function:&nbsp;Callable<br>
+:return:&nbsp;A&nbsp;wrapper&nbsp;function&nbsp;that&nbsp;logs&nbsp;execution&nbsp;details&nbsp;and&nbsp;calls&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;original&nbsp;function.<br>
+:rtype:&nbsp;Callable</span></dd></dl>
+ <dl><dt><a name="-setup_default_logging"><strong>setup_default_logging</strong></a>() -&gt; None</dt><dd><span class="code">Sets&nbsp;up&nbsp;the&nbsp;default&nbsp;logging&nbsp;configuration.<br>
+&nbsp;<br>
+This&nbsp;function&nbsp;configures&nbsp;the&nbsp;logging&nbsp;module&nbsp;to&nbsp;use&nbsp;a&nbsp;default&nbsp;logging<br>
+setup&nbsp;with&nbsp;the&nbsp;INFO&nbsp;level.&nbsp;The&nbsp;message&nbsp;format&nbsp;includes&nbsp;timestamp,&nbsp;thread<br>
+name,&nbsp;log&nbsp;level,&nbsp;and&nbsp;the&nbsp;log&nbsp;message.&nbsp;The&nbsp;timestamp&nbsp;is&nbsp;formatted&nbsp;to&nbsp;only<br>
+show&nbsp;hours,&nbsp;minutes,&nbsp;and&nbsp;seconds.<br>
+&nbsp;<br>
+:return:&nbsp;None</span></dd></dl>
+ <dl><dt><a name="-setup_logging"><strong>setup_logging</strong></a>(use_verbose: bool = False) -&gt; None</dt><dd><span class="code">Sets&nbsp;up&nbsp;the&nbsp;logging&nbsp;configuration&nbsp;for&nbsp;the&nbsp;application.&nbsp;Depending&nbsp;on&nbsp;the<br>
+provided&nbsp;``use_verbose``&nbsp;parameter,&nbsp;it&nbsp;will&nbsp;configure&nbsp;either&nbsp;verbose&nbsp;or<br>
+default&nbsp;logging&nbsp;settings.<br>
+&nbsp;<br>
+:param&nbsp;use_verbose:&nbsp;A&nbsp;boolean&nbsp;indicating&nbsp;whether&nbsp;verbose&nbsp;logging<br>
+&nbsp;&nbsp;&nbsp;&nbsp;should&nbsp;be&nbsp;enabled.&nbsp;If&nbsp;False,&nbsp;default&nbsp;logging&nbsp;will&nbsp;be&nbsp;used.<br>
+:type&nbsp;use_verbose:&nbsp;bool<br>
+:return:&nbsp;This&nbsp;function&nbsp;does&nbsp;not&nbsp;return&nbsp;a&nbsp;value.<br>
+:rtype:&nbsp;None</span></dd></dl>
+ <dl><dt><a name="-setup_verbose_logging"><strong>setup_verbose_logging</strong></a>()</dt><dd><span class="code">Sets&nbsp;up&nbsp;verbose&nbsp;logging&nbsp;configuration&nbsp;for&nbsp;the&nbsp;application.<br>
+&nbsp;<br>
+This&nbsp;function&nbsp;configures&nbsp;the&nbsp;logging&nbsp;module&nbsp;to&nbsp;use&nbsp;a&nbsp;default&nbsp;logging<br>
+setup&nbsp;with&nbsp;the&nbsp;DEBUG&nbsp;level.&nbsp;The&nbsp;message&nbsp;format&nbsp;includes&nbsp;timestamp,&nbsp;thread<br>
+name,&nbsp;log&nbsp;level,&nbsp;and&nbsp;the&nbsp;log&nbsp;message.&nbsp;The&nbsp;timestamp&nbsp;is&nbsp;formatted&nbsp;to&nbsp;only<br>
+show&nbsp;hours,&nbsp;minutes,&nbsp;and&nbsp;seconds.<br>
+&nbsp;<br>
+:return:&nbsp;None</span></dd></dl>
+</td></tr></table>
+</body></html>
