@@ -24,3 +24,12 @@
 # Kollin Weikel
 
 # Milton Massaquoi
+    ChatGPT Conversation: https://chatgpt.com/share/675f02a2-690c-800e-9814-c0b091a33325 
+    ChatGPT Conversation: https://chatgpt.com/share/675f03f4-69e0-800e-b584-4d9cd2c08b65
+    Website: https://www.sphinx-doc.org/en/master/ 
+    Website: https://docs.readthedocs.io/en/stable/intro/sphinx.html
+    Website: https://towardsdatascience.com/documenting-python-code-with-sphinx-554e1d6c4f6d
+    Website: https://stackoverflow.com/questions/25549321/how-to-document-python-packages-using-sphinx
+    
+    
+
