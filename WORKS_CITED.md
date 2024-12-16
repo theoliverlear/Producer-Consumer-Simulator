@@ -22,7 +22,9 @@
     Website: https://stackoverflow.com/questions/15821465/how-to-properly-use-mock-in-python-with-unittest-setup
 
 # Kollin Weikel
-
+    ChatGPT conversation: https://chatgpt.com/share/67573848-6d10-8003-bb08-b45c4cc39887
+    Website: https://www.geeksforgeeks.org/logging-in-python/
+    
 # Milton Massaquoi
     ChatGPT Conversation: https://chatgpt.com/share/675f02a2-690c-800e-9814-c0b091a33325 
     ChatGPT Conversation: https://chatgpt.com/share/675f03f4-69e0-800e-b584-4d9cd2c08b65
