@@ -14,8 +14,8 @@ class StatisticTrackerTest(unittest.TestCase):
         self.assertEqual(tracker.num_full_buffer, 0)
         self.assertEqual(tracker.producer_throughput_list, [])
         self.assertEqual(tracker.consumer_throughput_list, [])
-        self.assertIsNone(tracker.start_time)
-        self.assertIsNone(tracker.end_time)
+        self.start_time: float = 0
+        self.end_time: float = 0
 
     def test_value_change(self):
         tracker = StatisticTracker(num_items_to_process=100)

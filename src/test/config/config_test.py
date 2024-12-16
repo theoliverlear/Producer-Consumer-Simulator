@@ -96,5 +96,6 @@ class ConfigTest(unittest.TestCase):
         self.assertTrue(config.verbose)
         self.assertTrue(config.suggestions)
 
+
 if __name__ == '__main__':
     unittest.main()

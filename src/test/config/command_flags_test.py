@@ -61,5 +61,6 @@ class CommandFlagsTest(unittest.TestCase):
 
         self.assertEqual(str(buffer_size_flag), "CommandFlag(-b, --buffer-size, <class 'int'>, 100, Buffer size in bytes)")
 
+
 if __name__ == '__main__':
     unittest.main()

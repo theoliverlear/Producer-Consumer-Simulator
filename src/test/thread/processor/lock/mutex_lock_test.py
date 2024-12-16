@@ -68,6 +68,5 @@ class MutexLockTest(unittest.TestCase):
         self.assertFalse(mutex.is_locked())
 
 
-
 if __name__ == '__main__':
     unittest.main()

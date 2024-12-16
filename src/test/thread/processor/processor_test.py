@@ -74,5 +74,6 @@ class ProccessorTest(unittest.TestCase):
         self.assertGreaterEqual(random_speed, 1)
         self.assertLessEqual(random_speed, 2)
 
+
 if __name__ == '__main__':
     unittest.main()

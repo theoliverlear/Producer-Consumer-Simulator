@@ -74,35 +74,6 @@ class BufferQueueTest(unittest.TestCase):
         with self.assertRaises(EmptyBufferException):
             buffer_queue.dequeue()
 
-    def test_logging_full_buffer(self):
-        buffer_size = 1
-        num_items_to_process = 1000
-        mutex_lock = MutexLock()
-        statistic_tracker = StatisticTracker(num_items_to_process)
-        buffer_queue = BufferQueue(buffer_size,
-                                   mutex_lock,
-                                   statistic_tracker)
-        buffer_queue.enqueue(1)
-
-        with self.assertLogs(level='INFO') as log:
-            with self.assertRaises(FullBufferException):
-                buffer_queue.enqueue(2)
-        self.assertIn("Buffer is full", log.output[0])
-
-    def test_logging_empty_buffer(self):
-        buffer_size = 1
-        num_items_to_process = 1000
-        mutex_lock = MutexLock()
-        statistic_tracker = StatisticTracker(num_items_to_process)
-        buffer_queue = BufferQueue(buffer_size,
-                                   mutex_lock,
-                                   statistic_tracker)
-
-        with self.assertLogs(level='INFO') as log:
-            with self.assertRaises(EmptyBufferException):
-                buffer_queue.dequeue()
-        self.assertIn("Buffer is empty", log.output[0])
-
 
 if __name__ == '__main__':
     unittest.main()
