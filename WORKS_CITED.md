@@ -13,6 +13,7 @@
 # Anthany Toum
     ChatGPT conversation: https://chatgpt.com/share/675b29dc-73b4-8002-844f-7c82fcd581b0
     ChatGPT conversation: https://chatgpt.com/share/675b2a81-ed78-8002-887c-1f0966ab1e54
+    ChatGPT conversation: https://chatgpt.com/share/675f928d-7fe4-8002-9f2d-46ab5bfc1e2f
     Website: https://docs.python.org/3/library/unittest.html
     Website: https://stackoverflow.com/questions/53768225/mock-object-is-not-iterable
     Website: https://pythontutor.com
